@@ -26,6 +26,7 @@ const KavangunAssetsPage = () => {
       originalPrice: "₹ 499.00",
       salePrice: "₹ 99.00",
       image: "https://kavangunassets.com/cdn/shop/files/boxes.png",
+      link: "https://spf.bio/SbIfQ",
       badge: "Sale",
     },
     {
@@ -34,6 +35,7 @@ const KavangunAssetsPage = () => {
       originalPrice: "₹ 499.00",
       salePrice: "₹ 99.00",
       image: "https://kavangunassets.com/cdn/shop/files/boxes.png",
+      link: "https://superprofile.bio/vp/premium-meme-pack-1000-",
       badge: "Sale",
     },
     {
@@ -42,6 +44,7 @@ const KavangunAssetsPage = () => {
       originalPrice: "₹ 499.00",
       salePrice: "₹ 99.00",
       image: "https://kavangunassets.com/cdn/shop/files/boxes.png",
+      link: "https://superprofile.bio/vp/premium-music-pack-2000-",
       badge: "Sale",
     },
     {
@@ -50,6 +53,7 @@ const KavangunAssetsPage = () => {
       originalPrice: "₹ 4,999.00",
       salePrice: "₹ 999.00",
       image: ImageUrl,
+      link: "https://superprofile.bio/vp/ultimate-assets-pack-7000-",
       badge: "Sale",
     },
   ];
@@ -61,6 +65,7 @@ const KavangunAssetsPage = () => {
       originalPrice: "₹ 199.00",
       salePrice: "₹ 0.00",
       image: "https://kavangunassets.com/cdn/shop/files/6-9-meme-pack-kav.png",
+      link: "https://drive.google.com/file/d/1G7V3US_k_S_gdMKvlGRaTg8UQC3GqJDv/view?usp=sharing",
       badge: "Free",
       downloads: "15K+ downloads",
     },
@@ -70,6 +75,7 @@ const KavangunAssetsPage = () => {
       originalPrice: "₹ 199.00",
       salePrice: "₹ 0.00",
       image: "https://kavangunassets.com/cdn/shop/files/2.png",
+      link: "https://drive.google.com/file/d/10nQNC_vWcB3T340OybJBCNvmxYfwR4JV/view?usp=sharing",
       badge: "Free",
       downloads: "8.5K+ downloads",
     },
@@ -79,6 +85,7 @@ const KavangunAssetsPage = () => {
       originalPrice: "₹ 199.00",
       salePrice: "₹ 0.00",
       image: "https://kavangunassets.com/cdn/shop/files/1.png",
+      link: "https://drive.google.com/file/d/1zVcRsTH17U6A-bBEGX6BxTtr4rh0qE4L/view?usp=sharing",
       badge: "Free",
       downloads: "12K+ downloads",
     },
@@ -88,6 +95,7 @@ const KavangunAssetsPage = () => {
       originalPrice: "₹ 199.00",
       salePrice: "₹ 0.00",
       image: "https://kavangunassets.com/cdn/shop/files/3.png",
+      link: "https://drive.google.com/file/d/1F5CKaIcqDx34z-v46xIDQUEfZHPb-ivk/view?usp=sharing",
       badge: "Free",
       downloads: "3.2K+ downloads",
     },
@@ -103,12 +111,6 @@ const KavangunAssetsPage = () => {
               alt={product.title}
               className="w-full h-full object-cover"
             />
-            {/* <h3 className="font-bold text-lg mb-1">
-              {product.title.split(" ").slice(0, 2).join(" ")}
-            </h3>
-            <p className="text-sm opacity-90">
-              {product.title.split(" ").slice(2).join(" ")}
-            </p> */}
           </div>
         </div>
 
@@ -141,13 +143,13 @@ const KavangunAssetsPage = () => {
           </div>
         </div>
 
-        <button className="w-full bg-gradient-to-r from-royalblue-500 to-royalblue-600 hover:from-royalblue-600 hover:to-royalblue-700 text-white font-medium py-3 px-4 rounded-xl transition-all duration-200 flex items-center justify-center gap-2 group-hover:scale-105">
+        <button className="w-full bg-gradient-to-r from-royalblue-500 to-royalblue-600 hover:from-royalblue-600 hover:to-royalblue-700 text-white font-medium py-3 px-4 rounded-xl transition-all duration-200 flex items-center justify-center gap-2 group-hover:scale-105" onClick={() => window.open(product.link, '_blank')}>
           {isFree ? (
             <Download className="w-4 h-4" />
           ) : (
             <ShoppingCart className="w-4 h-4" />
           )}
-          {isFree ? "Download Free" : "Add to Cart"}
+          {isFree ? "Download Free" : "Buy Now"}
         </button>
       </div>
     </div>
@@ -186,25 +188,15 @@ const KavangunAssetsPage = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-royalblue-500 to-royalblue-700 text-white py-16">
+      <section className="bg-gradient-to-br from-royalblue-500 to-royalblue-700 text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Premium Digital Assets
           </h2>
           <p className="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
-            Discover thousands of high-quality sound effects, music packs,
+            Discover high-quality sound effects, music packs,
             memes, and creative assets used by top creators
           </p>
-          <div className="flex flex-wrap justify-center gap-6 text-sm">
-            <div className="flex items-center gap-2">
-              <Download className="w-5 h-5" />
-              <span>50K+ Downloads</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Music className="w-5 h-5" />
-              <span>10K+ Assets</span>
-            </div>
-          </div>
         </div>
       </section>
 
