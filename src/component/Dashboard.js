@@ -143,7 +143,10 @@ const KavangunAssetsPage = () => {
           </div>
         </div>
 
-        <button className="w-full bg-gradient-to-r from-royalblue-500 to-royalblue-600 hover:from-royalblue-600 hover:to-royalblue-700 text-white font-medium py-3 px-4 rounded-xl transition-all duration-200 flex items-center justify-center gap-2 group-hover:scale-105" onClick={() => window.open(product.link, '_blank')}>
+        <button
+          className="w-full bg-gradient-to-r from-royalblue-500 to-royalblue-600 hover:from-royalblue-600 hover:to-royalblue-700 text-white font-medium py-3 px-4 rounded-xl transition-all duration-200 flex items-center justify-center gap-2 group-hover:scale-105"
+          onClick={() => window.open(product.link, "_blank")}
+        >
           {isFree ? (
             <Download className="w-4 h-4" />
           ) : (
@@ -166,23 +169,6 @@ const KavangunAssetsPage = () => {
                 Kavangun Assets
               </h1>
             </div>
-
-            <div className="flex items-center space-x-4">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-                <input
-                  type="text"
-                  placeholder="Search assets..."
-                  className="pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-royalblue-500 focus:border-transparent"
-                />
-              </div>
-              <button className="p-2 text-gray-600 hover:text-royalblue-600 transition-colors">
-                <User className="w-6 h-6" />
-              </button>
-              <button className="p-2 text-gray-600 hover:text-royalblue-600 transition-colors">
-                <ShoppingCart className="w-6 h-6" />
-              </button>
-            </div>
           </div>
         </div>
       </header>
@@ -194,8 +180,8 @@ const KavangunAssetsPage = () => {
             Premium Digital Assets
           </h2>
           <p className="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
-            Discover high-quality sound effects, music packs,
-            memes, and creative assets used by top creators
+            Discover high-quality sound effects, music packs, memes, and
+            creative assets used by top creators
           </p>
         </div>
       </section>
@@ -245,29 +231,6 @@ const KavangunAssetsPage = () => {
         </section>
 
         {/* Newsletter */}
-        <section className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-3xl p-8 md:p-12 text-center text-white mb-16">
-          <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
-          <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
-            Get notified about new assets, exclusive deals, and creative tips
-            from top content creators
-          </p>
-
-          <div className="max-w-md mx-auto">
-            <div className="flex gap-3">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-3 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-royalblue-500"
-              />
-              <button className="bg-royalblue-500 hover:bg-royalblue-600 px-6 py-3 rounded-xl font-medium transition-colors flex items-center gap-2">
-                Subscribe
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
-        </section>
       </div>
 
       {/* Footer */}
@@ -278,16 +241,15 @@ const KavangunAssetsPage = () => {
               <h3 className="text-xl font-bold mb-4">Quick Links</h3>
               <ul className="space-y-2">
                 <li>
-                  <a
-                    href="#"
-                    className="text-gray-300 hover:text-white transition-colors"
-                  >
+                  <p className="text-gray-300 hover:text-white transition-colors">
                     Contact Us
-                  </a>
+                  </p>
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="https://www.instagram.com/kavangun/?hl=en"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-gray-300 hover:text-white transition-colors flex items-center gap-2"
                   >
                     <Instagram className="w-4 h-4" /> Instagram
@@ -295,24 +257,19 @@ const KavangunAssetsPage = () => {
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="https://www.youtube.com/@KavanuhG"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-gray-300 hover:text-white transition-colors flex items-center gap-2"
                   >
                     <Youtube className="w-4 h-4" /> YouTube
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-gray-300 hover:text-white transition-colors"
-                  >
-                    About Us
                   </a>
                 </li>
               </ul>
             </div>
 
             <div>
+              <h2 className="text-xl font-bold mb-4">About Us</h2>
               <h3 className="text-xl font-bold mb-4">Kavangun Singh</h3>
               <div className="text-gray-300 space-y-2">
                 <p className="flex items-center gap-2">
