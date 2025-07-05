@@ -32,17 +32,16 @@ import {
   MessageSquare,
   Phone,
   X,
+  Trophy,
 } from "lucide-react";
-import Image from "./tarot-card-reader--e1717139958797.webp";
-import Image1 from "./Frame-1519-5.webp";
-import Image2 from "./Frame-1519-6.webp";
 import Image3 from "./trot-bonus-Image-01.webp";
 import Image4 from "./tarot-bonus-2.webp";
 import Image5 from "./actual-bonus-3-tarot-1.webp";
 import Image6 from "./tarot-bonues-3-Image-01.webp";
 import Image7 from "./tarot-bonus-05.webp";
 import Image8 from "./tarot-bonues-3-Image-01 (1).webp";
-import Image9 from "./mentor-img.webp"
+import Image9 from "./mentor-img.webp";
+import Image10 from "./Harpeet-kaur-new-image-new-1-1-2-1.webp";
 
 const TarotWorkshopScreen = () => {
   const [visible, setVisible] = useState(false);
@@ -640,6 +639,66 @@ const TarotWorkshopScreen = () => {
                 </div>
               </div>
             </div>
+            <div className="bg-gradient-to-br from-amber-50 to-amber-100 py-16 px-4 sm:px-6 lg:px-8">
+              <div className="max-w-4xl mx-auto">
+                <div className="flex flex-col md:flex-row items-center gap-10">
+                  {/* Award Image - Replace with actual award image */}
+                  <div className="h-160 overflow-hidden">
+                    <img
+                      src={Image10}
+                      // alt={bonus.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+
+                  {/* Award Content */}
+                  <div className="w-full md:w-2/3 text-center md:text-left">
+                    <div className="mb-6">
+                      <h3 className="text-lg font-medium text-amber-800 mb-2">
+                        The Award For
+                      </h3>
+                      <h2 className="text-3xl sm:text-4xl font-bold text-amber-900 mb-4">
+                        Tarot Life Coach{" "}
+                        <span className="block">of the Year</span>
+                      </h2>
+                      <div className="flex items-center justify-center md:justify-start gap-2 mb-6">
+                        <Trophy className="w-8 h-8 text-amber-600" />
+                        <p className="text-xl font-medium text-amber-800">
+                          Goes to
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="bg-white rounded-xl p-6 shadow-md border border-amber-200">
+                      <h1 className="text-2xl sm:text-3xl font-bold text-purple-900 mb-2">
+                        Harpreet Kaur
+                      </h1>
+                      <p className="text-sm text-gray-600 mb-4">
+                        Mrs. Harpreet Kaur
+                      </p>
+                      <div className="flex items-center justify-center gap-2 bg-amber-50 px-4 py-2 rounded-full inline-flex">
+                        <Award className="w-5 h-5 text-amber-600" />
+                        <span className="font-medium text-amber-800">
+                          Awarded as Best Tarot Coach
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="mt-6 flex flex-wrap justify-center md:justify-start gap-3">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className="w-6 h-6 fill-amber-400 text-amber-400"
+                        />
+                      ))}
+                      <span className="text-amber-800 font-medium ml-2">
+                        5.0 Rating
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div className="bg-gradient-to-br from-purple-50 to-indigo-50 py-4 px-4 sm:px-6 lg:px-8">
               <div className="max-w-6xl mx-auto">
                 <div className="text-center mb-12">
@@ -681,10 +740,15 @@ const TarotWorkshopScreen = () => {
                 </div>
 
                 <div className="mt-4 text-center">
-                  <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all">
+                  <button onClick={() =>
+                    window.open(
+                      "https://superprofile.bio/e/2daypraticaltarotwebnair?fbclid=PAQ0xDSwLWGSVleHRuA2FlbQIxMQABp8FG1c-grgtEaSu-mgmzgPiz4yZqT_E3-ULXKIdN1APXmecoBA39B2vDb6wK_aem_NDXj4ePOpKMB4mVDEnVofw",
+                      "_blank"
+                    )
+                  } className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all">
                     <Gem className="mr-2 h-5 w-5" />
                     Enroll Now to Start Your Journey
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -806,10 +870,15 @@ const TarotWorkshopScreen = () => {
                 </div>
 
                 <div className="mt-4 text-center">
-                  <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all">
+                  <button onClick={() =>
+                    window.open(
+                      "https://superprofile.bio/e/2daypraticaltarotwebnair?fbclid=PAQ0xDSwLWGSVleHRuA2FlbQIxMQABp8FG1c-grgtEaSu-mgmzgPiz4yZqT_E3-ULXKIdN1APXmecoBA39B2vDb6wK_aem_NDXj4ePOpKMB4mVDEnVofw",
+                      "_blank"
+                    )
+                  } className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all">
                     <Star className="mr-2 h-5 w-5" />
                     Choose the Superior Learning Experience
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -828,12 +897,12 @@ const TarotWorkshopScreen = () => {
                 <div className="flex flex-col lg:flex-row gap-10 items-center">
                   {/* Mentor Photo - Replace with actual image */}
                   <div className="h-160 overflow-hidden">
-                      <img
-                        src={Image9}
-                        // alt={bonus.title}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
+                    <img
+                      src={Image9}
+                      // alt={bonus.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                   <div className="w-full lg:w-2/3">
                     <div className="bg-white rounded-xl p-6 sm:p-8 shadow-lg border border-purple-100">
                       <h4 className="text-xl font-bold text-purple-900 mb-4">
@@ -880,7 +949,12 @@ const TarotWorkshopScreen = () => {
                       </div>
 
                       <div className="flex justify-center">
-                        <button className="flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all hover:from-purple-700 hover:to-indigo-700">
+                        <button onClick={() =>
+                    window.open(
+                      "https://superprofile.bio/e/2daypraticaltarotwebnair?fbclid=PAQ0xDSwLWGSVleHRuA2FlbQIxMQABp8FG1c-grgtEaSu-mgmzgPiz4yZqT_E3-ULXKIdN1APXmecoBA39B2vDb6wK_aem_NDXj4ePOpKMB4mVDEnVofw",
+                      "_blank"
+                    )
+                  } className="flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all hover:from-purple-700 hover:to-indigo-700">
                           <Zap className="w-5 h-5 mr-2" />
                           Join Harpreet's Program
                         </button>
@@ -925,7 +999,12 @@ const TarotWorkshopScreen = () => {
                 </div>
 
                 <div className="text-center">
-                  <button className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-105 group">
+                  <button onClick={() =>
+                    window.open(
+                      "https://superprofile.bio/e/2daypraticaltarotwebnair?fbclid=PAQ0xDSwLWGSVleHRuA2FlbQIxMQABp8FG1c-grgtEaSu-mgmzgPiz4yZqT_E3-ULXKIdN1APXmecoBA39B2vDb6wK_aem_NDXj4ePOpKMB4mVDEnVofw",
+                      "_blank"
+                    )
+                  } className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-105 group">
                     <span className="mr-3">
                       Apply for Internship Opportunities
                     </span>
@@ -1024,7 +1103,7 @@ const TarotWorkshopScreen = () => {
                         </h3>
                       </div>
                       <div className="text-4xl font-bold text-gray-900 mb-2">
-                        Rs 99
+                        Rs 199
                       </div>
                       <div className="flex items-center text-green-600 mb-3">
                         <BadgeCheck className="h-5 w-5 mr-2" />
@@ -1039,8 +1118,13 @@ const TarotWorkshopScreen = () => {
                   </div>
 
                   <div className="text-center">
-                    <button className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:from-purple-700 hover:to-indigo-700 transition-all transform hover:scale-105">
-                      <span className="mr-2">Register Now for Just Rs 99</span>
+                    <button onClick={() =>
+                    window.open(
+                      "https://superprofile.bio/e/2daypraticaltarotwebnair?fbclid=PAQ0xDSwLWGSVleHRuA2FlbQIxMQABp8FG1c-grgtEaSu-mgmzgPiz4yZqT_E3-ULXKIdN1APXmecoBA39B2vDb6wK_aem_NDXj4ePOpKMB4mVDEnVofw",
+                      "_blank"
+                    )
+                  } className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:from-purple-700 hover:to-indigo-700 transition-all transform hover:scale-105">
+                      <span className="mr-2">Register Now for Just Rs 199</span>
                       <ArrowRight className="h-5 w-5" />
                     </button>
                   </div>
@@ -1154,7 +1238,12 @@ const TarotWorkshopScreen = () => {
                     </div>
 
                     <div className="mt-4 text-center">
-                      <button className="inline-flex items-center px-5 py-2 sm:px-6 sm:py-3 border border-transparent text-sm sm:text-base font-medium rounded-md shadow-sm text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all">
+                      <button onClick={() =>
+                    window.open(
+                      "https://superprofile.bio/e/2daypraticaltarotwebnair?fbclid=PAQ0xDSwLWGSVleHRuA2FlbQIxMQABp8FG1c-grgtEaSu-mgmzgPiz4yZqT_E3-ULXKIdN1APXmecoBA39B2vDb6wK_aem_NDXj4ePOpKMB4mVDEnVofw",
+                      "_blank"
+                    )
+                  } className="inline-flex items-center px-5 py-2 sm:px-6 sm:py-3 border border-transparent text-sm sm:text-base font-medium rounded-md shadow-sm text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all">
                         <BookOpen className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                         Join Our Next Workshop
                       </button>
@@ -1312,7 +1401,7 @@ const TarotWorkshopScreen = () => {
             <div className="flex flex-col sm:flex-row items-center justify-between">
               <div className="flex items-center mb-3 sm:mb-0">
                 <div className="flex items-center mr-6">
-                  <span className="text-2xl font-bold mr-2">₹99</span>
+                  <span className="text-2xl font-bold mr-2">Rs 199</span>
                   <span className="text-lg line-through opacity-70">₹2999</span>
                 </div>
                 <div className="flex items-center text-sm">
