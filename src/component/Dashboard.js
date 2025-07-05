@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Calendar,
   Clock,
@@ -13,16 +13,11 @@ import {
   TrendingUp,
   Shield,
   Target,
-  Video,
   Gift,
-  User,
-  HelpCircle,
   ArrowRight,
-  Smile,
   Globe,
   DollarSign,
   Clock as TimeIcon,
-  Check,
   Sparkles,
   Heart,
   Quote,
@@ -36,6 +31,7 @@ import {
   Instagram,
   MessageSquare,
   Phone,
+  X,
 } from "lucide-react";
 import Image from "./tarot-card-reader--e1717139958797.webp";
 import Image1 from "./Frame-1519-5.webp";
@@ -46,8 +42,25 @@ import Image5 from "./actual-bonus-3-tarot-1.webp";
 import Image6 from "./tarot-bonues-3-Image-01.webp";
 import Image7 from "./tarot-bonus-05.webp";
 import Image8 from "./tarot-bonues-3-Image-01 (1).webp";
+import Image9 from "./mentor-img.webp"
 
 const TarotWorkshopScreen = () => {
+  const [visible, setVisible] = useState(false);
+  const [dismissed, setDismissed] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Show banner after scrolling 100px down if not dismissed
+      if (!dismissed) {
+        setVisible(window.scrollY > 100);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [dismissed]);
+
+  if (dismissed) return null;
   // Features data
   const features = [
     {
@@ -64,59 +77,34 @@ const TarotWorkshopScreen = () => {
     { icon: Target, text: "Proven Learning Method", color: "text-emerald-600" },
   ];
 
-  const modules = [
-    {
-      title: "Basics of Tarot Cards & their Hidden Message",
-      icon: <BookOpen className="w-8 h-8 text-violet-600" />,
-      image: Image,
-      points: [
-        "Learn new ways to explain the hidden meaning behind tarot cards",
-        "Make accurate predictions with relatable stories",
-        "Answer Yes/No questions with Tarot",
-        "Live Q&A sessions with expert guidance",
-      ],
-      color: "bg-violet-100 border-violet-200 text-violet-600",
-    },
-    {
-      title: "Develop Intuition for Detailed Card Reading",
-      icon: <Lightbulb className="w-8 h-8 text-amber-500" />,
-      image: Image1,
-      points: [
-        "Understand Major & Minor Arcana structure",
-        "Master Tarot suits & storytelling art",
-        "Learn to cleanse, charge & shuffle",
-        "Work with different card spreads",
-      ],
-      color: "bg-amber-100 border-amber-200 text-amber-600",
-    },
-    {
-      title: "Professional Tarot Reader Roadmap",
-      icon: <TrendingUp className="w-8 h-8 text-emerald-600" />,
-      image: Image2,
-      points: [
-        "Become a Tarot Life Coach in 2025",
-        "Earn 50k to 1L per month",
-        "VIP community practice sessions",
-        "Confident reading techniques",
-      ],
-      color: "bg-emerald-100 border-emerald-200 text-emerald-600",
-    },
-  ];
-
   // Stats data
   const stats = [
     { number: "10+", label: "Years Experience", icon: Award },
     { number: "10k+", label: "Women Trained", icon: Users },
-    // { number: "4.9", label: "Star Rating", icon: Star }
+    { number: "4.9", label: "Star Rating", icon: Star },
   ];
 
-  // Learning points
-  const learningPoints = [
-    "Master foundational card reading techniques",
-    "Learn systematic interpretation methods",
-    "Develop analytical and intuitive skills",
-    "Build confidence in professional practice",
-    "Connect with like-minded professionals",
+  const newStats = [
+    {
+      icon: <Star className="w-6 h-6 text-amber-400" />,
+      value: "4.9",
+      label: "Star Rating",
+    },
+    {
+      icon: <Award className="w-6 h-6 text-purple-400" />,
+      value: "10+",
+      label: "Years Experience",
+    },
+    {
+      icon: <Users className="w-6 h-6 text-blue-400" />,
+      value: "100K+",
+      label: "Women Helped",
+    },
+    {
+      icon: <Heart className="w-6 h-6 text-rose-400" />,
+      value: "Tarot Trinity",
+      label: "Framework",
+    },
   ];
 
   // Benefits data
@@ -464,25 +452,6 @@ const TarotWorkshopScreen = () => {
     },
   ];
 
-  // Success stories
-  const successStories = [
-    {
-      name: "Bindu Kaul",
-      location: "Malaysia",
-      achievement: "Earning 1.5 Lacs per month",
-    },
-    {
-      name: "Aastha Garg",
-      location: "Gallager Group",
-      achievement: "Earning 2 Lacs monthly",
-    },
-    {
-      name: "Aeti Binani",
-      location: "Gallager Group",
-      achievement: "Earning 5 Lacs per month",
-    },
-  ];
-
   // Bonuses
   const bonuses = [
     {
@@ -522,39 +491,6 @@ const TarotWorkshopScreen = () => {
       title: "Daily Guidance Formula",
       description: "Better decision-making and aligned actions through tarot.",
       value: "Worth Rs. 999/-",
-    },
-  ];
-
-  // Curriculum
-  const curriculum = [
-    {
-      title: "Basics of Tarot Cards & their Hidden Messages",
-      points: [
-        "Learn new ways to explain the hidden meaning behind tarot cards",
-        "Make accurate predictions with relatable stories",
-        "Answer Yes/No questions with tarot",
-        "Live Q&A sessions with no time limit",
-      ],
-    },
-    {
-      title: "Develop Intuition for Detailed Card Reading",
-      points: [
-        "Understand Major & Minor Arcana cards",
-        "Learn tarot suits and art of storytelling",
-        "Cleanse, charge & shuffle techniques",
-        "Different card spreads for various life areas",
-        "Manifest health, wealth, relationship & career goals",
-      ],
-    },
-    {
-      title: "Roadmap to Professional Tarot Reading",
-      points: [
-        "Become a Tarot Life Coach in 2025",
-        "Earn 50k to 1L per month",
-        "Refine skills in VIP community sessions",
-        "Confident reading without going blank",
-        "Relatable storytelling method",
-      ],
     },
   ];
 
@@ -616,7 +552,7 @@ const TarotWorkshopScreen = () => {
                 </p>
 
                 {/* Stats Row */}
-                <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className="grid grid-cols-3 gap-4 mb-6">
                   {stats.map((stat, index) => (
                     <div
                       key={index}
@@ -683,7 +619,15 @@ const TarotWorkshopScreen = () => {
                   </p>
 
                   <div className="space-y-4 max-w-md mx-auto">
-                    <button className="w-full bg-white text-violet-700 hover:bg-gray-100 py-4 rounded-2xl font-bold text-lg flex items-center justify-center gap-2 transition-all duration-300 shadow-lg hover:shadow-xl">
+                    <button
+                      onClick={() =>
+                        window.open(
+                          "https://superprofile.bio/e/2daypraticaltarotwebnair?fbclid=PAQ0xDSwLWGSVleHRuA2FlbQIxMQABp8FG1c-grgtEaSu-mgmzgPiz4yZqT_E3-ULXKIdN1APXmecoBA39B2vDb6wK_aem_NDXj4ePOpKMB4mVDEnVofw",
+                          "_blank"
+                        )
+                      }
+                      className="w-full bg-white text-violet-700 hover:bg-gray-100 py-4 rounded-2xl font-bold text-lg flex items-center justify-center gap-2 transition-all duration-300 shadow-lg hover:shadow-xl"
+                    >
                       <Play className="w-5 h-5" />
                       Register Now
                     </button>
@@ -865,6 +809,83 @@ const TarotWorkshopScreen = () => {
                   <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all">
                     <Star className="mr-2 h-5 w-5" />
                     Choose the Superior Learning Experience
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-br from-purple-50 to-indigo-50 py-16 px-4 sm:px-6 lg:px-8">
+              <div className="max-w-6xl mx-auto">
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl sm:text-4xl font-bold text-purple-900 mb-3">
+                    Meet Your Mentor
+                  </h2>
+                  <h3 className="text-2xl sm:text-3xl font-semibold text-purple-700">
+                    Harpreet Kaur
+                  </h3>
+                </div>
+
+                <div className="flex flex-col lg:flex-row gap-10 items-center">
+                  {/* Mentor Photo - Replace with actual image */}
+                  <div className="h-160 overflow-hidden">
+                      <img
+                        src={Image9}
+                        // alt={bonus.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  <div className="w-full lg:w-2/3">
+                    <div className="bg-white rounded-xl p-6 sm:p-8 shadow-lg border border-purple-100">
+                      <h4 className="text-xl font-bold text-purple-900 mb-4">
+                        <span className="text-purple-600">Harpreet Kaur</span>{" "}
+                        is a talented intuitive tarot card reader, coach, and
+                        co-founder of The Occult Academy.
+                      </h4>
+
+                      <p className="text-gray-700 mb-4">
+                        Her goal is to help <strong>100,000 women</strong> live
+                        life on their terms and thrive financially, mentally,
+                        and emotionally. With over <strong>10 years</strong> of
+                        experience and a <strong>4.9-star rating</strong>,
+                        Harpreet is committed to guide others on their journey
+                        of personal growth using the wisdom of tarot.
+                      </p>
+
+                      <p className="text-gray-700 mb-6">
+                        Whether you want to deepen your spiritual connections,
+                        achieve your goals, or simply understand life's
+                        challenges better, Harpreet can light the way. Her
+                        special <strong>Tarot Trinity Framework</strong> makes
+                        the card reading simple, and her practical coaching
+                        helps you turn cosmic guidance into real success.
+                      </p>
+
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+                        {newStats.map((stat, index) => (
+                          <div
+                            key={index}
+                            className="bg-gradient-to-br from-gray-50 to-white p-3 rounded-lg border border-gray-200 text-center"
+                          >
+                            <div className="flex justify-center mb-2">
+                              {stat.icon}
+                            </div>
+                            <div className="text-xl font-bold text-gray-900">
+                              {stat.value}
+                            </div>
+                            <div className="text-xs text-gray-600">
+                              {stat.label}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+
+                      <div className="flex justify-center">
+                        <button className="flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all hover:from-purple-700 hover:to-indigo-700">
+                          <Zap className="w-5 h-5 mr-2" />
+                          Join Harpreet's Program
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1179,7 +1200,15 @@ const TarotWorkshopScreen = () => {
               </p>
 
               <div className="space-y-4 max-w-md mx-auto">
-                <button className="w-full bg-white text-violet-700 hover:bg-gray-100 py-4 rounded-2xl font-bold text-lg flex items-center justify-center gap-2 transition-all duration-300 shadow-lg hover:shadow-xl">
+                <button
+                  onClick={() =>
+                    window.open(
+                      "https://superprofile.bio/e/2daypraticaltarotwebnair?fbclid=PAQ0xDSwLWGSVleHRuA2FlbQIxMQABp8FG1c-grgtEaSu-mgmzgPiz4yZqT_E3-ULXKIdN1APXmecoBA39B2vDb6wK_aem_NDXj4ePOpKMB4mVDEnVofw",
+                      "_blank"
+                    )
+                  }
+                  className="w-full bg-white text-violet-700 hover:bg-gray-100 py-4 rounded-2xl font-bold text-lg flex items-center justify-center gap-2 transition-all duration-300 shadow-lg hover:shadow-xl"
+                >
                   <Play className="w-5 h-5" />
                   Enroll Now
                 </button>
@@ -1266,6 +1295,47 @@ const TarotWorkshopScreen = () => {
                 </div>
               </div>
             </footer>
+          </div>
+        </div>
+      </div>
+      <div className={`fixed inset-0 z-50 pointer-events-none`}>
+        <div
+          className={`absolute bottom-0 left-0 right-0 bg-gradient-to-r from-purple-700 to-indigo-800 text-white shadow-xl transition-all duration-500 ${
+            visible ? "translate-y-0" : "translate-y-full"
+          }`}
+          style={{
+            boxShadow: "0 -4px 20px rgba(0, 0, 0, 0.3)",
+            pointerEvents: "auto",
+          }}
+        >
+          <div className="max-w-7xl mx-auto px-4 py-3 sm:px-6 lg:px-8">
+            <div className="flex flex-col sm:flex-row items-center justify-between">
+              <div className="flex items-center mb-3 sm:mb-0">
+                <div className="flex items-center mr-6">
+                  <span className="text-2xl font-bold mr-2">₹99</span>
+                  <span className="text-lg line-through opacity-70">₹2999</span>
+                </div>
+                <div className="flex items-center text-sm">
+                  <Clock className="w-4 h-4 mr-1 text-yellow-300" />
+                  <span>Registration Closing: 6th Jul 2025</span>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() =>
+                    window.open(
+                      "https://superprofile.bio/e/2daypraticaltarotwebnair?fbclid=PAQ0xDSwLWGSVleHRuA2FlbQIxMQABp8FG1c-grgtEaSu-mgmzgPiz4yZqT_E3-ULXKIdN1APXmecoBA39B2vDb6wK_aem_NDXj4ePOpKMB4mVDEnVofw",
+                      "_blank"
+                    )
+                  }
+                  className="flex items-center justify-center px-5 py-2 bg-gradient-to-r from-amber-400 to-amber-500 text-black font-bold rounded-md shadow-lg hover:shadow-xl transition-all hover:from-amber-300 hover:to-amber-400"
+                >
+                  <span className="mr-2">Register Now</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
