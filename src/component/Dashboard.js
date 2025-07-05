@@ -438,7 +438,7 @@ const TarotWorkshopScreen = () => {
       id: "Meghavi",
       name: "Meghavi",
       content:
-        "This have been an absolutely amazing & enlightening journey with Harpreet maam. I was not sure how the whole Course thing worked but was astonished at the different end in the school. It has been a wonderful evening and knowledge in the studies & activities we understood over so many days. The opportunities we got in the class to do reading of our field's Auchmarks boost our confidence and enthusiasm more. Thanks so very much Harpreet Maam finally received his courses to everyone who is open minded to different views and to giving it a go.",
+        "This have been an absolutely amazing & enlightening journey with Ekta maam. I was not sure how the whole Course thing worked but was astonished at the different end in the school. It has been a wonderful evening and knowledge in the studies & activities we understood over so many days. The opportunities we got in the class to do reading of our field's Auchmarks boost our confidence and enthusiasm more. Thanks so very much Ekta Maam finally received his courses to everyone who is open minded to different views and to giving it a go.",
       activity: "Active 1: le-go",
       rating: 5,
     },
@@ -536,7 +536,7 @@ const TarotWorkshopScreen = () => {
                   </div>
                   <div>
                     <h3 className="font-bold text-lg text-gray-900">
-                      Harpreet Kaur
+                      Ekta aggarwal
                     </h3>
                     <p className="text-gray-600 text-sm">
                       Certified Tarot Master • 10+ Years Experience
@@ -546,7 +546,7 @@ const TarotWorkshopScreen = () => {
 
                 <p className="text-gray-700 mb-4">
                   Talented intuitive tarot reader, coach, and co-founder of The
-                  Occult Academy. Committed to guiding students on their journey
+                  Founder of divineliightt & divine crystal. Committed to guiding women on their journey
                   of personal growth using the wisdom of tarot.
                 </p>
 
@@ -671,10 +671,10 @@ const TarotWorkshopScreen = () => {
 
                     <div className="bg-white rounded-xl p-6 shadow-md border border-amber-200">
                       <h1 className="text-2xl sm:text-3xl font-bold text-purple-900 mb-2">
-                        Harpreet Kaur
+                        Ekta Aggarwal
                       </h1>
                       <p className="text-sm text-gray-600 mb-4">
-                        Mrs. Harpreet Kaur
+                        Mrs. Ekta Aggarwal
                       </p>
                       <div className="flex items-center justify-center gap-2 bg-amber-50 px-4 py-2 rounded-full inline-flex">
                         <Award className="w-5 h-5 text-amber-600" />
@@ -890,7 +890,7 @@ const TarotWorkshopScreen = () => {
                     Meet Your Mentor
                   </h2>
                   <h3 className="text-2xl sm:text-3xl font-semibold text-purple-700">
-                    Harpreet Kaur
+                    Ekta Aggarwal
                   </h3>
                 </div>
 
@@ -906,7 +906,7 @@ const TarotWorkshopScreen = () => {
                   <div className="w-full lg:w-2/3">
                     <div className="bg-white rounded-xl p-6 sm:p-8 shadow-lg border border-purple-100">
                       <h4 className="text-xl font-bold text-purple-900 mb-4">
-                        <span className="text-purple-600">Harpreet Kaur</span>{" "}
+                        <span className="text-purple-600">Ekta Aggarwal</span>{" "}
                         is a talented intuitive tarot card reader, coach, and
                         co-founder of The Occult Academy.
                       </h4>
@@ -916,14 +916,14 @@ const TarotWorkshopScreen = () => {
                         life on their terms and thrive financially, mentally,
                         and emotionally. With over <strong>10 years</strong> of
                         experience and a <strong>4.9-star rating</strong>,
-                        Harpreet is committed to guide others on their journey
+                        Ekta is committed to guide others on their journey
                         of personal growth using the wisdom of tarot.
                       </p>
 
                       <p className="text-gray-700 mb-6">
                         Whether you want to deepen your spiritual connections,
                         achieve your goals, or simply understand life's
-                        challenges better, Harpreet can light the way. Her
+                        challenges better, Ekta can light the way. Her
                         special <strong>Tarot Trinity Framework</strong> makes
                         the card reading simple, and her practical coaching
                         helps you turn cosmic guidance into real success.
@@ -956,7 +956,7 @@ const TarotWorkshopScreen = () => {
                     )
                   } className="flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all hover:from-purple-700 hover:to-indigo-700">
                           <Zap className="w-5 h-5 mr-2" />
-                          Join Harpreet's Program
+                          Join Ekta Aggarwal's Program
                         </button>
                       </div>
                     </div>
@@ -1179,7 +1179,7 @@ const TarotWorkshopScreen = () => {
                       </h1>
                       <p className="text-base sm:text-lg text-purple-700 max-w-2xl mx-auto">
                         Hear what our students have to say about their
-                        transformative journey with Mrs. Harpreet
+                        transformative journey with Mrs. Ekta Aggarwal
                       </p>
                     </div>
 
@@ -1406,7 +1406,7 @@ const TarotWorkshopScreen = () => {
                 </div>
                 <div className="flex items-center text-sm">
                   <Clock className="w-4 h-4 mr-1 text-yellow-300" />
-                  <span>Registration Closing: 6th Jul 2025</span>
+                  <span>Registration Closing: 16th Jul 2025</span>
                 </div>
               </div>
 
