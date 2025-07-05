@@ -743,7 +743,7 @@ const TarotWorkshopScreen = () => {
             </div> */}
             <div className="bg-gradient-to-br from-purple-50 to-indigo-50 py-4 px-4 sm:px-6 lg:px-8">
               <div className="max-w-5xl mx-auto">
-                <div className="text-center mb-12">
+                <div className="text-center mb-4">
                   <h2 className="text-3xl sm:text-4xl font-bold text-purple-900 mb-4">
                     What Makes This Course{" "}
                     <span className="text-purple-600">Unique?</span>
