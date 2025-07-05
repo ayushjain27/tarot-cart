@@ -908,7 +908,7 @@ const TarotWorkshopScreen = () => {
                       <h4 className="text-xl font-bold text-purple-900 mb-4">
                         <span className="text-purple-600">Ekta Aggarwal</span>{" "}
                         is a talented intuitive tarot card reader, coach, and
-                        co-founder of The Occult Academy.
+                        co-founder of The divineliightt & divine crystal.
                       </h4>
 
                       <p className="text-gray-700 mb-4">
