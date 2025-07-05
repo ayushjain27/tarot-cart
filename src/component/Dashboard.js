@@ -33,6 +33,8 @@ import {
   Phone,
   X,
   Trophy,
+  LockKeyhole,
+  ClipboardList,
 } from "lucide-react";
 import Image3 from "./trot-bonus-Image-01.webp";
 import Image4 from "./tarot-bonus-2.webp";
@@ -40,7 +42,7 @@ import Image5 from "./actual-bonus-3-tarot-1.webp";
 import Image6 from "./tarot-bonues-3-Image-01.webp";
 import Image7 from "./tarot-bonus-05.webp";
 import Image8 from "./tarot-bonues-3-Image-01 (1).webp";
-import Image9 from "./mentor-img.webp";
+import Image9 from "./Screenshot 2025-07-05 at 11.44.34 PM.png";
 import Image10 from "./Harpeet-kaur-new-image-new-1-1-2-1.webp";
 
 const TarotWorkshopScreen = () => {
@@ -493,12 +495,55 @@ const TarotWorkshopScreen = () => {
     },
   ];
 
+  const uniqueFeatures = [
+    {
+      icon: <Zap className="w-6 h-6 text-purple-600" />,
+      title: "Live Real-World Experience",
+      description: "Work with actual clients from Day 1!",
+    },
+    {
+      icon: <Briefcase className="w-6 h-6 text-blue-600" />,
+      title: "Internship Opportunity",
+      description: "Gain hands-on experience & confidence",
+    },
+    {
+      icon: <TrendingUp className="w-6 h-6 text-green-600" />,
+      title: "Tarot + Business Scaling",
+      description: "Turn Tarot into a full-time, high-income career",
+    },
+    {
+      icon: <LockKeyhole className="w-6 h-6 text-amber-600" />,
+      title: "Exclusive Advanced Spreads & Rituals",
+      description: "Access Tarot techniques no one else is teaching",
+    },
+    {
+      icon: <ClipboardList className="w-6 h-6 text-rose-600" />,
+      title: "Practical Exercises & Case Studies",
+      description: "Daily exercises with real-world applications",
+    },
+    {
+      icon: <Sparkles className="w-6 h-6 text-indigo-600" />,
+      title: "Manifestation, Energy Work & Healing",
+      description: "Use Tarot with crystals, affirmations, and rituals",
+    },
+    {
+      icon: <TrendingUp className="w-6 h-6 text-pink-600" />,
+      title: "Build Your Social Media Presence",
+      description: "Attract high-paying clients via Instagram, YouTube, TikTok",
+    },
+    {
+      icon: <DollarSign className="w-6 h-6 text-emerald-600" />,
+      title: "Pricing & Business Mastery",
+      description: "Charge ₹5,000+ per session and scale your income",
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-violet-50 to-amber-50">
       {/* Header Section */}
       <div className="relative">
         <div className="absolute inset-0 bg-gradient-to-r from-violet-600/8 to-amber-600/8"></div>
-        <div className="relative z-10 px-6 py-8">
+        <div className="relative z-10 px-6 py-4">
           <div className="mx-auto">
             {/* Workshop Badge */}
             <div className="flex justify-center mb-6">
@@ -546,8 +591,9 @@ const TarotWorkshopScreen = () => {
 
                 <p className="text-gray-700 mb-4">
                   Talented intuitive tarot reader, coach, and co-founder of The
-                  Founder of divineliightt & divine crystal. Committed to guiding women on their journey
-                  of personal growth using the wisdom of tarot.
+                  Founder of divineliightt & divine crystal. Committed to
+                  guiding women on their journey of personal growth using the
+                  wisdom of tarot.
                 </p>
 
                 {/* Stats Row */}
@@ -639,19 +685,15 @@ const TarotWorkshopScreen = () => {
                 </div>
               </div>
             </div>
-            <div className="bg-gradient-to-br from-amber-50 to-amber-100 py-16 px-4 sm:px-6 lg:px-8">
+            {/* <div className="bg-gradient-to-br from-amber-50 to-amber-100 py-16 px-4 sm:px-6 lg:px-8">
               <div className="max-w-4xl mx-auto">
                 <div className="flex flex-col md:flex-row items-center gap-10">
-                  {/* Award Image - Replace with actual award image */}
                   <div className="h-160 overflow-hidden">
                     <img
                       src={Image10}
-                      // alt={bonus.title}
                       className="w-full h-full object-cover"
                     />
                   </div>
-
-                  {/* Award Content */}
                   <div className="w-full md:w-2/3 text-center md:text-left">
                     <div className="mb-6">
                       <h3 className="text-lg font-medium text-amber-800 mb-2">
@@ -698,6 +740,56 @@ const TarotWorkshopScreen = () => {
                   </div>
                 </div>
               </div>
+            </div> */}
+            <div className="bg-gradient-to-br from-purple-50 to-indigo-50 py-4 px-4 sm:px-6 lg:px-8">
+              <div className="max-w-5xl mx-auto">
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl sm:text-4xl font-bold text-purple-900 mb-4">
+                    What Makes This Course{" "}
+                    <span className="text-purple-600">Unique?</span>
+                  </h2>
+                  <p className="text-lg text-purple-700 max-w-3xl mx-auto">
+                    Discover the transformative elements that set our program
+                    apart from conventional Tarot courses
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {uniqueFeatures.map((feature, index) => (
+                    <div
+                      key={index}
+                      className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className="p-2 rounded-lg bg-purple-50">
+                          {feature.icon}
+                        </div>
+                        <div>
+                          <h3 className="text-xl font-bold text-gray-900 mb-2">
+                            {feature.title}
+                          </h3>
+                          <p className="text-gray-700">{feature.description}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-4 text-center">
+                  <button
+                    onClick={() =>
+                      window.open(
+                        "https://superprofile.bio/e/2daypraticaltarotwebnair?fbclid=PAQ0xDSwLWGSVleHRuA2FlbQIxMQABp8FG1c-grgtEaSu-mgmzgPiz4yZqT_E3-ULXKIdN1APXmecoBA39B2vDb6wK_aem_NDXj4ePOpKMB4mVDEnVofw",
+                        "_blank"
+                      )
+                    }
+                    className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all hover:from-purple-700 hover:to-indigo-700"
+                  >
+                    <CheckCircle className="w-5 h-5 mr-2" />
+                    Enroll Now to Access These Benefits
+                  </button>
+                </div>
+              </div>
             </div>
             <div className="bg-gradient-to-br from-purple-50 to-indigo-50 py-4 px-4 sm:px-6 lg:px-8">
               <div className="max-w-6xl mx-auto">
@@ -740,12 +832,15 @@ const TarotWorkshopScreen = () => {
                 </div>
 
                 <div className="mt-4 text-center">
-                  <button onClick={() =>
-                    window.open(
-                      "https://superprofile.bio/e/2daypraticaltarotwebnair?fbclid=PAQ0xDSwLWGSVleHRuA2FlbQIxMQABp8FG1c-grgtEaSu-mgmzgPiz4yZqT_E3-ULXKIdN1APXmecoBA39B2vDb6wK_aem_NDXj4ePOpKMB4mVDEnVofw",
-                      "_blank"
-                    )
-                  } className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all">
+                  <button
+                    onClick={() =>
+                      window.open(
+                        "https://superprofile.bio/e/2daypraticaltarotwebnair?fbclid=PAQ0xDSwLWGSVleHRuA2FlbQIxMQABp8FG1c-grgtEaSu-mgmzgPiz4yZqT_E3-ULXKIdN1APXmecoBA39B2vDb6wK_aem_NDXj4ePOpKMB4mVDEnVofw",
+                        "_blank"
+                      )
+                    }
+                    className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all"
+                  >
                     <Gem className="mr-2 h-5 w-5" />
                     Enroll Now to Start Your Journey
                   </button>
@@ -817,65 +912,112 @@ const TarotWorkshopScreen = () => {
                 </div>
 
                 <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 rounded-xl">
-                  <table className="min-w-full divide-y divide-gray-300">
-                    <thead className="bg-gray-50">
-                      <tr>
-                        <th
-                          scope="col"
-                          className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
-                        >
-                          Feature
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-3 py-3.5 text-center text-sm font-semibold text-gray-900"
-                        >
-                          Other Courses
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-3 py-3.5 text-center text-sm font-semibold text-purple-700 bg-purple-50"
-                        >
-                          Our Course
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-200 bg-white">
-                      {newFeatures.map((feature, index) => (
-                        <tr key={index}>
-                          <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                            <div className="flex items-center">
-                              <div className="mr-3 p-1 rounded-md bg-gray-100">
-                                {feature.icon}
-                              </div>
-                              {feature.name}
-                            </div>
-                          </td>
-                          <td className="whitespace-normal px-3 py-4 text-sm text-gray-500 text-center">
-                            <div className="flex flex-col items-center">
-                              <XCircle className="h-5 w-5 text-red-400 mb-1" />
-                              <span>{feature.others}</span>
-                            </div>
-                          </td>
-                          <td className="whitespace-normal px-3 py-4 text-sm text-gray-900 font-medium bg-purple-50 text-center">
-                            <div className="flex flex-col items-center">
-                              <CheckCircle2 className="h-5 w-5 text-green-500 mb-1" />
-                              <span>{feature.yours}</span>
-                            </div>
-                          </td>
+                  {/* Desktop Table (shown on md screens and up) */}
+                  <div className="hidden md:block">
+                    <table className="min-w-full divide-y divide-gray-300">
+                      <thead className="bg-gray-50">
+                        <tr>
+                          <th
+                            scope="col"
+                            className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
+                          >
+                            Feature
+                          </th>
+                          <th
+                            scope="col"
+                            className="px-3 py-3.5 text-center text-sm font-semibold text-gray-900"
+                          >
+                            Other Courses
+                          </th>
+                          <th
+                            scope="col"
+                            className="px-3 py-3.5 text-center text-sm font-semibold text-purple-700 bg-purple-50"
+                          >
+                            Our Course
+                          </th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody className="divide-y divide-gray-200 bg-white">
+                        {newFeatures.map((feature, index) => (
+                          <tr key={index}>
+                            <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                              <div className="flex items-center">
+                                <div className="mr-3 p-1 rounded-md bg-gray-100">
+                                  {feature.icon}
+                                </div>
+                                {feature.name}
+                              </div>
+                            </td>
+                            <td className="whitespace-normal px-3 py-4 text-sm text-gray-500 text-center">
+                              <div className="flex flex-col items-center">
+                                <XCircle className="h-5 w-5 text-red-400 mb-1" />
+                                <span>{feature.others}</span>
+                              </div>
+                            </td>
+                            <td className="whitespace-normal px-3 py-4 text-sm text-gray-900 font-medium bg-purple-50 text-center">
+                              <div className="flex flex-col items-center">
+                                <CheckCircle2 className="h-5 w-5 text-green-500 mb-1" />
+                                <span>{feature.yours}</span>
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+
+                  {/* Mobile Cards (shown on screens smaller than md) */}
+                  <div className="md:hidden space-y-4 p-4">
+                    {newFeatures.map((feature, index) => (
+                      <div
+                        key={index}
+                        className="bg-white rounded-lg shadow-sm border border-gray-200 p-4"
+                      >
+                        <div className="flex items-center mb-3">
+                          <div className="mr-3 p-1 rounded-md bg-gray-100">
+                            {feature.icon}
+                          </div>
+                          <h3 className="text-sm font-medium text-gray-900">
+                            {feature.name}
+                          </h3>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-4">
+                          <div className="text-center p-2 border border-gray-200 rounded">
+                            <XCircle className="h-5 w-5 text-red-400 mx-auto mb-1" />
+                            <p className="text-xs text-gray-500 font-medium">
+                              Other Courses
+                            </p>
+                            <p className="text-xs text-gray-600 mt-1">
+                              {feature.others}
+                            </p>
+                          </div>
+
+                          <div className="text-center p-2 border border-purple-200 rounded bg-purple-50">
+                            <CheckCircle2 className="h-5 w-5 text-green-500 mx-auto mb-1" />
+                            <p className="text-xs text-purple-700 font-medium">
+                              Our Course
+                            </p>
+                            <p className="text-xs text-gray-900 mt-1">
+                              {feature.yours}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
                 <div className="mt-4 text-center">
-                  <button onClick={() =>
-                    window.open(
-                      "https://superprofile.bio/e/2daypraticaltarotwebnair?fbclid=PAQ0xDSwLWGSVleHRuA2FlbQIxMQABp8FG1c-grgtEaSu-mgmzgPiz4yZqT_E3-ULXKIdN1APXmecoBA39B2vDb6wK_aem_NDXj4ePOpKMB4mVDEnVofw",
-                      "_blank"
-                    )
-                  } className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all">
+                  <button
+                    onClick={() =>
+                      window.open(
+                        "https://superprofile.bio/e/2daypraticaltarotwebnair?fbclid=PAQ0xDSwLWGSVleHRuA2FlbQIxMQABp8FG1c-grgtEaSu-mgmzgPiz4yZqT_E3-ULXKIdN1APXmecoBA39B2vDb6wK_aem_NDXj4ePOpKMB4mVDEnVofw",
+                        "_blank"
+                      )
+                    }
+                    className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all"
+                  >
                     <Star className="mr-2 h-5 w-5" />
                     Choose the Superior Learning Experience
                   </button>
@@ -883,7 +1025,7 @@ const TarotWorkshopScreen = () => {
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-purple-50 to-indigo-50 py-16 px-4 sm:px-6 lg:px-8">
+            <div className="bg-gradient-to-br from-purple-50 to-indigo-50 py-4 px-4 sm:px-6 lg:px-8">
               <div className="max-w-6xl mx-auto">
                 <div className="text-center mb-12">
                   <h2 className="text-3xl sm:text-4xl font-bold text-purple-900 mb-3">
@@ -894,15 +1036,19 @@ const TarotWorkshopScreen = () => {
                   </h3>
                 </div>
 
-                <div className="flex flex-col lg:flex-row gap-10 items-center">
-                  {/* Mentor Photo - Replace with actual image */}
-                  <div className="h-160 overflow-hidden">
-                    <img
-                      src={Image9}
-                      // alt={bonus.title}
-                      className="w-full h-full object-cover"
-                    />
+                <div className="flex flex-col lg:flex-row gap-8 items-center">
+                  {/* Mentor Photo */}
+                  <div className="w-full lg:w-1/3 flex justify-center">
+                    <div className="w-64 h-64 sm:w-72 sm:h-72 rounded-lg overflow-hidden shadow-lg border-4 border-white bg-white">
+                      <img
+                        src={Image9}
+                        alt="Ekta Aggarwal - Tarot Mentor"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
                   </div>
+
+                  {/* Mentor Content */}
                   <div className="w-full lg:w-2/3">
                     <div className="bg-white rounded-xl p-6 sm:p-8 shadow-lg border border-purple-100">
                       <h4 className="text-xl font-bold text-purple-900 mb-4">
@@ -915,18 +1061,18 @@ const TarotWorkshopScreen = () => {
                         Her goal is to help <strong>100,000 women</strong> live
                         life on their terms and thrive financially, mentally,
                         and emotionally. With over <strong>10 years</strong> of
-                        experience and a <strong>4.9-star rating</strong>,
-                        Ekta is committed to guide others on their journey
-                        of personal growth using the wisdom of tarot.
+                        experience and a <strong>4.9-star rating</strong>, Ekta
+                        is committed to guide others on their journey of
+                        personal growth using the wisdom of tarot.
                       </p>
 
                       <p className="text-gray-700 mb-6">
                         Whether you want to deepen your spiritual connections,
                         achieve your goals, or simply understand life's
-                        challenges better, Ekta can light the way. Her
-                        special <strong>Tarot Trinity Framework</strong> makes
-                        the card reading simple, and her practical coaching
-                        helps you turn cosmic guidance into real success.
+                        challenges better, Ekta can light the way. Her special{" "}
+                        <strong>Tarot Trinity Framework</strong> makes the card
+                        reading simple, and her practical coaching helps you
+                        turn cosmic guidance into real success.
                       </p>
 
                       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
@@ -949,12 +1095,15 @@ const TarotWorkshopScreen = () => {
                       </div>
 
                       <div className="flex justify-center">
-                        <button onClick={() =>
-                    window.open(
-                      "https://superprofile.bio/e/2daypraticaltarotwebnair?fbclid=PAQ0xDSwLWGSVleHRuA2FlbQIxMQABp8FG1c-grgtEaSu-mgmzgPiz4yZqT_E3-ULXKIdN1APXmecoBA39B2vDb6wK_aem_NDXj4ePOpKMB4mVDEnVofw",
-                      "_blank"
-                    )
-                  } className="flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all hover:from-purple-700 hover:to-indigo-700">
+                        <button
+                          onClick={() =>
+                            window.open(
+                              "https://superprofile.bio/e/2daypraticaltarotwebnair?fbclid=PAQ0xDSwLWGSVleHRuA2FlbQIxMQABp8FG1c-grgtEaSu-mgmzgPiz4yZqT_E3-ULXKIdN1APXmecoBA39B2vDb6wK_aem_NDXj4ePOpKMB4mVDEnVofw",
+                              "_blank"
+                            )
+                          }
+                          className="flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all hover:from-purple-700 hover:to-indigo-700"
+                        >
                           <Zap className="w-5 h-5 mr-2" />
                           Join Ekta Aggarwal's Program
                         </button>
@@ -999,12 +1148,15 @@ const TarotWorkshopScreen = () => {
                 </div>
 
                 <div className="text-center">
-                  <button onClick={() =>
-                    window.open(
-                      "https://superprofile.bio/e/2daypraticaltarotwebnair?fbclid=PAQ0xDSwLWGSVleHRuA2FlbQIxMQABp8FG1c-grgtEaSu-mgmzgPiz4yZqT_E3-ULXKIdN1APXmecoBA39B2vDb6wK_aem_NDXj4ePOpKMB4mVDEnVofw",
-                      "_blank"
-                    )
-                  } className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-105 group">
+                  <button
+                    onClick={() =>
+                      window.open(
+                        "https://superprofile.bio/e/2daypraticaltarotwebnair?fbclid=PAQ0xDSwLWGSVleHRuA2FlbQIxMQABp8FG1c-grgtEaSu-mgmzgPiz4yZqT_E3-ULXKIdN1APXmecoBA39B2vDb6wK_aem_NDXj4ePOpKMB4mVDEnVofw",
+                        "_blank"
+                      )
+                    }
+                    className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-105 group"
+                  >
                     <span className="mr-3">
                       Apply for Internship Opportunities
                     </span>
@@ -1016,11 +1168,11 @@ const TarotWorkshopScreen = () => {
 
             {/* Bonuses Section */}
             <div className="bg-gradient-to-r from-violet-600 to-amber-600 rounded-3xl p-6 shadow-lg mb-4 text-white">
-              <h3 className="text-2xl font-bold mb-6 text-center">
-                Exclusive Bonuses Worth ₹10k
+              <h3 className="text-2xl font-bold text-center">
+                Exclusive Bonuses – Only in Our Course!
               </h3>
 
-              <div className="grid md:grid-cols-3 gap-4">
+              {/* <div className="grid md:grid-cols-3 gap-4">
                 {bonuses.map((bonus, index) => (
                   <div
                     key={index}
@@ -1059,7 +1211,6 @@ const TarotWorkshopScreen = () => {
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-                    {/* Course Value */}
                     <div className="bg-white p-6 rounded-xl shadow-md border-l-4 border-purple-500">
                       <div className="flex items-center mb-4">
                         <Gem className="h-6 w-6 text-purple-600 mr-3" />
@@ -1075,7 +1226,6 @@ const TarotWorkshopScreen = () => {
                       </p>
                     </div>
 
-                    {/* Bonuses Value */}
                     <div className="bg-white p-6 rounded-xl shadow-md border-l-4 border-indigo-500">
                       <div className="flex items-center mb-4">
                         <Gift className="h-6 w-6 text-indigo-600 mr-3" />
@@ -1091,7 +1241,7 @@ const TarotWorkshopScreen = () => {
                       </p>
                     </div>
 
-                    {/* Today's Price */}
+
                     <div className="bg-white p-6 rounded-xl shadow-lg border-2 border-yellow-400 transform scale-105 z-10 relative">
                       <div className="absolute top-0 right-0 bg-yellow-400 text-yellow-900 px-3 py-1 text-xs font-bold rounded-bl-lg rounded-tr-lg">
                         SPECIAL OFFER
@@ -1129,7 +1279,7 @@ const TarotWorkshopScreen = () => {
                     </button>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
 
             {/* Success Stories */}
@@ -1168,7 +1318,7 @@ const TarotWorkshopScreen = () => {
               </div>
             </div> */}
 
-            <div className="mb-4 bg-gradient-to-br from-purple-50 to-indigo-50 px-4 sm:px-6 lg:px-8">
+            {/* <div className="mb-4 bg-gradient-to-br from-purple-50 to-indigo-50 px-4 sm:px-6 lg:px-8">
               <div className="mx-auto">
                 <div className="bg-gradient-to-br from-purple-50 to-indigo-50 px-4 sm:px-6 lg:px-8">
                   <div className="max-w-7xl mx-auto">
@@ -1251,10 +1401,10 @@ const TarotWorkshopScreen = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             {/* FAQ Section */}
-            <div className="bg-white rounded-3xl p-6 border border-gray-100 shadow-lg mb-12">
+            {/* <div className="bg-white rounded-3xl p-6 border border-gray-100 shadow-lg mb-12">
               <h3 className="text-2xl font-bold mb-6 text-center text-gray-900">
                 Frequently Asked Questions
               </h3>
@@ -1277,7 +1427,7 @@ const TarotWorkshopScreen = () => {
                   </div>
                 ))}
               </div>
-            </div>
+            </div> */}
 
             {/* Final CTA */}
             <div className="bg-gradient-to-r from-violet-600 to-amber-600 rounded-3xl p-8 shadow-xl mb-8 text-center">
