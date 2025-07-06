@@ -91,75 +91,61 @@ const TarotWorkshopScreen = () => {
   ];
 
   const videoTestimonials = [
-    { videoId: 1, video: Video1, thumbnail: 'thumbnail1.jpg' },
-    { videoId: 2, video: Video2, thumbnail: 'thumbnail2.jpg' },
-    { videoId: 3, video: Video3, thumbnail: 'thumbnail3.jpg' },
+    { videoId: 1, video: Video1, thumbnail: "thumbnail1.jpg" },
+    { videoId: 2, video: Video2, thumbnail: "thumbnail2.jpg" },
+    { videoId: 3, video: Video3, thumbnail: "thumbnail3.jpg" },
   ];
 
   const [playingVideoId, setPlayingVideoId] = useState(null);
   const [centerIndex, setCenterIndex] = useState(1);
+  const [userInteracted, setUserInteracted] = useState(false);
+  const [muted, setMuted] = useState(true); // Start muted to allow autoplay
   const videoRefs = useRef({});
   const sliderRef = useRef(null);
-  const isMounted = useRef(false);
 
-  // Pause all videos except the specified one
-  const pauseOtherVideos = (currentVideoId) => {
-    Object.entries(videoRefs.current).forEach(([id, video]) => {
-      if (video && Number(id) !== currentVideoId) {
-        video.pause();
-      }
-    });
+  // Handle initial user interaction
+  const handleFirstInteraction = () => {
+    if (!userInteracted) {
+      setUserInteracted(true);
+      setMuted(false); // Unmute after first interaction
+      // Force play the current center video with sound
+      const currentVideoId = videoTestimonials[centerIndex]?.videoId;
+      if (currentVideoId) playVideo(currentVideoId);
+    }
   };
 
-  // Handle video click
-  const handleVideoClick = (e, videoId) => {
-    e.stopPropagation();
+  // Play video with proper mute state
+  const playVideo = (videoId) => {
     const video = videoRefs.current[videoId];
-    
     if (!video) return;
-    
-    if (playingVideoId === videoId) {
-      video.pause();
-      setPlayingVideoId(null);
-    } else {
-      pauseOtherVideos(videoId);
-      video.currentTime = 0; // Reset to start
-      video.play()
-        .then(() => setPlayingVideoId(videoId))
-        .catch(error => {
-          console.log("Play failed:", error);
-          // Fallback to muted play if autoplay was prevented
-          video.muted = true;
-          video.play().then(() => setPlayingVideoId(videoId));
-        });
-    }
+
+    // Pause all other videos
+    Object.values(videoRefs.current).forEach((v) => {
+      if (v && v !== video) {
+        v.pause();
+        v.currentTime = 0;
+      }
+    });
+
+    // Set muted state based on user interaction
+    video.muted = muted;
+
+    video.currentTime = 0;
+    video
+      .play()
+      .then(() => setPlayingVideoId(videoId))
+      .catch((error) => {
+        console.log("Play failed, trying muted:", error);
+        video.muted = true;
+        video.play().then(() => setPlayingVideoId(videoId));
+      });
   };
 
   // Handle slide change
   const handleAfterChange = (currentIndex) => {
-    if (!isMounted.current) return;
-    
-    const newCenterIndex = currentIndex;
-    setCenterIndex(newCenterIndex);
-    
-    const centeredVideoId = videoTestimonials[newCenterIndex]?.videoId;
-    
-    if (centeredVideoId && centeredVideoId !== playingVideoId) {
-      pauseOtherVideos(centeredVideoId);
-      
-      const video = videoRefs.current[centeredVideoId];
-      if (video) {
-        video.currentTime = 0;
-        video.play()
-          .then(() => setPlayingVideoId(centeredVideoId))
-          .catch(error => {
-            console.log("Auto-play prevented:", error);
-            // Fallback to muted play
-            video.muted = true;
-            video.play().then(() => setPlayingVideoId(centeredVideoId));
-          });
-      }
-    }
+    setCenterIndex(currentIndex);
+    const centeredVideoId = videoTestimonials[currentIndex]?.videoId;
+    if (centeredVideoId) playVideo(centeredVideoId);
   };
 
   // Slick slider settings
@@ -170,7 +156,7 @@ const TarotWorkshopScreen = () => {
     slidesToShow: 3,
     slidesToScroll: 1,
     centerMode: true,
-    centerPadding: '0px',
+    centerPadding: "0px",
     focusOnSelect: true,
     initialSlide: centerIndex,
     afterChange: handleAfterChange,
@@ -180,6 +166,7 @@ const TarotWorkshopScreen = () => {
         const currentVideo = videoRefs.current[playingVideoId];
         if (currentVideo) {
           currentVideo.pause();
+          currentVideo.currentTime = 0;
           setPlayingVideoId(null);
         }
       }
@@ -189,59 +176,53 @@ const TarotWorkshopScreen = () => {
         breakpoint: 1024,
         settings: {
           slidesToShow: 3,
-        }
+        },
       },
       {
         breakpoint: 768,
         settings: {
           slidesToShow: 1,
-          centerMode: false
-        }
-      }
-    ]
+          centerMode: false,
+          afterChange: (currentIndex) => {
+            const currentVideoId = videoTestimonials[currentIndex]?.videoId;
+            if (currentVideoId) playVideo(currentVideoId);
+          },
+        },
+      },
+    ],
   };
 
   // Initialize on mount
   useEffect(() => {
-    isMounted.current = true;
-    
     const initialVideoId = videoTestimonials[centerIndex]?.videoId;
-    if (initialVideoId) {
-      const video = videoRefs.current[initialVideoId];
-      if (video) {
-        // Wait for video to be ready
-        const attemptPlay = () => {
-          video.play()
-            .then(() => setPlayingVideoId(initialVideoId))
-            .catch(error => {
-              console.log("Initial auto-play prevented:", error);
-              // Fallback to muted play
-              video.muted = true;
-              video.play().then(() => setPlayingVideoId(initialVideoId));
-            });
-        };
-        
-        if (video.readyState >= 2) { // HAVE_CURRENT_DATA
-          attemptPlay();
-        } else {
-          video.addEventListener('loadedmetadata', attemptPlay, { once: true });
-        }
-      }
-    }
-    
-    return () => {
-      isMounted.current = false;
-      // Clean up event listeners
-      Object.values(videoRefs.current).forEach(video => {
-        if (video) {
-          video.removeEventListener('loadedmetadata', () => {});
-        }
+    if (initialVideoId) playVideo(initialVideoId);
+
+    // Add click event listener to the whole carousel for first interaction
+    const container = document.querySelector(".video-carousel-container");
+    if (container) {
+      container.addEventListener("click", handleFirstInteraction, {
+        once: true,
       });
+    }
+
+    return () => {
+      if (container) {
+        container.removeEventListener("click", handleFirstInteraction);
+      }
     };
   }, []);
+
+  // Update mute state on all videos when it changes
+  useEffect(() => {
+    Object.values(videoRefs.current).forEach((video) => {
+      if (video) video.muted = muted;
+    });
+  }, [muted]);
   // Determine which testimonials to show
 
   const [dismissed, setDismissed] = useState(false);
+
+  console.log(playingVideoId, "sdfmek");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -485,38 +466,15 @@ const TarotWorkshopScreen = () => {
 
   const sections = [
     {
-      title: "Tarot Foundations & Psychic Development",
-      icon: <BookOpen className="w-6 h-6 text-purple-600" />,
-      items: [
-        "Understanding Tarot history, myths, and misconceptions",
-        "Deep dive into Major & Minor Arcana with psychological insights",
-        "Understanding tarot elements, numerology & astrology integration",
-        "How to trust and activate your intuition & psychic abilities",
-      ],
-      bgColor: "bg-purple-50",
-      borderColor: "border-purple-200",
-    },
-    {
-      title: "Advanced Tarot Techniques & Spreads",
+      title: "Master Tarot Card Meanings",
       icon: <Sparkles className="w-6 h-6 text-amber-600" />,
       items: [
-        "Custom spreads for love, career, healing & manifestation",
-        "Shadow Work & Subconscious Healing with Tarot",
-        "Ethical tarot reading & managing difficult clients",
+        "I'll teach you how you can remember every tarot card meaning just by looking at the tarot card using my 'personal stories framework'",
+        "No memorization / No book needed ",
+        "you'll just see the card and will be able to explain its meaning beautifully",
       ],
       bgColor: "bg-amber-50",
       borderColor: "border-amber-200",
-    },
-    {
-      title: "Tarot & Energy Healing Integration",
-      icon: <Heart className="w-6 h-6 text-rose-600" />,
-      items: [
-        "Using Tarot for chakra balancing & aura cleansing",
-        "Combining Tarot with crystals, affirmations & journaling",
-        "Tarot as a tool for deep meditation & self-discovery",
-      ],
-      bgColor: "bg-rose-50",
-      borderColor: "border-rose-200",
     },
     {
       title: "Business & Social Media Growth",
@@ -818,8 +776,9 @@ const TarotWorkshopScreen = () => {
                 ))}
 
                 {/* Full width section */}
-                <div className="col-span-2 bg-gradient-to-r from-violet-600 to-amber-600 rounded-3xl p-8 shadow-xl mb-8 text-center">
-                  <h3 className="text-2xl font-bold text-white mb-3">
+
+                <div className="col-span-2 bg-gradient-to-r from-violet-600 to-amber-600 rounded-3xl p-8 shadow-xl mb-8 text-center animate-pulse">
+                  <h3 className="text-2xl font-bold text-white mb-3 animate-bounce">
                     Ready to Start Your Tarot Journey?
                   </h3>
                   <p className="text-white/90 mb-6">
@@ -834,17 +793,49 @@ const TarotWorkshopScreen = () => {
                           "_blank"
                         )
                       }
-                      className="w-full bg-white text-violet-700 hover:bg-gray-100 py-4 rounded-2xl font-bold text-lg flex items-center justify-center gap-2 transition-all duration-300 shadow-lg hover:shadow-xl"
+                      className="w-full bg-white text-violet-700 hover:bg-gray-100 py-4 rounded-2xl font-bold text-lg flex items-center justify-center gap-2 transition-all duration-300 shadow-lg hover:shadow-xl animate-shake hover:animate-none"
                     >
                       <Play className="w-5 h-5" />
-                      Register Now
+                      Enroll Now
                     </button>
 
-                    <div className="text-white/80 text-sm flex items-center justify-center gap-2">
-                      <TimeIcon className="w-4 h-4" />
-                      <span>Limited seats available</span>
+                    <div className="text-white/80 text-sm flex items-center justify-center gap-2 animate-pulse">
+                      <TimeIcon className="w-4 h-4 animate-spin" />
+                      <span className="animate-shake">
+                        Limited seats available
+                      </span>
                     </div>
                   </div>
+
+                  <style jsx>{`
+                    @keyframes shake {
+                      0%,
+                      100% {
+                        transform: translateX(0);
+                      }
+                      10%,
+                      30%,
+                      50%,
+                      70%,
+                      90% {
+                        transform: translateX(-2px);
+                      }
+                      20%,
+                      40%,
+                      60%,
+                      80% {
+                        transform: translateX(2px);
+                      }
+                    }
+
+                    .animate-shake {
+                      animation: shake 2s ease-in-out infinite;
+                    }
+
+                    .animate-shake:hover {
+                      animation: none;
+                    }
+                  `}</style>
                 </div>
               </div>
             </div>
@@ -1011,7 +1002,7 @@ const TarotWorkshopScreen = () => {
               </div>
             </div>
 
-            <div className="bg-white rounded-3xl p-6 border border-gray-100 shadow-lg mb-8">
+            {/* <div className="bg-white rounded-3xl p-6 border border-gray-100 shadow-lg mb-8">
               <h3 className="text-2xl font-bold mb-6 text-center text-gray-900">
                 Course <span className="text-violet-600">Curriculum</span>
               </h3>
@@ -1059,7 +1050,7 @@ const TarotWorkshopScreen = () => {
                   </div>
                 ))}
               </div>
-            </div>
+            </div> */}
 
             <div className="bg-white py-4 px-4 sm:px-6 lg:px-8">
               <div className="mx-auto">
@@ -1859,121 +1850,115 @@ const TarotWorkshopScreen = () => {
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-purple-50 to-indigo-50 py-12 px-4 sm:px-6 lg:px-8">
-              <div className="max-w-7xl mx-auto">
-                {/* Header Section */}
-                <div className="text-center mb-12">
-                  <div className="inline-flex items-center justify-center bg-white p-3 rounded-full shadow-md mb-6">
-                    <svg
-                      className="w-8 h-8 text-purple-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                      ></path>
-                    </svg>
-                  </div>
-                  <h1 className="text-3xl sm:text-4xl font-bold text-purple-900 mb-3">
-                    Success Stories
-                  </h1>
-                  <p className="text-lg text-purple-700 max-w-2xl mx-auto">
-                    Hear some of our students successful stories
-                  </p>
-                </div>
-
-                {/* Testimonial Carousel */}
-                <div className="relative px-4 py-8 max-w-6xl mx-auto">
-      <Slider ref={sliderRef} {...settings}>
-        {videoTestimonials.map((testimonial, index) => (
-          <div 
-            key={testimonial.videoId} 
-            className="px-2 focus:outline-none"
-            style={{ 
-              transform: index === centerIndex ? 'scale(1.05)' : 'scale(0.95)',
-              transition: 'transform 0.3s ease',
-            }}
-          >
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl h-full flex flex-col">
-              <div
-                className="relative w-full h-64 md:h-80 lg:h-96 cursor-pointer"
-                onClick={(e) => handleVideoClick(e, testimonial.videoId)}
+            <div
+              className="video-carousel-container relative px-4 py-8 max-w-6xl mx-auto"
+              onClick={handleFirstInteraction}
+            >
+              {/* Mute toggle button */}
+              <button
+                className="absolute top-4 right-4 z-10 bg-black/50 text-white p-2 rounded-full"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setMuted(!muted);
+                }}
               >
-                <video
-                  ref={(el) => (videoRefs.current[testimonial.videoId] = el)}
-                  className="w-full h-full object-cover"
-                  playsInline
-                  preload="auto"
-                  // poster={testimonial.video}
-                  muted={playingVideoId !== testimonial.videoId} // Only unmute when playing
-                  loop
-                  onPause={() => {
-                    if (playingVideoId === testimonial.videoId) {
-                      setPlayingVideoId(null);
-                    }
-                  }}
-                  onEnded={() => {
-                    if (playingVideoId === testimonial.videoId) {
-                      videoRefs.current[testimonial.videoId].currentTime = 0;
-                      videoRefs.current[testimonial.videoId].play();
-                    }
-                  }}
-                >
-                  <source src={testimonial.video} type="video/mp4" />
-                  Your browser does not support videos.
-                </video>
+                {muted ? (
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
+                      clipRule="evenodd"
+                    />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                )}
+              </button>
 
-                {playingVideoId !== testimonial.videoId && (
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/30 transition-opacity hover:bg-black/20">
-                    <div className="w-12 h-12 md:w-16 md:h-16 bg-white/90 rounded-full flex items-center justify-center">
-                      <svg
-                        className="w-6 h-6 md:w-8 md:h-8 text-purple-600"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M8 5v14l11-7z" />
-                      </svg>
+              <Slider ref={sliderRef} {...settings}>
+                {videoTestimonials.map((testimonial, index) => (
+                  <div
+                    key={testimonial.videoId}
+                    className="px-2 focus:outline-none"
+                    style={{
+                      transform:
+                        index === centerIndex ? "scale(1.05)" : "scale(0.95)",
+                      transition: "transform 0.3s ease",
+                    }}
+                  >
+                    <div className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl h-full flex flex-col">
+                      <div className="relative w-full h-64 md:h-80 lg:h-96">
+                        <video
+                          ref={(el) =>
+                            (videoRefs.current[testimonial.videoId] = el)
+                          }
+                          className="w-full h-full object-cover"
+                          playsInline
+                          muted={muted}
+                          loop
+                          preload="auto"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleFirstInteraction();
+                          }}
+                          onEnded={() => {
+                            if (playingVideoId === testimonial.videoId) {
+                              videoRefs.current[
+                                testimonial.videoId
+                              ].currentTime = 0;
+                              videoRefs.current[testimonial.videoId].play();
+                            }
+                          }}
+                        >
+                          <source src={testimonial.video} type="video/mp4" />
+                          Your browser does not support videos.
+                        </video>
+
+                        {/* Show play button only if not playing */}
+                        {playingVideoId !== testimonial.videoId && (
+                          <div className="absolute inset-0 flex items-center justify-center bg-black/30 transition-opacity hover:bg-black/20">
+                            <div className="w-12 h-12 md:w-16 md:h-16 bg-white/90 rounded-full flex items-center justify-center">
+                              <svg
+                                className="w-6 h-6 md:w-8 md:h-8 text-purple-600"
+                                fill="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path d="M8 5v14l11-7z" />
+                              </svg>
+                            </div>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
-                )}
-              </div>
-            </div>
-          </div>
-        ))}
-      </Slider>
-    </div>
-                {/* CTA Button */}
-                <div className="mt-12 text-center">
-                  <button
-                    onClick={() =>
-                      window.open(
-                        "https://superprofile.bio/e/2daypraticaltarotwebnair",
-                        "_blank"
-                      )
-                    }
-                    className="inline-flex items-center px-8 py-4 border border-transparent text-lg font-bold rounded-xl shadow-lg text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 transition-all transform hover:-translate-y-1 hover:shadow-xl"
-                  >
-                    <svg
-                      className="w-6 h-6 mr-3"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                      ></path>
-                    </svg>
-                    Join Our Next Workshop
-                  </button>
-                </div>
-              </div>
+                ))}
+              </Slider>
             </div>
 
             {/* FAQ Section */}
@@ -2003,8 +1988,8 @@ const TarotWorkshopScreen = () => {
             </div>
 
             {/* Final CTA */}
-            <div className="bg-gradient-to-r from-violet-600 to-amber-600 rounded-3xl p-8 shadow-xl mb-8 text-center">
-              <h3 className="text-2xl font-bold text-white mb-3">
+            <div className="bg-gradient-to-r from-violet-600 to-amber-600 rounded-3xl p-8 shadow-xl mb-8 text-center animate-pulse">
+              <h3 className="text-2xl font-bold text-white mb-3 animate-bounce">
                 Ready to Start Your Tarot Journey?
               </h3>
               <p className="text-white/90 mb-6">
@@ -2019,17 +2004,47 @@ const TarotWorkshopScreen = () => {
                       "_blank"
                     )
                   }
-                  className="w-full bg-white text-violet-700 hover:bg-gray-100 py-4 rounded-2xl font-bold text-lg flex items-center justify-center gap-2 transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="w-full bg-white text-violet-700 hover:bg-gray-100 py-4 rounded-2xl font-bold text-lg flex items-center justify-center gap-2 transition-all duration-300 shadow-lg hover:shadow-xl animate-shake hover:animate-none"
                 >
                   <Play className="w-5 h-5" />
                   Enroll Now
                 </button>
 
-                <div className="text-white/80 text-sm flex items-center justify-center gap-2">
-                  <TimeIcon className="w-4 h-4" />
-                  <span>Limited seats available</span>
+                <div className="text-white/80 text-sm flex items-center justify-center gap-2 animate-pulse">
+                  <TimeIcon className="w-4 h-4 animate-spin" />
+                  <span className="animate-shake">Limited seats available</span>
                 </div>
               </div>
+
+              <style jsx>{`
+                @keyframes shake {
+                  0%,
+                  100% {
+                    transform: translateX(0);
+                  }
+                  10%,
+                  30%,
+                  50%,
+                  70%,
+                  90% {
+                    transform: translateX(-2px);
+                  }
+                  20%,
+                  40%,
+                  60%,
+                  80% {
+                    transform: translateX(2px);
+                  }
+                }
+
+                .animate-shake {
+                  animation: shake 2s ease-in-out infinite;
+                }
+
+                .animate-shake:hover {
+                  animation: none;
+                }
+              `}</style>
             </div>
             <footer className="bg-gradient-to-r from-purple-900 to-indigo-900 text-white py-12 px-4 sm:px-6 lg:px-8">
               <div className="max-w-6xl mx-auto">
