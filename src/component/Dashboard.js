@@ -96,26 +96,34 @@ const TarotWorkshopScreen = () => {
     { videoId: 3, video: Video3, thumbnail: "thumbnail3.jpg" },
   ];
 
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [userInteracted, setUserInteracted] = useState(false);
-  const [muted, setMuted] = useState(true);
   const videoRefs = useRef([]);
+  const [activeVideoIndex, setActiveVideoIndex] = useState(null);
+  const [isPlaying, setIsPlaying] = useState(false);
   const sliderRef = useRef(null);
 
-  // Handle first user interaction
-  const handleFirstInteraction = () => {
-    if (!userInteracted) {
-      setUserInteracted(true);
-      setMuted(false);
-      playVideo(activeIndex);
+  // Handle video click
+  const handleVideoClick = (index) => {
+    // If clicking the already active video, toggle play/pause
+    if (activeVideoIndex === index) {
+      const video = videoRefs.current[index];
+      if (video.paused) {
+        playVideo(index);
+      } else {
+        video.pause();
+        setIsPlaying(false);
+      }
+      return;
     }
+
+    // Play the clicked video
+    playVideo(index);
   };
 
-  // Play specific video
+  // Proper video play function with error handling
   const playVideo = (index) => {
-    // Pause all videos first
-    videoRefs.current.forEach((video) => {
-      if (video) {
+    // Pause all other videos
+    videoRefs.current.forEach((video, i) => {
+      if (video && i !== index) {
         video.pause();
         video.currentTime = 0;
       }
@@ -124,23 +132,64 @@ const TarotWorkshopScreen = () => {
     // Play the selected video
     const video = videoRefs.current[index];
     if (video) {
-      video.muted = muted;
-      video.play().catch((error) => {
-        console.error("Video play failed:", error);
-        // Fallback to muted play if needed
-        video.muted = true;
-        video.play();
+      // Reset video first to prevent freezing
+      video.currentTime = 0;
+      
+      // Unmute only the clicked video
+      video.muted = false;
+      
+      // Use requestAnimationFrame for smoother playback
+      requestAnimationFrame(() => {
+        video.play()
+          .then(() => {
+            setActiveVideoIndex(index);
+            setIsPlaying(true);
+          })
+          .catch(err => {
+            console.error("Play failed:", err);
+            // Fallback to muted play
+            video.muted = true;
+            video.play()
+              .then(() => {
+                setActiveVideoIndex(index);
+                setIsPlaying(true);
+              });
+          });
       });
     }
   };
 
-  // Handle slide change
-  const handleAfterChange = (index) => {
-    setActiveIndex(index);
-    playVideo(index);
+  // Handle video ended event
+  const handleVideoEnded = (index) => {
+    if (activeVideoIndex === index) {
+      const video = videoRefs.current[index];
+      video.currentTime = 0;
+      video.play();
+    }
   };
 
-  // Slick slider settings
+  // Reset videos when slider changes
+  const handleBeforeChange = (oldIndex, newIndex) => {
+    const video = videoRefs.current[oldIndex];
+    if (video) {
+      video.pause();
+      video.currentTime = 0;
+    }
+  };
+
+  // Clean up on unmount
+  useEffect(() => {
+    return () => {
+      videoRefs.current.forEach(video => {
+        if (video) {
+          video.pause();
+          video.src = ""; // Release video resources
+        }
+      });
+    };
+  }, []);
+
+  // Slider settings
   const settings = {
     dots: false,
     infinite: true,
@@ -149,33 +198,19 @@ const TarotWorkshopScreen = () => {
     slidesToScroll: 1,
     centerMode: true,
     centerPadding: "0px",
-    focusOnSelect: true,
-    initialSlide: activeIndex,
-    afterChange: handleAfterChange,
+    beforeChange: handleBeforeChange,
     responsive: [
       {
         breakpoint: 1024,
-        settings: { slidesToShow: 3 },
+        settings: { slidesToShow: 3 }
       },
       {
         breakpoint: 768,
-        settings: { slidesToShow: 1, centerMode: false },
-      },
-    ],
+        settings: { slidesToShow: 1, centerMode: false }
+      }
+    ]
   };
 
-  // Initialize on mount
-  useEffect(() => {
-    // Start with first video playing (muted)
-    playVideo(activeIndex);
-
-    // Cleanup
-    return () => {
-      videoRefs.current.forEach((video) => {
-        if (video) video.pause();
-      });
-    };
-  }, []);
   // Determine which testimonials to show
 
   const [dismissed, setDismissed] = useState(false);
@@ -1808,117 +1843,63 @@ const TarotWorkshopScreen = () => {
               </div>
             </div>
 
-            {/* <div
-              className="video-carousel-container relative px-4 py-8 max-w-6xl mx-auto"
-              onClick={handleFirstInteraction}
+            {/* <div className="video-carousel-container relative px-4 py-8 max-w-6xl mx-auto">
+      <Slider ref={sliderRef} {...settings}>
+        {videoTestimonials.map((testimonial, index) => {
+          const isActive = activeVideoIndex === index;
+          return (
+            <div
+              key={index}
+              className="px-2 focus:outline-none"
+              style={{
+                transform: isActive ? "scale(1.05)" : "scale(0.95)",
+                transition: "transform 0.3s ease",
+              }}
             >
-              {userInteracted && (
-                <button
-                  className="absolute top-4 right-4 z-10 bg-black/50 text-white p-2 rounded-full"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setMuted(!muted);
-                    if (videoRefs.current[activeIndex]) {
-                      videoRefs.current[activeIndex].muted = !muted;
-                    }
-                  }}
+              <div className="bg-white rounded-xl shadow-lg overflow-hidden h-full flex flex-col">
+                <div 
+                  className="relative w-full h-64 md:h-80 lg:h-96 cursor-pointer"
+                  onClick={() => handleVideoClick(index)}
                 >
-                  {muted ? (
-                    <svg
-                      className="w-6 h-6"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
-                        clipRule="evenodd"
-                      />
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"
-                      />
-                    </svg>
-                  ) : (
-                    <svg
-                      className="w-6 h-6"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M15.536 8.464a5 5 0 010 7.072M12 6a7.975 7.975 0 015.657 2.343m0 0a7.975 7.975 0 010 11.314m-11.314 0a7.975 7.975 0 010-11.314m0 0a7.975 7.975 0 015.657-2.343"
-                      />
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  )}
-                </button>
-              )}
-
-              <Slider ref={sliderRef} {...settings}>
-                {videoTestimonials.map((testimonial, index) => (
-                  <div
-                    key={testimonial.videoId}
-                    className="px-2 focus:outline-none"
-                    style={{
-                      transform:
-                        index === activeIndex ? "scale(1.05)" : "scale(0.95)",
-                      transition: "transform 0.3s ease",
+                  <video
+                    ref={el => videoRefs.current[index] = el}
+                    className="w-full h-full object-cover"
+                    playsInline
+                    muted={!isActive}
+                    loop
+                    preload="auto"
+                    onEnded={() => handleVideoEnded(index)}
+                    onCanPlay={() => {
+                      if (isActive && isPlaying) {
+                        videoRefs.current[index]?.play();
+                      }
                     }}
                   >
-                    <div className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl h-full flex flex-col">
-                      <div className="relative w-full h-64 md:h-80 lg:h-96">
-                        <video
-                          ref={(el) => (videoRefs.current[index] = el)}
-                          className="w-full h-full object-cover"
-                          playsInline
-                          muted={index !== activeIndex || muted}
-                          loop
-                          preload="auto"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleFirstInteraction();
-                          }}
-                        >
-                          <source src={testimonial.video} type="video/mp4" />
-                          Your browser does not support videos.
-                        </video>
-                        {!userInteracted && (
-                          <div
-                            className="absolute inset-0 flex items-center justify-center bg-black/30 cursor-pointer"
-                            onClick={handleFirstInteraction}
-                          >
-                            <div className="w-16 h-16 bg-white/80 rounded-full flex items-center justify-center">
-                              <svg
-                                className="w-8 h-8 text-black"
-                                fill="currentColor"
-                                viewBox="0 0 20 20"
-                              >
-                                <path d="M6.3 2.8L16 10l-9.7 7.2V2.8z" />
-                              </svg>
-                            </div>
-                          </div>
-                        )}
-                      </div>
+                    <source src={testimonial.video} type="video/mp4" />
+                    Your browser does not support videos.
+                  </video>
+
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/30">
+                    <div className="w-16 h-16 bg-white/80 rounded-full flex items-center justify-center">
+                      {isActive && isPlaying ? (
+                        <svg className="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20">
+                          <rect x="6" y="4" width="4" height="12" />
+                          <rect x="12" y="4" width="4" height="12" />
+                        </svg>
+                      ) : (
+                        <svg className="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M6.3 2.8L16 10l-9.7 7.2V2.8z"/>
+                        </svg>
+                      )}
                     </div>
                   </div>
-                ))}
-              </Slider>
-            </div> */}
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </Slider>
+    </div> */}
 
             {/* FAQ Section */}
             <div className="bg-white rounded-3xl p-6 border border-gray-100 shadow-lg mb-12">
