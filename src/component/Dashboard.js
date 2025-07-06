@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Calendar,
   Clock,
@@ -36,17 +36,211 @@ import {
   LockKeyhole,
   ClipboardList,
 } from "lucide-react";
-import Image3 from "./trot-bonus-Image-01.webp";
-import Image4 from "./tarot-bonus-2.webp";
-import Image5 from "./actual-bonus-3-tarot-1.webp";
-import Image6 from "./tarot-bonues-3-Image-01.webp";
-import Image7 from "./tarot-bonus-05.webp";
-import Image8 from "./tarot-bonues-3-Image-01 (1).webp";
-import Image9 from "./Screenshot 2025-07-05 at 11.44.34 PM.png";
-import Image10 from "./Harpeet-kaur-new-image-new-1-1-2-1.webp";
+import Image9 from "./image/Screenshot 2025-07-05 at 11.44.34 PM.png";
+import Image10 from "./image/20250706_162240.png";
+import Image11 from "./image/20250706_170347-removebg-preview.png";
+import Image12 from "./image/20250706_171104-removebg-preview.png";
+import Image13 from "./image/20250706_171519-removebg-preview.png";
+import Image14 from "./image/20250706_173915.png";
+import Image15 from "./image/WhatsApp Image 2025-07-06 at 13.48.17.jpeg";
+import Image16 from "./image/WhatsApp Image 2025-07-06 at 13.48.22.jpeg";
+import Image17 from "./image/WhatsApp Image 2025-07-06 at 13.49.30.jpeg";
+import Image18 from "./image/WhatsApp Image 2025-07-06 at 13.49.39.jpeg";
+import Image19 from "./image/WhatsApp Image 2025-07-06 at 13.49.50.jpeg";
+import Image20 from "./image/WhatsApp Image 2025-07-06 at 20.23.32.jpeg";
+import Video1 from "./video/video.mp4";
+import Video2 from "./video/video1.mp4";
+import Video3 from "./video/video2.mp4";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const TarotWorkshopScreen = () => {
   const [visible, setVisible] = useState(false);
+  const intervalRef = useRef(null);
+
+  const itemsToShow = 3;
+
+  const testimonials = [
+    {
+      image: Image15,
+      rating: 5,
+    },
+    {
+      image: Image16,
+      rating: 5,
+    },
+    {
+      image: Image17,
+      rating: 5,
+    },
+    {
+      image: Image18,
+      rating: 5,
+    },
+    {
+      image: Image19,
+      rating: 5,
+    },
+    {
+      image: Image20,
+      rating: 5,
+    },
+  ];
+
+  const videoTestimonials = [
+    { videoId: 1, video: Video1, thumbnail: 'thumbnail1.jpg' },
+    { videoId: 2, video: Video2, thumbnail: 'thumbnail2.jpg' },
+    { videoId: 3, video: Video3, thumbnail: 'thumbnail3.jpg' },
+  ];
+
+  const [playingVideoId, setPlayingVideoId] = useState(null);
+  const [centerIndex, setCenterIndex] = useState(1);
+  const videoRefs = useRef({});
+  const sliderRef = useRef(null);
+  const isMounted = useRef(false);
+
+  // Pause all videos except the specified one
+  const pauseOtherVideos = (currentVideoId) => {
+    Object.entries(videoRefs.current).forEach(([id, video]) => {
+      if (video && Number(id) !== currentVideoId) {
+        video.pause();
+      }
+    });
+  };
+
+  // Handle video click
+  const handleVideoClick = (e, videoId) => {
+    e.stopPropagation();
+    const video = videoRefs.current[videoId];
+    
+    if (!video) return;
+    
+    if (playingVideoId === videoId) {
+      video.pause();
+      setPlayingVideoId(null);
+    } else {
+      pauseOtherVideos(videoId);
+      video.currentTime = 0; // Reset to start
+      video.play()
+        .then(() => setPlayingVideoId(videoId))
+        .catch(error => {
+          console.log("Play failed:", error);
+          // Fallback to muted play if autoplay was prevented
+          video.muted = true;
+          video.play().then(() => setPlayingVideoId(videoId));
+        });
+    }
+  };
+
+  // Handle slide change
+  const handleAfterChange = (currentIndex) => {
+    if (!isMounted.current) return;
+    
+    const newCenterIndex = currentIndex;
+    setCenterIndex(newCenterIndex);
+    
+    const centeredVideoId = videoTestimonials[newCenterIndex]?.videoId;
+    
+    if (centeredVideoId && centeredVideoId !== playingVideoId) {
+      pauseOtherVideos(centeredVideoId);
+      
+      const video = videoRefs.current[centeredVideoId];
+      if (video) {
+        video.currentTime = 0;
+        video.play()
+          .then(() => setPlayingVideoId(centeredVideoId))
+          .catch(error => {
+            console.log("Auto-play prevented:", error);
+            // Fallback to muted play
+            video.muted = true;
+            video.play().then(() => setPlayingVideoId(centeredVideoId));
+          });
+      }
+    }
+  };
+
+  // Slick slider settings
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    centerMode: true,
+    centerPadding: '0px',
+    focusOnSelect: true,
+    initialSlide: centerIndex,
+    afterChange: handleAfterChange,
+    beforeChange: (oldIndex, newIndex) => {
+      // Pause the current video before sliding starts
+      if (playingVideoId) {
+        const currentVideo = videoRefs.current[playingVideoId];
+        if (currentVideo) {
+          currentVideo.pause();
+          setPlayingVideoId(null);
+        }
+      }
+    },
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          centerMode: false
+        }
+      }
+    ]
+  };
+
+  // Initialize on mount
+  useEffect(() => {
+    isMounted.current = true;
+    
+    const initialVideoId = videoTestimonials[centerIndex]?.videoId;
+    if (initialVideoId) {
+      const video = videoRefs.current[initialVideoId];
+      if (video) {
+        // Wait for video to be ready
+        const attemptPlay = () => {
+          video.play()
+            .then(() => setPlayingVideoId(initialVideoId))
+            .catch(error => {
+              console.log("Initial auto-play prevented:", error);
+              // Fallback to muted play
+              video.muted = true;
+              video.play().then(() => setPlayingVideoId(initialVideoId));
+            });
+        };
+        
+        if (video.readyState >= 2) { // HAVE_CURRENT_DATA
+          attemptPlay();
+        } else {
+          video.addEventListener('loadedmetadata', attemptPlay, { once: true });
+        }
+      }
+    }
+    
+    return () => {
+      isMounted.current = false;
+      // Clean up event listeners
+      Object.values(videoRefs.current).forEach(video => {
+        if (video) {
+          video.removeEventListener('loadedmetadata', () => {});
+        }
+      });
+    };
+  }, []);
+  // Determine which testimonials to show
+
   const [dismissed, setDismissed] = useState(false);
 
   useEffect(() => {
@@ -427,68 +621,36 @@ const TarotWorkshopScreen = () => {
     },
   ];
 
-  // Testimonials data
-  const testimonials = [
-    {
-      id: 152,
-      name: "Volahnavi",
-      content:
-        "Thank you very much madam, really I am very grateful to you. Actually I have attended many workshop online, but this is far more different from others. Honestly, I am feeling very satisfaction after completing this course. I have got something what I am searching here and there. Really you are not the greedy teacher like so many teachers of the present time. Actually I want to give a big thanks to God for bringing you to me through the course. Really you are really a spiritual teacher. Thank you once again madam for your lovely teaching and lovely support.",
-      rating: 5,
-    },
-    {
-      id: "Meghavi",
-      name: "Meghavi",
-      content:
-        "This have been an absolutely amazing & enlightening journey with Ekta maam. I was not sure how the whole Course thing worked but was astonished at the different end in the school. It has been a wonderful evening and knowledge in the studies & activities we understood over so many days. The opportunities we got in the class to do reading of our field's Auchmarks boost our confidence and enthusiasm more. Thanks so very much Ekta Maam finally received his courses to everyone who is open minded to different views and to giving it a go.",
-      activity: "Active 1: le-go",
-      rating: 5,
-    },
-    {
-      id: 153,
-      name: "Sameeksha Gaur",
-      content:
-        "Hello, Sameeksha Gaur this side. I still want to make a career in tarot card reading then I'll learn other courses as well. My fiance suggested to me about you, he has booked this workshop and asked me to join. Genuinely speaking I've attended more than 10 workshops till now that never experienced such a lovely workshop before. I mean you are amazing, the way u engage people, the way you teach, it's just wow. You are a pure and positive soul. I felt like I found a guru for my new journey.",
-      rating: 5,
-    },
-  ];
-
   // Bonuses
   const bonuses = [
     {
-      image: Image3,
+      image: Image11,
       title: "Tarot Cleansing Guide",
       description:
         "Protect from negative energies and maintain your deck's purity.",
       value: "Worth Rs. 999/-",
     },
     {
-      image: Image4,
+      image: Image12,
       title: "Tarot Shuffling Guide",
       description:
         "Connect deeply with your deck and enhance intuitive powers.",
       value: "Worth Rs. 499/-",
     },
     {
-      image: Image5,
+      image: Image10,
       title: "Daily Guidance Formula",
       description: "Better decision-making and aligned actions through tarot.",
       value: "Worth Rs. 999/-",
     },
     {
-      image: Image6,
+      image: Image13,
       title: "Daily Guidance Formula",
       description: "Better decision-making and aligned actions through tarot.",
       value: "Worth Rs. 999/-",
     },
     {
-      image: Image7,
-      title: "Daily Guidance Formula",
-      description: "Better decision-making and aligned actions through tarot.",
-      value: "Worth Rs. 999/-",
-    },
-    {
-      image: Image8,
+      image: Image14,
       title: "Daily Guidance Formula",
       description: "Better decision-making and aligned actions through tarot.",
       value: "Worth Rs. 999/-",
@@ -1080,10 +1242,12 @@ const TarotWorkshopScreen = () => {
 
                       <p className="text-gray-700 mb-6">
                         I’ve read for celebrities, influencers, and global
-                        seekers, but my mission is bigger — I don’t  <strong>teach
-                        courses. I create spiritual millionaires.</strong> If you’re
-                        ready to build your purpose-led empire — this is where
-                        it begins.
+                        seekers, but my mission is bigger — I don’t{" "}
+                        <strong>
+                          teach courses. I create spiritual millionaires.
+                        </strong>{" "}
+                        If you’re ready to build your purpose-led empire — this
+                        is where it begins.
                       </p>
 
                       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
@@ -1179,11 +1343,11 @@ const TarotWorkshopScreen = () => {
 
             {/* Bonuses Section */}
             <div className="bg-gradient-to-r from-violet-600 to-amber-600 rounded-3xl p-6 shadow-lg mb-4 text-white">
-              <h3 className="text-2xl font-bold text-center">
+              <h3 className="text-4xl font-bold text-center">
                 Exclusive Bonuses – Only in Our Course!
               </h3>
 
-              <div className="grid md:grid-cols-3 gap-4">
+              <div className="grid md:grid-cols-3 gap-4 mt-6">
                 {bonuses.map((bonus, index) => (
                   <div
                     key={index}
@@ -1193,7 +1357,7 @@ const TarotWorkshopScreen = () => {
                       <img
                         src={bonus.image}
                         alt={bonus.title}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-contain"
                       />
                     </div>
                     <h4 className="font-bold text-lg mb-2 mt-4">
@@ -1230,7 +1394,7 @@ const TarotWorkshopScreen = () => {
                         </h3>
                       </div>
                       <div className="text-3xl font-bold text-gray-900">
-                        Rs 2,999
+                        Rs 4,495
                       </div>
                       <p className="text-gray-500 mt-2">
                         Comprehensive tarot mastery program
@@ -1245,7 +1409,7 @@ const TarotWorkshopScreen = () => {
                         </h3>
                       </div>
                       <div className="text-3xl font-bold text-gray-900">
-                        Rs 9,995
+                        Rs 4,296
                       </div>
                       <p className="text-gray-500 mt-2">
                         Exclusive materials & resources
@@ -1295,126 +1459,519 @@ const TarotWorkshopScreen = () => {
               </div>
             </div>
 
-            {/* Success Stories */}
-            <div className="bg-gradient-to-r from-violet-50 to-amber-50 rounded-3xl p-6 border border-gray-100 shadow-lg mb-12">
-              <h3 className="text-2xl font-bold mb-6 text-center text-gray-900">
-                Success Stories: Students in the ₹1Lac+ Club
-              </h3>
-
-              {/* <div className="grid md:grid-cols-3 gap-6">
-                {successStories.map((story, index) => (
-                  <div
-                    key={index}
-                    className="bg-white rounded-xl p-5 shadow-sm border border-gray-100"
-                  >
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-10 h-10 bg-violet-100 rounded-full flex items-center justify-center text-violet-600 font-bold">
-                        {story.name.charAt(0)}
-                      </div>
-                      <div>
-                        <h4 className="font-bold text-gray-900">
-                          {story.name}
-                        </h4>
-                        <p className="text-xs text-gray-500">
-                          {story.location}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm bg-amber-50 px-3 py-2 rounded-lg">
-                      <DollarSign className="w-4 h-4 text-amber-600" />
-                      <span className="font-medium text-amber-800">
-                        {story.achievement}
-                      </span>
-                    </div>
+            <div className="bg-gradient-to-br from-purple-50 to-indigo-50 py-12 px-4 sm:px-6 lg:px-8">
+              <div className="max-w-7xl mx-auto">
+                {/* Header Section */}
+                <div className="text-center mb-12">
+                  <div className="inline-flex items-center justify-center bg-white p-3 rounded-full shadow-md mb-6">
+                    <svg
+                      className="w-8 h-8 text-purple-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                      ></path>
+                    </svg>
                   </div>
-                ))}
-              </div> */}
-            </div>
+                  <h1 className="text-3xl sm:text-4xl font-bold text-purple-900 mb-3">
+                    Our Happy Students Reviews
+                  </h1>
+                  <p className="text-lg text-purple-700 max-w-2xl mx-auto">
+                    Hear what our students have to say about their
+                    transformative journey
+                  </p>
+                </div>
 
-            <div className="mb-4 bg-gradient-to-br from-purple-50 to-indigo-50 px-4 sm:px-6 lg:px-8">
-              <div className="mx-auto">
-                <div className="bg-gradient-to-br from-purple-50 to-indigo-50 px-4 sm:px-6 lg:px-8">
-                  <div className="max-w-7xl mx-auto">
-                    <div className="text-center mb-4">
-                      <h1 className="text-3xl sm:text-4xl font-bold text-purple-900 mb-4 flex items-center justify-center">
-                        <BookOpen className="mr-3 w-8 h-8 sm:w-10 sm:h-10 text-purple-600" />
-                        Tarot Course Testimonials
-                      </h1>
-                      <p className="text-base sm:text-lg text-purple-700 max-w-2xl mx-auto">
-                        Hear what our students have to say about their
-                        transformative journey with Mrs. Ekta Aggarwal
-                      </p>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                      {testimonials.map((testimonial) => (
-                        <div
-                          key={testimonial.id}
-                          className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl flex flex-col h-full"
+                {/* Testimonial Carousel */}
+                <div className="relative xs: hidden md:block">
+                  <Carousel
+                    showArrows={true}
+                    showStatus={false}
+                    showThumbs={false}
+                    infiniteLoop={true}
+                    autoPlay={true}
+                    interval={1000}
+                    stopOnHover={true}
+                    swipeable={true}
+                    emulateTouch={true}
+                    centerMode={true}
+                    centerSlidePercentage={33.33}
+                    renderArrowPrev={(onClickHandler, hasPrev, label) =>
+                      hasPrev && (
+                        <button
+                          onClick={onClickHandler}
+                          title={label}
+                          className="absolute left-10 top-1/2 z-10 -translate-y-1/2 -translate-x-6 bg-white p-3 rounded-full shadow-lg hover:bg-purple-100 transition-all transform hover:scale-110"
                         >
-                          <div className="p-6 sm:p-6 flex-grow">
-                            <div className="flex items-start">
-                              <div className="flex-shrink-0 bg-purple-100 p-2 sm:p-3 rounded-full">
-                                <Quote className="h-5 w-5 sm:h-6 sm:w-6 text-purple-600" />
-                              </div>
-                              <div className="ml-4">
-                                <div className="flex items-center flex-wrap">
-                                  <h3 className="text-base sm:text-lg font-semibold text-purple-900">
-                                    {testimonial.name}
-                                  </h3>
-                                  {testimonial.activity && (
-                                    <span className="ml-2 sm:ml-3 mt-1 sm:mt-0 px-2 py-1 text-xs bg-indigo-100 text-indigo-800 rounded-full">
-                                      {testimonial.activity}
-                                    </span>
-                                  )}
-                                </div>
-                                <div className="mt-1 flex">
-                                  {[...Array(testimonial.rating)].map(
-                                    (_, i) => (
-                                      <Star
-                                        key={i}
-                                        className="h-4 w-4 fill-yellow-400 text-yellow-400"
-                                      />
-                                    )
-                                  )}
-                                </div>
-                                <p className="mt-3 text-sm sm:text-base text-gray-600 leading-relaxed">
-                                  {testimonial.content}
-                                </p>
-                              </div>
+                          <svg
+                            className="w-6 h-6 text-purple-600"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M15 19l-7-7 7-7"
+                            ></path>
+                          </svg>
+                        </button>
+                      )
+                    }
+                    renderArrowNext={(onClickHandler, hasNext, label) =>
+                      hasNext && (
+                        <button
+                          onClick={onClickHandler}
+                          title={label}
+                          className="absolute right-10 top-1/2 z-10 -translate-y-1/2 translate-x-6 bg-white p-3 rounded-full shadow-lg hover:bg-purple-100 transition-all transform hover:scale-110"
+                        >
+                          <svg
+                            className="w-6 h-6 text-purple-600"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M9 5l7 7-7 7"
+                            ></path>
+                          </svg>
+                        </button>
+                      )
+                    }
+                    renderIndicator={(
+                      onClickHandler,
+                      isSelected,
+                      index,
+                      label
+                    ) => (
+                      <button
+                        onClick={onClickHandler}
+                        title={label}
+                        className={`mx-1.5 w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                          isSelected ? "bg-purple-600 w-8" : "bg-purple-300"
+                        }`}
+                        aria-label={`Slide ${index + 1}`}
+                      />
+                    )}
+                  >
+                    {testimonials.map((testimonial, index) => (
+                      <div key={index} className="px-4 py-2">
+                        <div className="bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl h-full flex flex-col">
+                          {/* Student Image */}
+                          <div className="p-6 flex justify-center">
+                            <div className="relative w-48 h-48 sm:w-56 sm:h-56 rounded-full overflow-hidden border-4 border-white shadow-lg">
+                              <img
+                                src={testimonial.image}
+                                alt={testimonial.name}
+                                className="w-full h-full object-contain"
+                                loading="lazy"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-purple-900/20 to-transparent"></div>
                             </div>
                           </div>
-                          <div className="bg-purple-50 px-4 sm:px-6 py-3 flex items-center">
-                            <Sparkles className="h-4 w-4 sm:h-5 sm:w-5 text-purple-500 mr-2" />
-                            <span className="text-xs sm:text-sm text-purple-700">
-                              Tarot Transformation
-                            </span>
-                            <div className="ml-auto flex items-center">
-                              <Heart className="h-4 w-4 sm:h-5 sm:w-5 text-rose-400 mr-1" />
-                              <span className="text-xs sm:text-sm text-gray-500">
-                                Inspired
+
+                          {/* Testimonial Content */}
+                          <div className="px-6 pb-6 flex-grow">
+                            <div className="flex items-center justify-center mb-4">
+                              {[...Array(5)].map((_, i) => (
+                                <svg
+                                  key={i}
+                                  className={`w-10 h-10 ${
+                                    i < testimonial.rating
+                                      ? "text-yellow-400 fill-current"
+                                      : "text-gray-300"
+                                  }`}
+                                  viewBox="0 0 20 20"
+                                >
+                                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                </svg>
+                              ))}
+                            </div>
+
+                            <div className="text-center mb-4">
+                              <h3 className="text-xl font-bold text-purple-900">
+                                {testimonial.name}
+                              </h3>
+                              {testimonial.title && (
+                                <p className="text-sm text-purple-600 mt-1">
+                                  {testimonial.title}
+                                </p>
+                              )}
+                            </div>
+
+                            <div className="relative">
+                              <svg
+                                className="absolute -top-6 -left-2 w-8 h-8 text-purple-100"
+                                fill="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                              </svg>
+                              <p className="text-gray-700 italic px-6 py-2">
+                                {testimonial.content}
+                              </p>
+                              <svg
+                                className="absolute -bottom-6 -right-2 w-8 h-8 text-purple-100"
+                                fill="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                              </svg>
+                            </div>
+                          </div>
+
+                          {/* Testimonial Footer */}
+                          <div className="bg-purple-50 px-6 py-4 flex items-center justify-between">
+                            <div className="flex items-center">
+                              <svg
+                                className="w-5 h-5 text-purple-500 mr-2"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth="2"
+                                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                                ></path>
+                              </svg>
+                              <span className="text-sm font-medium text-purple-700">
+                                Tarot Transformation
                               </span>
                             </div>
+                            <span className="text-xs text-gray-500">
+                              {testimonial.date}
+                            </span>
                           </div>
                         </div>
-                      ))}
-                    </div>
-
-                    <div className="mt-4 text-center">
+                      </div>
+                    ))}
+                  </Carousel>
+                </div>
+                <div className="relative md:hidden">
+                  <Carousel
+                    showArrows={true}
+                    showStatus={false}
+                    showThumbs={false}
+                    infiniteLoop={true}
+                    autoPlay={true}
+                    interval={1000}
+                    stopOnHover={true}
+                    swipeable={true}
+                    emulateTouch={true}
+                    centerMode={true}
+                    centerSlidePercentage={100}
+                    renderArrowPrev={(onClickHandler, hasPrev, label) =>
+                      hasPrev && (
+                        <button
+                          onClick={onClickHandler}
+                          title={label}
+                          className="absolute left-10 top-1/2 z-10 -translate-y-1/2 -translate-x-6 bg-white p-3 rounded-full shadow-lg hover:bg-purple-100 transition-all transform hover:scale-110"
+                        >
+                          <svg
+                            className="w-6 h-6 text-purple-600"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M15 19l-7-7 7-7"
+                            ></path>
+                          </svg>
+                        </button>
+                      )
+                    }
+                    renderArrowNext={(onClickHandler, hasNext, label) =>
+                      hasNext && (
+                        <button
+                          onClick={onClickHandler}
+                          title={label}
+                          className="absolute right-10 top-1/2 z-10 -translate-y-1/2 translate-x-6 bg-white p-3 rounded-full shadow-lg hover:bg-purple-100 transition-all transform hover:scale-110"
+                        >
+                          <svg
+                            className="w-6 h-6 text-purple-600"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M9 5l7 7-7 7"
+                            ></path>
+                          </svg>
+                        </button>
+                      )
+                    }
+                    renderIndicator={(
+                      onClickHandler,
+                      isSelected,
+                      index,
+                      label
+                    ) => (
                       <button
-                        onClick={() =>
-                          window.open(
-                            "https://superprofile.bio/e/2daypraticaltarotwebnair?fbclid=PAQ0xDSwLWGSVleHRuA2FlbQIxMQABp8FG1c-grgtEaSu-mgmzgPiz4yZqT_E3-ULXKIdN1APXmecoBA39B2vDb6wK_aem_NDXj4ePOpKMB4mVDEnVofw",
-                            "_blank"
-                          )
-                        }
-                        className="inline-flex items-center px-5 py-2 sm:px-6 sm:py-3 border border-transparent text-sm sm:text-base font-medium rounded-md shadow-sm text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all"
+                        onClick={onClickHandler}
+                        title={label}
+                        className={`mx-1.5 w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                          isSelected ? "bg-purple-600 w-8" : "bg-purple-300"
+                        }`}
+                        aria-label={`Slide ${index + 1}`}
+                      />
+                    )}
+                  >
+                    {testimonials.map((testimonial, index) => (
+                      <div key={index} className="px-4 py-2">
+                        <div className="bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl h-full flex flex-col">
+                          {/* Student Image */}
+                          <div className="p-6 flex justify-center">
+                            <div className="relative w-48 h-48 sm:w-56 sm:h-56 rounded-full overflow-hidden border-4 border-white shadow-lg">
+                              <img
+                                src={testimonial.image}
+                                alt={testimonial.name}
+                                className="w-full h-full object-contain"
+                                loading="lazy"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-purple-900/20 to-transparent"></div>
+                            </div>
+                          </div>
+
+                          {/* Testimonial Content */}
+                          <div className="px-6 pb-6 flex-grow">
+                            <div className="flex items-center justify-center mb-4">
+                              {[...Array(5)].map((_, i) => (
+                                <svg
+                                  key={i}
+                                  className={`w-10 h-10 ${
+                                    i < testimonial.rating
+                                      ? "text-yellow-400 fill-current"
+                                      : "text-gray-300"
+                                  }`}
+                                  viewBox="0 0 20 20"
+                                >
+                                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                </svg>
+                              ))}
+                            </div>
+
+                            <div className="text-center mb-4">
+                              <h3 className="text-xl font-bold text-purple-900">
+                                {testimonial.name}
+                              </h3>
+                              {testimonial.title && (
+                                <p className="text-sm text-purple-600 mt-1">
+                                  {testimonial.title}
+                                </p>
+                              )}
+                            </div>
+
+                            <div className="relative">
+                              <svg
+                                className="absolute -top-6 -left-2 w-8 h-8 text-purple-100"
+                                fill="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                              </svg>
+                              <p className="text-gray-700 italic px-6 py-2">
+                                {testimonial.content}
+                              </p>
+                              <svg
+                                className="absolute -bottom-6 -right-2 w-8 h-8 text-purple-100"
+                                fill="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                              </svg>
+                            </div>
+                          </div>
+
+                          {/* Testimonial Footer */}
+                          <div className="bg-purple-50 px-6 py-4 flex items-center justify-between">
+                            <div className="flex items-center">
+                              <svg
+                                className="w-5 h-5 text-purple-500 mr-2"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth="2"
+                                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                                ></path>
+                              </svg>
+                              <span className="text-sm font-medium text-purple-700">
+                                Tarot Transformation
+                              </span>
+                            </div>
+                            <span className="text-xs text-gray-500">
+                              {testimonial.date}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </Carousel>
+                </div>
+
+                {/* CTA Button */}
+                <div className="mt-12 text-center">
+                  <button
+                    onClick={() =>
+                      window.open(
+                        "https://superprofile.bio/e/2daypraticaltarotwebnair",
+                        "_blank"
+                      )
+                    }
+                    className="inline-flex items-center px-8 py-4 border border-transparent text-lg font-bold rounded-xl shadow-lg text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 transition-all transform hover:-translate-y-1 hover:shadow-xl"
+                  >
+                    <svg
+                      className="w-6 h-6 mr-3"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                      ></path>
+                    </svg>
+                    Join Our Next Workshop
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-br from-purple-50 to-indigo-50 py-12 px-4 sm:px-6 lg:px-8">
+              <div className="max-w-7xl mx-auto">
+                {/* Header Section */}
+                <div className="text-center mb-12">
+                  <div className="inline-flex items-center justify-center bg-white p-3 rounded-full shadow-md mb-6">
+                    <svg
+                      className="w-8 h-8 text-purple-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                      ></path>
+                    </svg>
+                  </div>
+                  <h1 className="text-3xl sm:text-4xl font-bold text-purple-900 mb-3">
+                    Success Stories
+                  </h1>
+                  <p className="text-lg text-purple-700 max-w-2xl mx-auto">
+                    Hear some of our students successful stories
+                  </p>
+                </div>
+
+                {/* Testimonial Carousel */}
+                <div className="relative px-4 py-8 max-w-6xl mx-auto">
+      <Slider ref={sliderRef} {...settings}>
+        {videoTestimonials.map((testimonial, index) => (
+          <div 
+            key={testimonial.videoId} 
+            className="px-2 focus:outline-none"
+            style={{ 
+              transform: index === centerIndex ? 'scale(1.05)' : 'scale(0.95)',
+              transition: 'transform 0.3s ease',
+            }}
+          >
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl h-full flex flex-col">
+              <div
+                className="relative w-full h-64 md:h-80 lg:h-96 cursor-pointer"
+                onClick={(e) => handleVideoClick(e, testimonial.videoId)}
+              >
+                <video
+                  ref={(el) => (videoRefs.current[testimonial.videoId] = el)}
+                  className="w-full h-full object-cover"
+                  playsInline
+                  preload="auto"
+                  // poster={testimonial.video}
+                  muted={playingVideoId !== testimonial.videoId} // Only unmute when playing
+                  loop
+                  onPause={() => {
+                    if (playingVideoId === testimonial.videoId) {
+                      setPlayingVideoId(null);
+                    }
+                  }}
+                  onEnded={() => {
+                    if (playingVideoId === testimonial.videoId) {
+                      videoRefs.current[testimonial.videoId].currentTime = 0;
+                      videoRefs.current[testimonial.videoId].play();
+                    }
+                  }}
+                >
+                  <source src={testimonial.video} type="video/mp4" />
+                  Your browser does not support videos.
+                </video>
+
+                {playingVideoId !== testimonial.videoId && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/30 transition-opacity hover:bg-black/20">
+                    <div className="w-12 h-12 md:w-16 md:h-16 bg-white/90 rounded-full flex items-center justify-center">
+                      <svg
+                        className="w-6 h-6 md:w-8 md:h-8 text-purple-600"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
                       >
-                        <BookOpen className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-                        Join Our Next Workshop
-                      </button>
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
                     </div>
                   </div>
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
+      </Slider>
+    </div>
+                {/* CTA Button */}
+                <div className="mt-12 text-center">
+                  <button
+                    onClick={() =>
+                      window.open(
+                        "https://superprofile.bio/e/2daypraticaltarotwebnair",
+                        "_blank"
+                      )
+                    }
+                    className="inline-flex items-center px-8 py-4 border border-transparent text-lg font-bold rounded-xl shadow-lg text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 transition-all transform hover:-translate-y-1 hover:shadow-xl"
+                  >
+                    <svg
+                      className="w-6 h-6 mr-3"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                      ></path>
+                    </svg>
+                    Join Our Next Workshop
+                  </button>
                 </div>
               </div>
             </div>
