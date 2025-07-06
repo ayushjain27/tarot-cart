@@ -96,56 +96,48 @@ const TarotWorkshopScreen = () => {
     { videoId: 3, video: Video3, thumbnail: "thumbnail3.jpg" },
   ];
 
-  const [playingVideoId, setPlayingVideoId] = useState(null);
-  const [centerIndex, setCenterIndex] = useState(1);
+  const [activeIndex, setActiveIndex] = useState(0);
   const [userInteracted, setUserInteracted] = useState(false);
-  const [muted, setMuted] = useState(true); // Start muted to allow autoplay
-  const videoRefs = useRef({});
+  const [muted, setMuted] = useState(true);
+  const videoRefs = useRef([]);
   const sliderRef = useRef(null);
 
-  // Handle initial user interaction
+  // Handle first user interaction
   const handleFirstInteraction = () => {
     if (!userInteracted) {
       setUserInteracted(true);
-      setMuted(false); // Unmute after first interaction
-      // Force play the current center video with sound
-      const currentVideoId = videoTestimonials[centerIndex]?.videoId;
-      if (currentVideoId) playVideo(currentVideoId);
+      setMuted(false);
+      playVideo(activeIndex);
     }
   };
 
-  // Play video with proper mute state
-  const playVideo = (videoId) => {
-    const video = videoRefs.current[videoId];
-    if (!video) return;
-
-    // Pause all other videos
-    Object.values(videoRefs.current).forEach((v) => {
-      if (v && v !== video) {
-        v.pause();
-        v.currentTime = 0;
+  // Play specific video
+  const playVideo = (index) => {
+    // Pause all videos first
+    videoRefs.current.forEach((video) => {
+      if (video) {
+        video.pause();
+        video.currentTime = 0;
       }
     });
 
-    // Set muted state based on user interaction
-    video.muted = muted;
-
-    video.currentTime = 0;
-    video
-      .play()
-      .then(() => setPlayingVideoId(videoId))
-      .catch((error) => {
-        console.log("Play failed, trying muted:", error);
+    // Play the selected video
+    const video = videoRefs.current[index];
+    if (video) {
+      video.muted = muted;
+      video.play().catch((error) => {
+        console.error("Video play failed:", error);
+        // Fallback to muted play if needed
         video.muted = true;
-        video.play().then(() => setPlayingVideoId(videoId));
+        video.play();
       });
+    }
   };
 
   // Handle slide change
-  const handleAfterChange = (currentIndex) => {
-    setCenterIndex(currentIndex);
-    const centeredVideoId = videoTestimonials[currentIndex]?.videoId;
-    if (centeredVideoId) playVideo(centeredVideoId);
+  const handleAfterChange = (index) => {
+    setActiveIndex(index);
+    playVideo(index);
   };
 
   // Slick slider settings
@@ -158,71 +150,35 @@ const TarotWorkshopScreen = () => {
     centerMode: true,
     centerPadding: "0px",
     focusOnSelect: true,
-    initialSlide: centerIndex,
+    initialSlide: activeIndex,
     afterChange: handleAfterChange,
-    beforeChange: (oldIndex, newIndex) => {
-      // Pause the current video before sliding starts
-      if (playingVideoId) {
-        const currentVideo = videoRefs.current[playingVideoId];
-        if (currentVideo) {
-          currentVideo.pause();
-          currentVideo.currentTime = 0;
-          setPlayingVideoId(null);
-        }
-      }
-    },
     responsive: [
       {
         breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-        },
+        settings: { slidesToShow: 3 },
       },
       {
         breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-          centerMode: false,
-          afterChange: (currentIndex) => {
-            const currentVideoId = videoTestimonials[currentIndex]?.videoId;
-            if (currentVideoId) playVideo(currentVideoId);
-          },
-        },
+        settings: { slidesToShow: 1, centerMode: false },
       },
     ],
   };
 
   // Initialize on mount
   useEffect(() => {
-    const initialVideoId = videoTestimonials[centerIndex]?.videoId;
-    if (initialVideoId) playVideo(initialVideoId);
+    // Start with first video playing (muted)
+    playVideo(activeIndex);
 
-    // Add click event listener to the whole carousel for first interaction
-    const container = document.querySelector(".video-carousel-container");
-    if (container) {
-      container.addEventListener("click", handleFirstInteraction, {
-        once: true,
-      });
-    }
-
+    // Cleanup
     return () => {
-      if (container) {
-        container.removeEventListener("click", handleFirstInteraction);
-      }
+      videoRefs.current.forEach((video) => {
+        if (video) video.pause();
+      });
     };
   }, []);
-
-  // Update mute state on all videos when it changes
-  useEffect(() => {
-    Object.values(videoRefs.current).forEach((video) => {
-      if (video) video.muted = muted;
-    });
-  }, [muted]);
   // Determine which testimonials to show
 
   const [dismissed, setDismissed] = useState(false);
-
-  console.log(playingVideoId, "sdfmek");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -484,6 +440,7 @@ const TarotWorkshopScreen = () => {
         "Social media strategies: Instagram, Facebook, YouTube growth",
         "High-ticket sales: How to sell 1:1 readings, courses & coaching",
         "Secrets to charging premium rates & handling tricky clients",
+        "I’ll show you how you can conduct life-transforming tarot coaching sessions for clients (not doing stressful predictions) and charge Rs 10k to 50k per client (even if you’re just a beginner tarot reader and have no coaching experience)",
       ],
       bgColor: "bg-blue-50",
       borderColor: "border-blue-200",
@@ -495,6 +452,7 @@ const TarotWorkshopScreen = () => {
         "Live practice with real clients from Day 1",
         "Understanding energy protection & avoiding spiritual burnout",
         "Paid internship for top students & direct mentorship",
+        "I’ll also show you our unique tarot client acquisition method that’s helping our students book 30-50 paid tarot appointments every month consistently.",
       ],
       bgColor: "bg-emerald-50",
       borderColor: "border-emerald-200",
@@ -1850,56 +1808,66 @@ const TarotWorkshopScreen = () => {
               </div>
             </div>
 
-            <div
+            {/* <div
               className="video-carousel-container relative px-4 py-8 max-w-6xl mx-auto"
               onClick={handleFirstInteraction}
             >
-              {/* Mute toggle button */}
-              <button
-                className="absolute top-4 right-4 z-10 bg-black/50 text-white p-2 rounded-full"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setMuted(!muted);
-                }}
-              >
-                {muted ? (
-                  <svg
-                    className="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
-                      clipRule="evenodd"
-                    />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"
-                    />
-                  </svg>
-                ) : (
-                  <svg
-                    className="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                )}
-              </button>
+              {userInteracted && (
+                <button
+                  className="absolute top-4 right-4 z-10 bg-black/50 text-white p-2 rounded-full"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setMuted(!muted);
+                    if (videoRefs.current[activeIndex]) {
+                      videoRefs.current[activeIndex].muted = !muted;
+                    }
+                  }}
+                >
+                  {muted ? (
+                    <svg
+                      className="w-6 h-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
+                        clipRule="evenodd"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"
+                      />
+                    </svg>
+                  ) : (
+                    <svg
+                      className="w-6 h-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15.536 8.464a5 5 0 010 7.072M12 6a7.975 7.975 0 015.657 2.343m0 0a7.975 7.975 0 010 11.314m-11.314 0a7.975 7.975 0 010-11.314m0 0a7.975 7.975 0 015.657-2.343"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  )}
+                </button>
+              )}
 
               <Slider ref={sliderRef} {...settings}>
                 {videoTestimonials.map((testimonial, index) => (
@@ -1908,48 +1876,39 @@ const TarotWorkshopScreen = () => {
                     className="px-2 focus:outline-none"
                     style={{
                       transform:
-                        index === centerIndex ? "scale(1.05)" : "scale(0.95)",
+                        index === activeIndex ? "scale(1.05)" : "scale(0.95)",
                       transition: "transform 0.3s ease",
                     }}
                   >
                     <div className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl h-full flex flex-col">
                       <div className="relative w-full h-64 md:h-80 lg:h-96">
                         <video
-                          ref={(el) =>
-                            (videoRefs.current[testimonial.videoId] = el)
-                          }
+                          ref={(el) => (videoRefs.current[index] = el)}
                           className="w-full h-full object-cover"
                           playsInline
-                          muted={muted}
+                          muted={index !== activeIndex || muted}
                           loop
                           preload="auto"
                           onClick={(e) => {
                             e.stopPropagation();
                             handleFirstInteraction();
                           }}
-                          onEnded={() => {
-                            if (playingVideoId === testimonial.videoId) {
-                              videoRefs.current[
-                                testimonial.videoId
-                              ].currentTime = 0;
-                              videoRefs.current[testimonial.videoId].play();
-                            }
-                          }}
                         >
                           <source src={testimonial.video} type="video/mp4" />
                           Your browser does not support videos.
                         </video>
-
-                        {/* Show play button only if not playing */}
-                        {playingVideoId !== testimonial.videoId && (
-                          <div className="absolute inset-0 flex items-center justify-center bg-black/30 transition-opacity hover:bg-black/20">
-                            <div className="w-12 h-12 md:w-16 md:h-16 bg-white/90 rounded-full flex items-center justify-center">
+                        {!userInteracted && (
+                          <div
+                            className="absolute inset-0 flex items-center justify-center bg-black/30 cursor-pointer"
+                            onClick={handleFirstInteraction}
+                          >
+                            <div className="w-16 h-16 bg-white/80 rounded-full flex items-center justify-center">
                               <svg
-                                className="w-6 h-6 md:w-8 md:h-8 text-purple-600"
+                                className="w-8 h-8 text-black"
                                 fill="currentColor"
-                                viewBox="0 0 24 24"
+                                viewBox="0 0 20 20"
                               >
-                                <path d="M8 5v14l11-7z" />
+                                <path d="M6.3 2.8L16 10l-9.7 7.2V2.8z" />
                               </svg>
                             </div>
                           </div>
@@ -1959,7 +1918,7 @@ const TarotWorkshopScreen = () => {
                   </div>
                 ))}
               </Slider>
-            </div>
+            </div> */}
 
             {/* FAQ Section */}
             <div className="bg-white rounded-3xl p-6 border border-gray-100 shadow-lg mb-12">
