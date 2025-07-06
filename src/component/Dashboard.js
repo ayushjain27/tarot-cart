@@ -1058,25 +1058,30 @@ const TarotWorkshopScreen = () => {
                         Youngest Spiritual CEO
                       </h2>
                       <h6 className="text-md font-bold text-purple-500 mb-4">
-                      I cracked the UPSC Prelims, but my soul was meant for something bigger. I chose my true calling — and turned it into a movement.
+                        I cracked the UPSC Prelims, but my soul was meant for
+                        something bigger. I chose my true calling — and turned
+                        it into a movement.
                       </h6>
 
                       <p className="text-gray-700 mb-4">
                         I cracked the UPSC Prelims, but my soul was meant for
                         something bigger. I chose my true calling — and turned
-                        it into a movement. From a single Instagram page, I
-                        delivered over 50,000+ life-changing tarot readings in
-                        just a few months — with zero ad spend. Today, I run two
-                        of the most trusted spiritual brands: ✨ DivineLiightt –
-                        India’s leading platform for spiritual education ✨
-                        Divine Crystals – a premium brand for energy-rich
-                        healing crystals
+                        it into a movement. From a{" "}
+                        <strong>single Instagram page</strong>, I delivered over{" "}
+                        <strong>50,000+</strong> life-changing tarot readings in
+                        just a few months — with <strong>zero ad spend</strong>.
+                        Today, I run two of the most{" "}
+                        <strong>trusted spiritual brands</strong>: ✨{" "}
+                        <strong>DivineLiightt</strong> – India's leading
+                        platform for spiritual education ✨{" "}
+                        <strong>Divine Crystals</strong> – a premium brand for
+                        energy-rich healing crystals
                       </p>
 
                       <p className="text-gray-700 mb-6">
                         I’ve read for celebrities, influencers, and global
-                        seekers, but my mission is bigger — I don’t teach
-                        courses. I create spiritual millionaires. If you’re
+                        seekers, but my mission is bigger — I don’t  <strong>teach
+                        courses. I create spiritual millionaires.</strong> If you’re
                         ready to build your purpose-led empire — this is where
                         it begins.
                       </p>
