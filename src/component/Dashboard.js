@@ -69,7 +69,7 @@ const TarotWorkshopScreen = () => {
       text: "2-Day Intensive Program",
       color: "text-violet-600",
     },
-    { icon: Users, text: "Women-Only Community", color: "text-rose-600" },
+    { icon: Users, text: "Inclusive Community", color: "text-rose-600" },
     {
       icon: Award,
       text: "Certified Expert Instructor",
@@ -80,8 +80,8 @@ const TarotWorkshopScreen = () => {
 
   // Stats data
   const stats = [
-    { number: "10+", label: "Years Experience", icon: Award },
-    { number: "10k+", label: "Women Trained", icon: Users },
+    { number: "4+", label: "Years Experience", icon: Award },
+    { number: "50k+", label: "Souls Transformed", icon: Users },
     { number: "4.9", label: "Star Rating", icon: Star },
   ];
 
@@ -93,13 +93,13 @@ const TarotWorkshopScreen = () => {
     },
     {
       icon: <Award className="w-6 h-6 text-purple-400" />,
-      value: "10+",
+      value: "4+",
       label: "Years Experience",
     },
     {
       icon: <Users className="w-6 h-6 text-blue-400" />,
-      value: "100K+",
-      label: "Women Helped",
+      value: "50K+",
+      label: "Souls Helped",
     },
     {
       icon: <Heart className="w-6 h-6 text-rose-400" />,
@@ -247,7 +247,7 @@ const TarotWorkshopScreen = () => {
         {
           day: 12,
           title:
-            "Instagram, YouTube & TikTok Growth Strategies for Tarot Readers",
+            "Instagram, YouTube & Facebook Growth Strategies for Tarot Readers",
           icon: <TrendingUp className="w-6 h-6 text-pink-600" />,
           topics: [
             "Content creation framework",
@@ -329,7 +329,7 @@ const TarotWorkshopScreen = () => {
       icon: <TrendingUp className="w-6 h-6 text-blue-600" />,
       items: [
         "How to build your Tarot brand & get high-paying clients",
-        "Social media strategies: Instagram, TikTok, YouTube growth",
+        "Social media strategies: Instagram, Facebook, YouTube growth",
         "High-ticket sales: How to sell 1:1 readings, courses & coaching",
         "Secrets to charging premium rates & handling tricky clients",
       ],
@@ -529,7 +529,8 @@ const TarotWorkshopScreen = () => {
     {
       icon: <TrendingUp className="w-6 h-6 text-pink-600" />,
       title: "Build Your Social Media Presence",
-      description: "Attract high-paying clients via Instagram, YouTube, TikTok",
+      description:
+        "Attract high-paying clients via Instagram, YouTube, Facebook",
     },
     {
       icon: <DollarSign className="w-6 h-6 text-emerald-600" />,
@@ -577,14 +578,14 @@ const TarotWorkshopScreen = () => {
               <div className="bg-white rounded-3xl p-6 border border-gray-100 shadow-xl">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-16 h-16 bg-gradient-to-br from-violet-500 to-amber-500 rounded-full flex items-center justify-center shadow-lg">
-                    <span className="text-white font-bold text-xl">HK</span>
+                    <span className="text-white font-bold text-xl">EA</span>
                   </div>
                   <div>
                     <h3 className="font-bold text-lg text-gray-900">
-                      Ekta aggarwal
+                      Ekta Aggarwal
                     </h3>
                     <p className="text-gray-600 text-sm">
-                      Certified Tarot Master • 10+ Years Experience
+                      Certified Tarot Master • 4+ Years Experience
                     </p>
                   </div>
                 </div>
@@ -592,7 +593,7 @@ const TarotWorkshopScreen = () => {
                 <p className="text-gray-700 mb-4">
                   Talented intuitive tarot reader, coach, and co-founder of The
                   Founder of divineliightt & divine crystal. Committed to
-                  guiding women on their journey of personal growth using the
+                  guiding souls on their journey of personal growth using the
                   wisdom of tarot.
                 </p>
 
@@ -925,7 +926,7 @@ const TarotWorkshopScreen = () => {
                           </th>
                           <th
                             scope="col"
-                            className="px-3 py-3.5 text-center text-sm font-semibold text-gray-900"
+                            className="px-3 py-3.5 text-center text-sm font-semibold text-violet-700 bg-red-50"
                           >
                             Other Courses
                           </th>
@@ -948,7 +949,7 @@ const TarotWorkshopScreen = () => {
                                 {feature.name}
                               </div>
                             </td>
-                            <td className="whitespace-normal px-3 py-4 text-sm text-gray-500 text-center">
+                            <td className="whitespace-normal px-3 py-4 text-sm text-gray-900 bg-red-50 text-center">
                               <div className="flex flex-col items-center">
                                 <XCircle className="h-5 w-5 text-red-400 mb-1" />
                                 <span>{feature.others}</span>
@@ -983,12 +984,12 @@ const TarotWorkshopScreen = () => {
                         </div>
 
                         <div className="grid grid-cols-2 gap-4">
-                          <div className="text-center p-2 border border-gray-200 rounded">
+                          <div className="text-center p-2 border border-gray-200 rounded bg-red-50">
                             <XCircle className="h-5 w-5 text-red-400 mx-auto mb-1" />
-                            <p className="text-xs text-gray-500 font-medium">
+                            <p className="text-xs text-red-500 font-medium">
                               Other Courses
                             </p>
-                            <p className="text-xs text-gray-600 mt-1">
+                            <p className="text-xs text-gray-900 mt-1">
                               {feature.others}
                             </p>
                           </div>
@@ -1051,28 +1052,33 @@ const TarotWorkshopScreen = () => {
                   {/* Mentor Content */}
                   <div className="w-full lg:w-2/3">
                     <div className="bg-white rounded-xl p-6 sm:p-8 shadow-lg border border-purple-100">
-                      <h4 className="text-xl font-bold text-purple-900 mb-4">
-                        <span className="text-purple-600">Ekta Aggarwal</span>{" "}
-                        is a talented intuitive tarot card reader, coach, and
-                        co-founder of The divineliightt & divine crystal.
-                      </h4>
+                      <h2 className="text-xl font-bold text-purple-900 mb-4">
+                        {/* <span className="text-purple-600">Ekta Aggarwal</span>{" "} */}
+                        Founder – DivineLiightt & Divine Crystals | India’s
+                        Youngest Spiritual CEO
+                      </h2>
+                      <h6 className="text-md font-bold text-purple-500 mb-4">
+                      I cracked the UPSC Prelims, but my soul was meant for something bigger. I chose my true calling — and turned it into a movement.
+                      </h6>
 
                       <p className="text-gray-700 mb-4">
-                        Her goal is to help <strong>100,000 women</strong> live
-                        life on their terms and thrive financially, mentally,
-                        and emotionally. With over <strong>10 years</strong> of
-                        experience and a <strong>4.9-star rating</strong>, Ekta
-                        is committed to guide others on their journey of
-                        personal growth using the wisdom of tarot.
+                        I cracked the UPSC Prelims, but my soul was meant for
+                        something bigger. I chose my true calling — and turned
+                        it into a movement. From a single Instagram page, I
+                        delivered over 50,000+ life-changing tarot readings in
+                        just a few months — with zero ad spend. Today, I run two
+                        of the most trusted spiritual brands: ✨ DivineLiightt –
+                        India’s leading platform for spiritual education ✨
+                        Divine Crystals – a premium brand for energy-rich
+                        healing crystals
                       </p>
 
                       <p className="text-gray-700 mb-6">
-                        Whether you want to deepen your spiritual connections,
-                        achieve your goals, or simply understand life's
-                        challenges better, Ekta can light the way. Her special{" "}
-                        <strong>Tarot Trinity Framework</strong> makes the card
-                        reading simple, and her practical coaching helps you
-                        turn cosmic guidance into real success.
+                        I’ve read for celebrities, influencers, and global
+                        seekers, but my mission is bigger — I don’t teach
+                        courses. I create spiritual millionaires. If you’re
+                        ready to build your purpose-led empire — this is where
+                        it begins.
                       </p>
 
                       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
@@ -1172,7 +1178,7 @@ const TarotWorkshopScreen = () => {
                 Exclusive Bonuses – Only in Our Course!
               </h3>
 
-              {/* <div className="grid md:grid-cols-3 gap-4">
+              <div className="grid md:grid-cols-3 gap-4">
                 {bonuses.map((bonus, index) => (
                   <div
                     key={index}
@@ -1241,7 +1247,6 @@ const TarotWorkshopScreen = () => {
                       </p>
                     </div>
 
-
                     <div className="bg-white p-6 rounded-xl shadow-lg border-2 border-yellow-400 transform scale-105 z-10 relative">
                       <div className="absolute top-0 right-0 bg-yellow-400 text-yellow-900 px-3 py-1 text-xs font-bold rounded-bl-lg rounded-tr-lg">
                         SPECIAL OFFER
@@ -1268,27 +1273,30 @@ const TarotWorkshopScreen = () => {
                   </div>
 
                   <div className="text-center">
-                    <button onClick={() =>
-                    window.open(
-                      "https://superprofile.bio/e/2daypraticaltarotwebnair?fbclid=PAQ0xDSwLWGSVleHRuA2FlbQIxMQABp8FG1c-grgtEaSu-mgmzgPiz4yZqT_E3-ULXKIdN1APXmecoBA39B2vDb6wK_aem_NDXj4ePOpKMB4mVDEnVofw",
-                      "_blank"
-                    )
-                  } className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:from-purple-700 hover:to-indigo-700 transition-all transform hover:scale-105">
+                    <button
+                      onClick={() =>
+                        window.open(
+                          "https://superprofile.bio/e/2daypraticaltarotwebnair?fbclid=PAQ0xDSwLWGSVleHRuA2FlbQIxMQABp8FG1c-grgtEaSu-mgmzgPiz4yZqT_E3-ULXKIdN1APXmecoBA39B2vDb6wK_aem_NDXj4ePOpKMB4mVDEnVofw",
+                          "_blank"
+                        )
+                      }
+                      className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:from-purple-700 hover:to-indigo-700 transition-all transform hover:scale-105"
+                    >
                       <span className="mr-2">Register Now for Just Rs 199</span>
                       <ArrowRight className="h-5 w-5" />
                     </button>
                   </div>
                 </div>
-              </div> */}
+              </div>
             </div>
 
             {/* Success Stories */}
-            {/* <div className="bg-gradient-to-r from-violet-50 to-amber-50 rounded-3xl p-6 border border-gray-100 shadow-lg mb-12">
+            <div className="bg-gradient-to-r from-violet-50 to-amber-50 rounded-3xl p-6 border border-gray-100 shadow-lg mb-12">
               <h3 className="text-2xl font-bold mb-6 text-center text-gray-900">
                 Success Stories: Students in the ₹1Lac+ Club
               </h3>
 
-              <div className="grid md:grid-cols-3 gap-6">
+              {/* <div className="grid md:grid-cols-3 gap-6">
                 {successStories.map((story, index) => (
                   <div
                     key={index}
@@ -1315,10 +1323,10 @@ const TarotWorkshopScreen = () => {
                     </div>
                   </div>
                 ))}
-              </div>
-            </div> */}
+              </div> */}
+            </div>
 
-            {/* <div className="mb-4 bg-gradient-to-br from-purple-50 to-indigo-50 px-4 sm:px-6 lg:px-8">
+            <div className="mb-4 bg-gradient-to-br from-purple-50 to-indigo-50 px-4 sm:px-6 lg:px-8">
               <div className="mx-auto">
                 <div className="bg-gradient-to-br from-purple-50 to-indigo-50 px-4 sm:px-6 lg:px-8">
                   <div className="max-w-7xl mx-auto">
@@ -1388,12 +1396,15 @@ const TarotWorkshopScreen = () => {
                     </div>
 
                     <div className="mt-4 text-center">
-                      <button onClick={() =>
-                    window.open(
-                      "https://superprofile.bio/e/2daypraticaltarotwebnair?fbclid=PAQ0xDSwLWGSVleHRuA2FlbQIxMQABp8FG1c-grgtEaSu-mgmzgPiz4yZqT_E3-ULXKIdN1APXmecoBA39B2vDb6wK_aem_NDXj4ePOpKMB4mVDEnVofw",
-                      "_blank"
-                    )
-                  } className="inline-flex items-center px-5 py-2 sm:px-6 sm:py-3 border border-transparent text-sm sm:text-base font-medium rounded-md shadow-sm text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all">
+                      <button
+                        onClick={() =>
+                          window.open(
+                            "https://superprofile.bio/e/2daypraticaltarotwebnair?fbclid=PAQ0xDSwLWGSVleHRuA2FlbQIxMQABp8FG1c-grgtEaSu-mgmzgPiz4yZqT_E3-ULXKIdN1APXmecoBA39B2vDb6wK_aem_NDXj4ePOpKMB4mVDEnVofw",
+                            "_blank"
+                          )
+                        }
+                        className="inline-flex items-center px-5 py-2 sm:px-6 sm:py-3 border border-transparent text-sm sm:text-base font-medium rounded-md shadow-sm text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all"
+                      >
                         <BookOpen className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                         Join Our Next Workshop
                       </button>
@@ -1401,10 +1412,10 @@ const TarotWorkshopScreen = () => {
                   </div>
                 </div>
               </div>
-            </div> */}
+            </div>
 
             {/* FAQ Section */}
-            {/* <div className="bg-white rounded-3xl p-6 border border-gray-100 shadow-lg mb-12">
+            <div className="bg-white rounded-3xl p-6 border border-gray-100 shadow-lg mb-12">
               <h3 className="text-2xl font-bold mb-6 text-center text-gray-900">
                 Frequently Asked Questions
               </h3>
@@ -1427,7 +1438,7 @@ const TarotWorkshopScreen = () => {
                   </div>
                 ))}
               </div>
-            </div> */}
+            </div>
 
             {/* Final CTA */}
             <div className="bg-gradient-to-r from-violet-600 to-amber-600 rounded-3xl p-8 shadow-xl mb-8 text-center">
