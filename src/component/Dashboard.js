@@ -651,11 +651,11 @@ const TarotWorkshopScreen = () => {
             </p>
 
             {/* Hero Section with Instructor */}
-            <div className="grid md:grid-cols-2 gap-8 mb-12 sm:mx-4" sx={{ marginRight: '18px'}}>
+            <div className="grid lg:grid-cols-2 gap-6 md:gap-8 px-4 sm:px-6 lg:px-0 mb-12">
               {/* Instructor Card */}
-              <div className="bg-white rounded-3xl p-6 border border-gray-100 shadow-xl">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-16 h-16 bg-gradient-to-br from-violet-500 to-amber-500 rounded-full flex items-center justify-center shadow-lg">
+              <div className="bg-white rounded-3xl p-5 sm:p-6 border border-gray-100 shadow-xl">
+                <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-4 sm:mb-6">
+                  <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-violet-500 to-amber-500 rounded-full flex items-center justify-center shadow-lg">
                     <span className="text-white font-bold text-xl">EA</span>
                   </div>
                   <div>
@@ -668,17 +668,18 @@ const TarotWorkshopScreen = () => {
                   </div>
                 </div>
 
-                <div className="w-full lg:w-1/3 flex justify-center sm:block md:hidden">
-                    <div className="w-80 h-80 sm:w-72 sm:h-72 rounded-lg overflow-hidden shadow-lg border-4 border-white bg-white">
-                      <img
-                        src={Image9}
-                        alt="Ekta Aggarwal - Tarot Mentor"
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
+                <div className="flex justify-center mb-6 sm:hidden">
+                  <div className="w-64 h-64 rounded-lg overflow-hidden shadow-lg border-4 border-white bg-white">
+                    <img
+                      src={Image9}
+                      alt="Ekta Aggarwal - Tarot Mentor"
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
                   </div>
+                </div>
 
-                <p className="text-gray-700 mb-4 mt-4">
+                <p className="text-gray-700 mb-6">
                   Talented intuitive tarot reader, coach, and co-founder of The
                   Founder of divineliightt & divine crystal. Committed to
                   guiding souls on their journey of personal growth using the
@@ -686,16 +687,16 @@ const TarotWorkshopScreen = () => {
                 </p>
 
                 {/* Stats Row */}
-                <div className="grid grid-cols-3 gap-4 mb-6">
+                <div className="grid grid-cols-3 gap-3 sm:gap-4 mb-6">
                   {stats.map((stat, index) => (
                     <div
                       key={index}
-                      className="text-center p-3 bg-gray-50 rounded-xl"
+                      className="text-center p-2 sm:p-3 bg-gray-50 rounded-xl"
                     >
-                      <div className="flex justify-center mb-2">
+                      <div className="flex justify-center mb-1 sm:mb-2">
                         <stat.icon className="w-5 h-5 text-violet-600" />
                       </div>
-                      <div className="text-2xl font-bold text-gray-900">
+                      <div className="text-xl sm:text-2xl font-bold text-gray-900">
                         {stat.number}
                       </div>
                       <div className="text-xs text-gray-600">{stat.label}</div>
@@ -704,9 +705,9 @@ const TarotWorkshopScreen = () => {
                 </div>
 
                 {/* Workshop Details */}
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   <div className="flex items-center gap-3 bg-violet-50 rounded-xl p-3 border border-violet-100">
-                    <Calendar className="w-5 h-5 text-violet-600" />
+                    <Calendar className="flex-shrink-0 w-5 h-5 text-violet-600" />
                     <div>
                       <p className="font-semibold text-gray-900">
                         18th - 19th July
@@ -716,7 +717,7 @@ const TarotWorkshopScreen = () => {
                   </div>
 
                   <div className="flex items-center gap-3 bg-amber-50 rounded-xl p-3 border border-amber-100">
-                    <Clock className="w-5 h-5 text-amber-600" />
+                    <Clock className="flex-shrink-0 w-5 h-5 text-amber-600" />
                     <div>
                       <p className="font-semibold text-gray-900">
                         4:00 PM - 5:30 PM IST
