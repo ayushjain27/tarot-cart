@@ -651,7 +651,7 @@ const TarotWorkshopScreen = () => {
             </p>
 
             {/* Hero Section with Instructor */}
-            <div className="grid md:grid-cols-2 gap-8 mb-12">
+            <div className="grid md:grid-cols-2 gap-8 mb-12 sm:mx-4" sx={{ marginRight: '18px'}}>
               {/* Instructor Card */}
               <div className="bg-white rounded-3xl p-6 border border-gray-100 shadow-xl">
                 <div className="flex items-center gap-4 mb-4">
