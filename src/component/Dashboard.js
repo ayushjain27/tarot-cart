@@ -518,12 +518,12 @@ const TarotWorkshopScreen = () => {
     {
       question: "Do I need to purchase a tarot deck to take this course?",
       answer:
-        "No deck req virtual deck will be given ! Later will guide for the deck",
+        "No deck is required to attend this webinar. Virtual deck will be given. Later we will guide for the deck",
     },
     {
-      question: "Are the classes recorded if I can't make a live session?",
+      question: "Will a recording of the webinar be available?",
       answer:
-        "Yes, all sessions are recorded and available for 6 months after the course ends.",
+        "Unfortunately, the webinar will not be recorded or shared later. We encourage you to attend the live session to get the most value.",
     },
     {
       question: "Is there any Advance Level Courses also?",
@@ -668,7 +668,17 @@ const TarotWorkshopScreen = () => {
                   </div>
                 </div>
 
-                <p className="text-gray-700 mb-4">
+                <div className="w-full lg:w-1/3 flex justify-center sm:block md:hidden">
+                    <div className="w-80 h-80 sm:w-72 sm:h-72 rounded-lg overflow-hidden shadow-lg border-4 border-white bg-white">
+                      <img
+                        src={Image9}
+                        alt="Ekta Aggarwal - Tarot Mentor"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
+
+                <p className="text-gray-700 mb-4 mt-4">
                   Talented intuitive tarot reader, coach, and co-founder of The
                   Founder of divineliightt & divine crystal. Committed to
                   guiding souls on their journey of personal growth using the
