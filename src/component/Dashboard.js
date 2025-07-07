@@ -518,7 +518,7 @@ const TarotWorkshopScreen = () => {
     {
       question: "Do I need to purchase a tarot deck to take this course?",
       answer:
-        "We recommend having your own deck, but we'll guide you in selecting the right one during the course.",
+        "No deck req virtual deck will be given ! Later will guide for the deck",
     },
     {
       question: "Are the classes recorded if I can't make a live session?",
@@ -895,11 +895,41 @@ const TarotWorkshopScreen = () => {
                         "_blank"
                       )
                     }
-                    className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all hover:from-purple-700 hover:to-indigo-700"
+                    className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all hover:from-purple-700 hover:to-indigo-700 animate-shake"
                   >
                     <CheckCircle className="w-5 h-5 mr-2" />
                     Enroll Now to Access These Benefits
                   </button>
+
+                  <style jsx>{`
+                    @keyframes shake {
+                      0%,
+                      100% {
+                        transform: translateX(0);
+                      }
+                      10%,
+                      30%,
+                      50%,
+                      70%,
+                      90% {
+                        transform: translateX(-2px);
+                      }
+                      20%,
+                      40%,
+                      60%,
+                      80% {
+                        transform: translateX(2px);
+                      }
+                    }
+
+                    .animate-shake {
+                      animation: shake 2s ease-in-out infinite;
+                    }
+
+                    .animate-shake:hover {
+                      animation: none;
+                    }
+                  `}</style>
                 </div>
               </div>
             </div>
@@ -907,7 +937,7 @@ const TarotWorkshopScreen = () => {
               <div className="max-w-6xl mx-auto">
                 <div className="text-center mb-12">
                   <h2 className="text-3xl font-bold text-purple-900 mb-4">
-                    What You Will Learn{" "}
+                    In Just 2 days, You will Learn What no one is Teaching You
                     <span className="text-purple-600">– Basic to Advanced</span>
                   </h2>
                   <p className="text-lg text-purple-700 max-w-3xl mx-auto">
@@ -951,11 +981,41 @@ const TarotWorkshopScreen = () => {
                         "_blank"
                       )
                     }
-                    className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all"
+                    className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all animate-shake animate-pulse"
                   >
                     <Gem className="mr-2 h-5 w-5" />
                     Enroll Now to Start Your Journey
                   </button>
+
+                  <style jsx>{`
+                    @keyframes shake {
+                      0%,
+                      100% {
+                        transform: translateX(0);
+                      }
+                      10%,
+                      30%,
+                      50%,
+                      70%,
+                      90% {
+                        transform: translateX(-2px);
+                      }
+                      20%,
+                      40%,
+                      60%,
+                      80% {
+                        transform: translateX(2px);
+                      }
+                    }
+
+                    .animate-shake {
+                      animation: shake 2s ease-in-out infinite;
+                    }
+
+                    .animate-shake:hover {
+                      animation: none;
+                    }
+                  `}</style>
                 </div>
               </div>
             </div>
@@ -1128,11 +1188,39 @@ const TarotWorkshopScreen = () => {
                         "_blank"
                       )
                     }
-                    className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all"
+                    className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all animate-shake animate-pulse hover:animate-none"
                   >
                     <Star className="mr-2 h-5 w-5" />
                     Choose the Superior Learning Experience
                   </button>
+
+                  <style jsx>{`
+                    @keyframes shake {
+                      0%,
+                      100% {
+                        transform: translateX(0);
+                      }
+                      10%,
+                      30%,
+                      50%,
+                      70%,
+                      90% {
+                        transform: translateX(-2px);
+                      }
+                      20%,
+                      40%,
+                      60%,
+                      80% {
+                        transform: translateX(2px);
+                      }
+                    }
+                    .animate-shake {
+                      animation: shake 2s ease-in-out infinite;
+                    }
+                    .animate-shake:hover {
+                      animation: none;
+                    }
+                  `}</style>
                 </div>
               </div>
             </div>
@@ -1226,11 +1314,39 @@ const TarotWorkshopScreen = () => {
                               "_blank"
                             )
                           }
-                          className="flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all hover:from-purple-700 hover:to-indigo-700"
+                          className="flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all hover:from-purple-700 hover:to-indigo-700 animate-shake animate-pulse hover:animate-none"
                         >
                           <Zap className="w-5 h-5 mr-2" />
                           Join Ekta Aggarwal's Program
                         </button>
+
+                        <style jsx>{`
+                          @keyframes shake {
+                            0%,
+                            100% {
+                              transform: translateX(0);
+                            }
+                            10%,
+                            30%,
+                            50%,
+                            70%,
+                            90% {
+                              transform: translateX(-2px);
+                            }
+                            20%,
+                            40%,
+                            60%,
+                            80% {
+                              transform: translateX(2px);
+                            }
+                          }
+                          .animate-shake {
+                            animation: shake 2s ease-in-out infinite;
+                          }
+                          .animate-shake:hover {
+                            animation: none;
+                          }
+                        `}</style>
                       </div>
                     </div>
                   </div>
@@ -1279,13 +1395,41 @@ const TarotWorkshopScreen = () => {
                         "_blank"
                       )
                     }
-                    className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-105 group"
+                    className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-105 group animate-shake animate-pulse hover:animate-none"
                   >
                     <span className="mr-3">
                       Apply for Internship Opportunities
                     </span>
                     <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                   </button>
+
+                  <style jsx>{`
+                    @keyframes shake {
+                      0%,
+                      100% {
+                        transform: translateX(0);
+                      }
+                      10%,
+                      30%,
+                      50%,
+                      70%,
+                      90% {
+                        transform: translateX(-2px);
+                      }
+                      20%,
+                      40%,
+                      60%,
+                      80% {
+                        transform: translateX(2px);
+                      }
+                    }
+                    .animate-shake {
+                      animation: shake 2s ease-in-out infinite;
+                    }
+                    .animate-shake:hover {
+                      animation: none;
+                    }
+                  `}</style>
                 </div>
               </div>
             </div>
@@ -1398,11 +1542,39 @@ const TarotWorkshopScreen = () => {
                           "_blank"
                         )
                       }
-                      className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:from-purple-700 hover:to-indigo-700 transition-all transform hover:scale-105"
+                      className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:from-purple-700 hover:to-indigo-700 transition-all transform hover:scale-105 animate-shake animate-pulse hover:animate-none"
                     >
                       <span className="mr-2">Register Now for Just Rs 199</span>
                       <ArrowRight className="h-5 w-5" />
                     </button>
+
+                    <style jsx>{`
+                      @keyframes shake {
+                        0%,
+                        100% {
+                          transform: translateX(0);
+                        }
+                        10%,
+                        30%,
+                        50%,
+                        70%,
+                        90% {
+                          transform: translateX(-2px);
+                        }
+                        20%,
+                        40%,
+                        60%,
+                        80% {
+                          transform: translateX(2px);
+                        }
+                      }
+                      .animate-shake {
+                        animation: shake 2s ease-in-out infinite;
+                      }
+                      .animate-shake:hover {
+                        animation: none;
+                      }
+                    `}</style>
                   </div>
                 </div>
               </div>
@@ -1787,7 +1959,7 @@ const TarotWorkshopScreen = () => {
                         "_blank"
                       )
                     }
-                    className="inline-flex items-center px-8 py-4 border border-transparent text-lg font-bold rounded-xl shadow-lg text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 transition-all transform hover:-translate-y-1 hover:shadow-xl"
+                    className="inline-flex items-center px-8 py-4 border border-transparent text-lg font-bold rounded-xl shadow-lg text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 transition-all transform hover:-translate-y-1 hover:shadow-xl animate-shake animate-pulse hover:animate-none"
                   >
                     <svg
                       className="w-6 h-6 mr-3"
@@ -1804,35 +1976,63 @@ const TarotWorkshopScreen = () => {
                     </svg>
                     Join Our Next Workshop
                   </button>
+
+                  <style jsx>{`
+                    @keyframes shake {
+                      0%,
+                      100% {
+                        transform: translateX(0);
+                      }
+                      10%,
+                      30%,
+                      50%,
+                      70%,
+                      90% {
+                        transform: translateX(-2px);
+                      }
+                      20%,
+                      40%,
+                      60%,
+                      80% {
+                        transform: translateX(2px);
+                      }
+                    }
+                    .animate-shake {
+                      animation: shake 2s ease-in-out infinite;
+                    }
+                    .animate-shake:hover {
+                      animation: none;
+                    }
+                  `}</style>
                 </div>
               </div>
             </div>
 
             <div className="video-gallery-container relative px-4 py-4 max-w-6xl mx-auto">
-            <div className="text-center mb-12">
-                  <div className="inline-flex items-center justify-center bg-white p-3 rounded-full shadow-md mb-6">
-                    <svg
-                      className="w-8 h-8 text-purple-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                      ></path>
-                    </svg>
-                  </div>
-                  <h1 className="text-3xl sm:text-4xl font-bold text-purple-900 mb-3">
-                    Our Happy Students Success Stories
-                  </h1>
-                  <p className="text-lg text-purple-700 max-w-2xl mx-auto">
-                    Hear what our students have to say about their
-                    transformative journey
-                  </p>
+              <div className="text-center mb-12">
+                <div className="inline-flex items-center justify-center bg-white p-3 rounded-full shadow-md mb-6">
+                  <svg
+                    className="w-8 h-8 text-purple-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                    ></path>
+                  </svg>
                 </div>
+                <h1 className="text-3xl sm:text-4xl font-bold text-purple-900 mb-3">
+                  Our Happy Students Success Stories
+                </h1>
+                <p className="text-lg text-purple-700 max-w-2xl mx-auto">
+                  Hear what our students have to say about their transformative
+                  journey
+                </p>
+              </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {videoTestimonials.map((testimonial, index) => {
                   const isActive = activeVideoIndex === index;
@@ -2001,7 +2201,7 @@ const TarotWorkshopScreen = () => {
                         href="https://wa.me/919910386064"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center justify-center px-6 py-3 bg-emerald-600 hover:bg-emerald-700 rounded-lg transition-colors"
+                        className="flex items-center justify-center px-6 py-3 bg-emerald-600 hover:bg-emerald-700 rounded-lg transition-colors animate-shake animate-pulse hover:animate-none"
                       >
                         <MessageSquare className="w-5 h-5 mr-2" />
                         WhatsApp Us
@@ -2010,11 +2210,39 @@ const TarotWorkshopScreen = () => {
                         href="https://instagram.com/divineliightt"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center justify-center px-6 py-3 bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700 rounded-lg transition-colors"
+                        className="flex items-center justify-center px-6 py-3 bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700 rounded-lg transition-colors animate-shake animate-pulse hover:animate-none"
                       >
                         <Instagram className="w-5 h-5 mr-2" />
                         Follow on Instagram
                       </a>
+
+                      <style jsx>{`
+                        @keyframes shake {
+                          0%,
+                          100% {
+                            transform: translateX(0);
+                          }
+                          10%,
+                          30%,
+                          50%,
+                          70%,
+                          90% {
+                            transform: translateX(-2px);
+                          }
+                          20%,
+                          40%,
+                          60%,
+                          80% {
+                            transform: translateX(2px);
+                          }
+                        }
+                        .animate-shake {
+                          animation: shake 2s ease-in-out infinite;
+                        }
+                        .animate-shake:hover {
+                          animation: none;
+                        }
+                      `}</style>
                     </div>
                   </div>
 
@@ -2093,11 +2321,39 @@ const TarotWorkshopScreen = () => {
                       "_blank"
                     )
                   }
-                  className="flex items-center justify-center px-5 py-2 bg-gradient-to-r from-amber-400 to-amber-500 text-black font-bold rounded-md shadow-lg hover:shadow-xl transition-all hover:from-amber-300 hover:to-amber-400"
+                  className="flex items-center justify-center px-5 py-2 bg-gradient-to-r from-amber-400 to-amber-500 text-black font-bold rounded-md shadow-lg hover:shadow-xl transition-all hover:from-amber-300 hover:to-amber-400 animate-shake animate-pulse hover:animate-none"
                 >
                   <span className="mr-2">Register Now</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
+
+                <style jsx>{`
+                  @keyframes shake {
+                    0%,
+                    100% {
+                      transform: translateX(0);
+                    }
+                    10%,
+                    30%,
+                    50%,
+                    70%,
+                    90% {
+                      transform: translateX(-2px);
+                    }
+                    20%,
+                    40%,
+                    60%,
+                    80% {
+                      transform: translateX(2px);
+                    }
+                  }
+                  .animate-shake {
+                    animation: shake 2s ease-in-out infinite;
+                  }
+                  .animate-shake:hover {
+                    animation: none;
+                  }
+                `}</style>
               </div>
             </div>
           </div>
