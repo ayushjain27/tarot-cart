@@ -99,7 +99,6 @@ const TarotWorkshopScreen = () => {
   const videoRefs = useRef([]);
   const [activeVideoIndex, setActiveVideoIndex] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const sliderRef = useRef(null);
 
   // Handle video click
   const handleVideoClick = (index) => {
@@ -134,28 +133,25 @@ const TarotWorkshopScreen = () => {
     if (video) {
       // Reset video first to prevent freezing
       video.currentTime = 0;
-      
+
       // Unmute only the clicked video
       video.muted = false;
-      
-      // Use requestAnimationFrame for smoother playback
-      requestAnimationFrame(() => {
-        video.play()
-          .then(() => {
+
+      video
+        .play()
+        .then(() => {
+          setActiveVideoIndex(index);
+          setIsPlaying(true);
+        })
+        .catch((err) => {
+          console.error("Play failed:", err);
+          // Fallback to muted play
+          video.muted = true;
+          video.play().then(() => {
             setActiveVideoIndex(index);
             setIsPlaying(true);
-          })
-          .catch(err => {
-            console.error("Play failed:", err);
-            // Fallback to muted play
-            video.muted = true;
-            video.play()
-              .then(() => {
-                setActiveVideoIndex(index);
-                setIsPlaying(true);
-              });
           });
-      });
+        });
     }
   };
 
@@ -168,19 +164,10 @@ const TarotWorkshopScreen = () => {
     }
   };
 
-  // Reset videos when slider changes
-  const handleBeforeChange = (oldIndex, newIndex) => {
-    const video = videoRefs.current[oldIndex];
-    if (video) {
-      video.pause();
-      video.currentTime = 0;
-    }
-  };
-
   // Clean up on unmount
   useEffect(() => {
     return () => {
-      videoRefs.current.forEach(video => {
+      videoRefs.current.forEach((video) => {
         if (video) {
           video.pause();
           video.src = ""; // Release video resources
@@ -188,28 +175,6 @@ const TarotWorkshopScreen = () => {
       });
     };
   }, []);
-
-  // Slider settings
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    centerMode: true,
-    centerPadding: "0px",
-    beforeChange: handleBeforeChange,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: { slidesToShow: 3 }
-      },
-      {
-        breakpoint: 768,
-        settings: { slidesToShow: 1, centerMode: false }
-      }
-    ]
-  };
 
   // Determine which testimonials to show
 
@@ -1843,63 +1808,95 @@ const TarotWorkshopScreen = () => {
               </div>
             </div>
 
-            {/* <div className="video-carousel-container relative px-4 py-8 max-w-6xl mx-auto">
-      <Slider ref={sliderRef} {...settings}>
-        {videoTestimonials.map((testimonial, index) => {
-          const isActive = activeVideoIndex === index;
-          return (
-            <div
-              key={index}
-              className="px-2 focus:outline-none"
-              style={{
-                transform: isActive ? "scale(1.05)" : "scale(0.95)",
-                transition: "transform 0.3s ease",
-              }}
-            >
-              <div className="bg-white rounded-xl shadow-lg overflow-hidden h-full flex flex-col">
-                <div 
-                  className="relative w-full h-64 md:h-80 lg:h-96 cursor-pointer"
-                  onClick={() => handleVideoClick(index)}
-                >
-                  <video
-                    ref={el => videoRefs.current[index] = el}
-                    className="w-full h-full object-cover"
-                    playsInline
-                    muted={!isActive}
-                    loop
-                    preload="auto"
-                    onEnded={() => handleVideoEnded(index)}
-                    onCanPlay={() => {
-                      if (isActive && isPlaying) {
-                        videoRefs.current[index]?.play();
-                      }
-                    }}
-                  >
-                    <source src={testimonial.video} type="video/mp4" />
-                    Your browser does not support videos.
-                  </video>
-
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/30">
-                    <div className="w-16 h-16 bg-white/80 rounded-full flex items-center justify-center">
-                      {isActive && isPlaying ? (
-                        <svg className="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20">
-                          <rect x="6" y="4" width="4" height="12" />
-                          <rect x="12" y="4" width="4" height="12" />
-                        </svg>
-                      ) : (
-                        <svg className="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M6.3 2.8L16 10l-9.7 7.2V2.8z"/>
-                        </svg>
-                      )}
-                    </div>
+            <div className="video-gallery-container relative px-4 py-4 max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+                  <div className="inline-flex items-center justify-center bg-white p-3 rounded-full shadow-md mb-6">
+                    <svg
+                      className="w-8 h-8 text-purple-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                      ></path>
+                    </svg>
                   </div>
+                  <h1 className="text-3xl sm:text-4xl font-bold text-purple-900 mb-3">
+                    Our Happy Students Success Stories
+                  </h1>
+                  <p className="text-lg text-purple-700 max-w-2xl mx-auto">
+                    Hear what our students have to say about their
+                    transformative journey
+                  </p>
                 </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {videoTestimonials.map((testimonial, index) => {
+                  const isActive = activeVideoIndex === index;
+                  return (
+                    <div
+                      key={index}
+                      className="focus:outline-none"
+                      style={{
+                        transform: isActive ? "scale(1.05)" : "scale(1)",
+                        transition: "transform 0.3s ease",
+                      }}
+                    >
+                      <div className="bg-white rounded-xl shadow-lg overflow-hidden h-full flex flex-col">
+                        <div
+                          className="relative w-full h-64 md:h-80 lg:h-96 cursor-pointer"
+                          onClick={() => handleVideoClick(index)}
+                        >
+                          <video
+                            ref={(el) => (videoRefs.current[index] = el)}
+                            className="w-full h-full object-cover"
+                            playsInline
+                            muted={!isActive}
+                            loop
+                            preload="auto"
+                            onEnded={() => handleVideoEnded(index)}
+                            onCanPlay={() => {
+                              if (isActive && isPlaying) {
+                                videoRefs.current[index]?.play();
+                              }
+                            }}
+                          >
+                            <source src={testimonial.video} type="video/mp4" />
+                            Your browser does not support videos.
+                          </video>
+
+                          <div className="absolute inset-0 flex items-center justify-center bg-black/30">
+                            <div className="w-16 h-16 bg-white/80 rounded-full flex items-center justify-center">
+                              {isActive && isPlaying ? (
+                                <svg
+                                  className="w-8 h-8 text-black"
+                                  fill="currentColor"
+                                  viewBox="0 0 20 20"
+                                >
+                                  <rect x="6" y="4" width="4" height="12" />
+                                  <rect x="12" y="4" width="4" height="12" />
+                                </svg>
+                              ) : (
+                                <svg
+                                  className="w-8 h-8 text-black"
+                                  fill="currentColor"
+                                  viewBox="0 0 20 20"
+                                >
+                                  <path d="M6.3 2.8L16 10l-9.7 7.2V2.8z" />
+                                </svg>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
-          );
-        })}
-      </Slider>
-    </div> */}
 
             {/* FAQ Section */}
             <div className="bg-white rounded-3xl p-6 border border-gray-100 shadow-lg mb-12">
