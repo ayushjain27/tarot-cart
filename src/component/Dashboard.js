@@ -710,7 +710,7 @@ const TarotWorkshopScreen = () => {
                     <Calendar className="flex-shrink-0 w-5 h-5 text-violet-600" />
                     <div>
                       <p className="font-semibold text-gray-900">
-                        18th - 19th July
+                        25th - 26th July
                       </p>
                       <p className="text-sm text-gray-600">2 Intensive Days</p>
                     </div>
