@@ -720,7 +720,7 @@ const TarotWorkshopScreen = () => {
                     <Clock className="flex-shrink-0 w-5 h-5 text-amber-600" />
                     <div>
                       <p className="font-semibold text-gray-900">
-                        4:00 PM - 5:30 PM IST
+                        8:00 PM - 9:30 PM IST
                       </p>
                       <p className="text-sm text-gray-600">
                         Daily Live Sessions
