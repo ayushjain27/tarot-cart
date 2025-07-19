@@ -758,7 +758,7 @@ const TarotWorkshopScreen = () => {
                     <button
                       onClick={() =>
                         window.open(
-                          "https://superprofile.bio/e/2daypraticaltarotwebnair?fbclid=PAQ0xDSwLWGSVleHRuA2FlbQIxMQABp8FG1c-grgtEaSu-mgmzgPiz4yZqT_E3-ULXKIdN1APXmecoBA39B2vDb6wK_aem_NDXj4ePOpKMB4mVDEnVofw",
+                          "https://superprofile.bio/e/2dayTarotworkshop",
                           "_blank"
                         )
                       }
@@ -902,7 +902,7 @@ const TarotWorkshopScreen = () => {
                   <button
                     onClick={() =>
                       window.open(
-                        "https://superprofile.bio/e/2daypraticaltarotwebnair?fbclid=PAQ0xDSwLWGSVleHRuA2FlbQIxMQABp8FG1c-grgtEaSu-mgmzgPiz4yZqT_E3-ULXKIdN1APXmecoBA39B2vDb6wK_aem_NDXj4ePOpKMB4mVDEnVofw",
+                        "https://superprofile.bio/e/2dayTarotworkshop",
                         "_blank"
                       )
                     }
@@ -988,7 +988,7 @@ const TarotWorkshopScreen = () => {
                   <button
                     onClick={() =>
                       window.open(
-                        "https://superprofile.bio/e/2daypraticaltarotwebnair?fbclid=PAQ0xDSwLWGSVleHRuA2FlbQIxMQABp8FG1c-grgtEaSu-mgmzgPiz4yZqT_E3-ULXKIdN1APXmecoBA39B2vDb6wK_aem_NDXj4ePOpKMB4mVDEnVofw",
+                        "https://superprofile.bio/e/2dayTarotworkshop",
                         "_blank"
                       )
                     }
@@ -1195,7 +1195,7 @@ const TarotWorkshopScreen = () => {
                   <button
                     onClick={() =>
                       window.open(
-                        "https://superprofile.bio/e/2daypraticaltarotwebnair?fbclid=PAQ0xDSwLWGSVleHRuA2FlbQIxMQABp8FG1c-grgtEaSu-mgmzgPiz4yZqT_E3-ULXKIdN1APXmecoBA39B2vDb6wK_aem_NDXj4ePOpKMB4mVDEnVofw",
+                        "https://superprofile.bio/e/2dayTarotworkshop",
                         "_blank"
                       )
                     }
@@ -1321,7 +1321,7 @@ const TarotWorkshopScreen = () => {
                         <button
                           onClick={() =>
                             window.open(
-                              "https://superprofile.bio/e/2daypraticaltarotwebnair?fbclid=PAQ0xDSwLWGSVleHRuA2FlbQIxMQABp8FG1c-grgtEaSu-mgmzgPiz4yZqT_E3-ULXKIdN1APXmecoBA39B2vDb6wK_aem_NDXj4ePOpKMB4mVDEnVofw",
+                              "https://superprofile.bio/e/2dayTarotworkshop",
                               "_blank"
                             )
                           }
@@ -1402,7 +1402,7 @@ const TarotWorkshopScreen = () => {
                   <button
                     onClick={() =>
                       window.open(
-                        "https://superprofile.bio/e/2daypraticaltarotwebnair?fbclid=PAQ0xDSwLWGSVleHRuA2FlbQIxMQABp8FG1c-grgtEaSu-mgmzgPiz4yZqT_E3-ULXKIdN1APXmecoBA39B2vDb6wK_aem_NDXj4ePOpKMB4mVDEnVofw",
+                        "https://superprofile.bio/e/2dayTarotworkshop",
                         "_blank"
                       )
                     }
@@ -1549,7 +1549,7 @@ const TarotWorkshopScreen = () => {
                     <button
                       onClick={() =>
                         window.open(
-                          "https://superprofile.bio/e/2daypraticaltarotwebnair?fbclid=PAQ0xDSwLWGSVleHRuA2FlbQIxMQABp8FG1c-grgtEaSu-mgmzgPiz4yZqT_E3-ULXKIdN1APXmecoBA39B2vDb6wK_aem_NDXj4ePOpKMB4mVDEnVofw",
+                          "https://superprofile.bio/e/2dayTarotworkshop",
                           "_blank"
                         )
                       }
@@ -2148,7 +2148,7 @@ const TarotWorkshopScreen = () => {
                 <button
                   onClick={() =>
                     window.open(
-                      "https://superprofile.bio/e/2daypraticaltarotwebnair?fbclid=PAQ0xDSwLWGSVleHRuA2FlbQIxMQABp8FG1c-grgtEaSu-mgmzgPiz4yZqT_E3-ULXKIdN1APXmecoBA39B2vDb6wK_aem_NDXj4ePOpKMB4mVDEnVofw",
+                      "https://superprofile.bio/e/2dayTarotworkshop",
                       "_blank"
                     )
                   }
@@ -2328,7 +2328,7 @@ const TarotWorkshopScreen = () => {
                 <button
                   onClick={() =>
                     window.open(
-                      "https://superprofile.bio/e/2daypraticaltarotwebnair?fbclid=PAQ0xDSwLWGSVleHRuA2FlbQIxMQABp8FG1c-grgtEaSu-mgmzgPiz4yZqT_E3-ULXKIdN1APXmecoBA39B2vDb6wK_aem_NDXj4ePOpKMB4mVDEnVofw",
+                      "https://superprofile.bio/e/2dayTarotworkshop",
                       "_blank"
                     )
                   }
