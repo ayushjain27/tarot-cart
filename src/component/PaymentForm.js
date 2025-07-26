@@ -8,6 +8,7 @@ import {
   X,
 } from "lucide-react";
 import React, { useEffect, useState } from "react";
+import Image9 from "./image/Screenshot 2025-07-05 at 11.44.34 PM.png";
 
 const PaymentForm = ({ onClose, onSuccess }) => {
   const [visible, setVisible] = useState(false);
@@ -104,8 +105,7 @@ const PaymentForm = ({ onClose, onSuccess }) => {
       currency: "INR",
       name: "Divine Light Tarot Academy",
       description: "2-Day Tarot Workshop",
-      image:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
+      image: Image9,
       prefill: {
         email: formData.email,
         contact: formData.phone,
