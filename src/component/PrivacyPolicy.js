@@ -69,7 +69,7 @@ const PrivacyPolicy = () => {
                 {[
                   {
                     term: "Company",
-                    definition: "(referred to as either 'the Company', 'We', 'Us' or 'Our' in this Agreement) refers to Psychic Visions."
+                    definition: "(referred to as either 'the Company', 'We', 'Us' or 'Our' in this Agreement) refers to DivineLiightt & Divine Crystals."
                   },
                   {
                     term: "Device",
@@ -190,15 +190,15 @@ const PrivacyPolicy = () => {
           Contact Us
         </h3>
         <p className="text-gray-700">
-          If you have any questions about this Privacy Policy, You can contact us via email at {' '}
+          If you have any questions about this Privacy Policy, You can contact us via phonenumber at {' '}
           <a href="mailto:admin@psychicvisions.in" className="text-indigo-600 hover:underline">
-            admin@psychicvisions.in
+          +91 99103 86064
           </a>
         </p>
       </section>
 
       <footer className="mt-8 pt-6 border-t text-sm text-gray-600">
-        <p className="mb-2">Copyright 2023 - The Occult Academy. All rights reserved.</p>
+        <p className="mb-2">Copyright 2023 - The DivineLiightt & Divine Crystals. All rights reserved.</p>
         <p className="mb-4">
           This site is not a part of the Facebook website or Facebook Inc. Additionally, This site is NOT 
           endorsed by Facebook in any way. FACEBOOK is a trademark of FACEBOOK, Inc.
