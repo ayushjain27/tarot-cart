@@ -58,6 +58,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import PaymentForm from "./PaymentForm";
 import ThankYouPage from "./ThankyouPage";
+import PrivacyPolicy from "./PrivacyPolicy";
+import { Link } from "react-router-dom";
 
 const TarotWorkshopScreen = () => {
   const [visible, setVisible] = useState(false);
@@ -717,7 +719,7 @@ const TarotWorkshopScreen = () => {
                       <Calendar className="flex-shrink-0 w-5 h-5 text-violet-600" />
                       <div>
                         <p className="font-semibold text-gray-900">
-                          25th - 26th July
+                          2nd - 3rd July
                         </p>
                         <p className="text-sm text-gray-600">
                           2 Intensive Days
@@ -2245,7 +2247,7 @@ const TarotWorkshopScreen = () => {
                   <div className="mt-12 pt-8 border-t border-purple-800">
                     <div className="flex flex-col items-center">
                       <div className="mb-6 flex flex-wrap justify-center gap-6">
-                        <a
+                        {/* <a
                           href="https://theoccultacademy.in/terms-and-conditions/"
                           target="_blank"
                           rel="noopener noreferrer"
@@ -2253,27 +2255,23 @@ const TarotWorkshopScreen = () => {
                         >
                           Terms & Conditions
                           <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
-                        </a>
-                        <div className="h-5 w-px bg-purple-600"></div>
-                        <a
-                          href="https://theoccultacademy.in/privacy-policy/"
-                          target="_blank"
-                          rel="noopener noreferrer"
+                        </a> */}
+                        {/* <div className="h-5 w-px bg-purple-600"></div> */}
+                        <Link
+                          to="/privacypolicy"
                           className="group relative text-purple-200 hover:text-white transition-colors duration-300 text-sm font-medium"
                         >
                           Privacy Policy
                           <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
-                        </a>
+                        </Link>
                         <div className="h-5 w-px bg-purple-600"></div>
-                        <a
-                          href="https://theoccultacademy.in/refund-policy/"
-                          target="_blank"
-                          rel="noopener noreferrer"
+                        <Link
+                          to="/refundpolicy"
                           className="group relative text-purple-200 hover:text-white transition-colors duration-300 text-sm font-medium"
                         >
                           Refund Policy
                           <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
-                        </a>
+                        </Link>
                       </div>
 
                       {/* Copyright with subtle animation */}
