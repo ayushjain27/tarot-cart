@@ -2190,7 +2190,7 @@ const TarotWorkshopScreen = () => {
 
                       <div className="flex flex-col sm:flex-row gap-4 mt-6">
                         <a
-                          href="https://wa.me/919910386064"
+                          href="https://wa.me/9650743476"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="flex items-center justify-center px-6 py-3 bg-emerald-600 hover:bg-emerald-700 rounded-lg transition-colors duration-300 animate-pulse hover:animate-none"
