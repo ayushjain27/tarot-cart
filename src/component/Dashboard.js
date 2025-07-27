@@ -2309,7 +2309,7 @@ const TarotWorkshopScreen = () => {
                   </div>
                   <div className="flex items-center text-sm">
                     <Clock className="w-4 h-4 mr-1 text-yellow-300" />
-                    <span>Registration Closing: 16th Jul 2025</span>
+                    <span>Registration Closing: 1st August 2025</span>
                   </div>
                 </div>
 
