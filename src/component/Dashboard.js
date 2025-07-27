@@ -53,18 +53,15 @@ import Video2 from "./video/video1.mp4";
 import Video3 from "./video/video2.mp4";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import PaymentForm from "./PaymentForm";
-import ThankYouPage from "./ThankyouPage";
-import PrivacyPolicy from "./PrivacyPolicy";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const TarotWorkshopScreen = () => {
   const [visible, setVisible] = useState(false);
   const [showPaymentForm, setShowPaymentForm] = useState(false);
-  const [showThankYou, setShowThankYou] = useState(false);
+  const navigate = useNavigate();
   const intervalRef = useRef(null);
 
   const itemsToShow = 3;
@@ -2360,11 +2357,10 @@ const TarotWorkshopScreen = () => {
           onClose={() => setShowPaymentForm(false)}
           onSuccess={() => {
             setShowPaymentForm(false);
-            setShowThankYou(true);
+            navigate('/thankyou');
           }}
         />
       )}
-      {showThankYou && <ThankYouPage onClose={() => setShowThankYou(false)} />}
     </>
   );
 };
