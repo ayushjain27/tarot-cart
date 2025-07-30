@@ -22,7 +22,7 @@ const ThankYouPage = () => {
           <div className="space-y-2 text-sm">
             <div className="flex justify-between">
               <span className="text-gray-600">Amount:</span>
-              <span className="font-semibold text-green-600">₹199</span>
+              <span className="font-semibold text-green-600">₹99</span>
             </div>
             <div className="flex justify-between">
               <span className="text-gray-600">Course:</span>

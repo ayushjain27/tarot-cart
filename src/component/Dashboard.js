@@ -35,6 +35,7 @@ import {
   Trophy,
   LockKeyhole,
   ClipboardList,
+  Mail,
 } from "lucide-react";
 import Image9 from "./image/Screenshot 2025-07-05 at 11.44.34 PM.png";
 import Image10 from "./image/20250706_162240.png";
@@ -1516,7 +1517,7 @@ const TarotWorkshopScreen = () => {
                           </h3>
                         </div>
                         <div className="text-4xl font-bold text-gray-900 mb-2">
-                          Rs 199
+                          Rs 99
                         </div>
                         <div className="flex items-center text-green-600 mb-3">
                           <BadgeCheck className="h-5 w-5 mr-2" />
@@ -1536,7 +1537,7 @@ const TarotWorkshopScreen = () => {
                         className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:from-purple-700 hover:to-indigo-700 transition-all transform hover:scale-105 animate-shake animate-pulse hover:animate-none"
                       >
                         <span className="mr-2">
-                          Register Now for Just Rs 199
+                          Register Now for Just Rs 99
                         </span>
                         <ArrowRight className="h-5 w-5" />
                       </button>
@@ -2229,6 +2230,22 @@ const TarotWorkshopScreen = () => {
                             </a>
                           </div>
                         </div>
+                      </div>
+                      <div className="space-y-3">
+                        <div className="flex items-start">
+                          <Mail className="w-5 h-5 mt-1 mr-3 text-purple-300 flex-shrink-0" />
+                          <div>
+                            <p className="font-medium">
+                             Email
+                            </p>
+                            <a
+                              href="mailto:info@divineliightt.com"
+                              className="text-purple-100 hover:text-white transition-colors duration-300 text-lg font-semibold"
+                            >
+                              info@divineliightt.com
+                            </a>
+                          </div>
+                        </div>
 
                         <div className="pt-4 mt-4 border-t border-purple-800">
                           <p className="text-purple-200 text-sm">
@@ -2299,7 +2316,7 @@ const TarotWorkshopScreen = () => {
               <div className="flex flex-col sm:flex-row items-center justify-between">
                 <div className="flex items-center mb-3 sm:mb-0">
                   <div className="flex items-center mr-6">
-                    <span className="text-2xl font-bold mr-2">Rs 199</span>
+                    <span className="text-2xl font-bold mr-2">Rs 99</span>
                     <span className="text-lg line-through opacity-70">
                       ₹2999
                     </span>
@@ -2357,7 +2374,7 @@ const TarotWorkshopScreen = () => {
           onClose={() => setShowPaymentForm(false)}
           onSuccess={() => {
             setShowPaymentForm(false);
-            navigate('/thankyou');
+            navigate("/thankyou");
           }}
         />
       )}

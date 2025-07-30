@@ -101,7 +101,7 @@ const PaymentForm = ({ onClose, onSuccess }) => {
 
     const options = {
       key: "rzp_live_1AbWUT8mx9YG16", // Your Razorpay key
-      amount: 19900, // Amount in paise (₹1)
+      amount: 9900, // Amount in paise (₹1)
       currency: "INR",
       name: "Divine Light Tarot Academy",
       description: "2-Day Tarot Workshop",
@@ -275,7 +275,7 @@ const PaymentForm = ({ onClose, onSuccess }) => {
           <div className="bg-purple-50 rounded-lg p-4">
             <div className="flex justify-between items-center">
               <span className="text-gray-600">Course Fee:</span>
-              <span className="text-2xl font-bold text-purple-600">₹199</span>
+              <span className="text-2xl font-bold text-purple-600">₹99</span>
             </div>
           </div>
 
