@@ -2226,7 +2226,7 @@ const TarotWorkshopScreen = () => {
                               href="tel:+919910386064"
                               className="text-purple-100 hover:text-white transition-colors duration-300 text-lg font-semibold"
                             >
-                              +91 99103 86064
+                              +91 96507 43476
                             </a>
                           </div>
                         </div>
