@@ -950,7 +950,7 @@ const TarotWorkshopScreen = () => {
                     </h2>
                     <p className="text-lg text-purple-700 max-w-3xl mx-auto">
                       Step into and discover a Tarot Program designed to
-                      transform, inspire.
+                      transform, inspire and go beyond the ordinary.
                     </p>
                   </div>
 
