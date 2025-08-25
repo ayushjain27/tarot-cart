@@ -15,6 +15,7 @@ const PaymentForm = ({ onClose, onSuccess }) => {
   const [paymentStatus, setPaymentStatus] = useState(null);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
+    name: "",
     email: "",
     phone: "",
   });
@@ -43,6 +44,10 @@ const PaymentForm = ({ onClose, onSuccess }) => {
   // Validate form
   const validateForm = () => {
     const errors = {};
+
+    if (!formData.name.trim()) {
+      errors.name = "Name is required";
+    }
 
     if (!formData.email.trim()) {
       errors.email = "Email is required";
@@ -101,12 +106,13 @@ const PaymentForm = ({ onClose, onSuccess }) => {
 
     const options = {
       key: "rzp_live_1AbWUT8mx9YG16", // Your Razorpay key
-      amount: 9900, // Amount in paise (₹1)
+      amount: 5500, // Amount in paise (₹1)
       currency: "INR",
       name: "Divine Light Tarot Academy",
       description: "2-Day Tarot Workshop",
       image: Image9,
       prefill: {
+        name: formData.name,
         email: formData.email,
         contact: formData.phone,
       },
@@ -129,6 +135,7 @@ const PaymentForm = ({ onClose, onSuccess }) => {
         onClose();
         onSuccess();
         setFormData({
+          name: "",
           email: "",
           phone: "",
         });
@@ -187,7 +194,7 @@ const PaymentForm = ({ onClose, onSuccess }) => {
         </div>
 
         <form className="space-y-4">
-          {/* <div>
+           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Full Name *
             </label>
@@ -210,7 +217,7 @@ const PaymentForm = ({ onClose, onSuccess }) => {
                 {formErrors.name}
               </p>
             )}
-          </div> */}
+          </div>
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -275,7 +282,7 @@ const PaymentForm = ({ onClose, onSuccess }) => {
           <div className="bg-purple-50 rounded-lg p-4">
             <div className="flex justify-between items-center">
               <span className="text-gray-600">Course Fee:</span>
-              <span className="text-2xl font-bold text-purple-600">₹99</span>
+              <span className="text-2xl font-bold text-purple-600">₹55</span>
             </div>
           </div>
 

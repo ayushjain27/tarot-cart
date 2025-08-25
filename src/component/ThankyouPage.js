@@ -17,7 +17,7 @@ const ThankYouPage = () => {
           </p>
         </div>
 
-        <div className="bg-gray-50 rounded-xl p-6 mb-4">
+        {/* <div className="bg-gray-50 rounded-xl p-6 mb-4">
           <h3 className="font-semibold text-gray-900 mb-4">Payment Details</h3>
           <div className="space-y-2 text-sm">
             <div className="flex justify-between">
@@ -29,27 +29,9 @@ const ThankYouPage = () => {
               <span>2-Day Tarot Workshop</span>
             </div>
           </div>
-        </div>
+        </div> */}
 
-        <div className="bg-purple-50 rounded-xl p-6 mb-4">
-          <h3 className="font-semibold text-purple-900 mb-2">What's Next?</h3>
-          <div className="space-y-3 text-left">
-            <div className="flex items-start">
-              <CheckCircle className="w-5 h-5 text-purple-500 mr-3 mt-0.5" />
-              <p className="text-gray-700">Check your email for course details and joining instructions</p>
-            </div>
-            <div className="flex items-start">
-              <CheckCircle className="w-5 h-5 text-purple-500 mr-3 mt-0.5" />
-              <p className="text-gray-700">Join our WhatsApp group for course updates</p>
-            </div>
-            <div className="flex items-start">
-              <CheckCircle className="w-5 h-5 text-purple-500 mr-3 mt-0.5" />
-              <p className="text-gray-700">Workshop starts on 25th July at 8:00 PM IST</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4 mb-4">
           <a
             href="https://chat.whatsapp.com/Em9G8h5m0By9dl6pZLCKVC"
             target="_blank"
@@ -59,6 +41,30 @@ const ThankYouPage = () => {
             <MessageSquare className="w-5 h-5 mr-2" />
             Join WhatsApp Group
           </a>
+        </div>
+
+        <div className="bg-purple-50 rounded-xl p-6 mb-4">
+          <h3 className="font-semibold text-purple-900 mb-2 text-center">Please join the WhatsApp Group now. All communication and webinar details will be shared there.</h3>
+          {/* <div className="space-y-3 text-left">
+            <div className="flex items-start">
+              <CheckCircle className="w-5 h-5 text-purple-500 mr-3 mt-0.5" />
+              <p className="text-gray-700">
+                Check your email for course details and joining instructions
+              </p>
+            </div>
+            <div className="flex items-start">
+              <CheckCircle className="w-5 h-5 text-purple-500 mr-3 mt-0.5" />
+              <p className="text-gray-700">
+                Join our WhatsApp group for course updates
+              </p>
+            </div>
+            <div className="flex items-start">
+              <CheckCircle className="w-5 h-5 text-purple-500 mr-3 mt-0.5" />
+              <p className="text-gray-700">
+                Workshop starts on 25th July at 8:00 PM IST
+              </p>
+            </div>
+          </div> */}
         </div>
       </div>
     </div>
