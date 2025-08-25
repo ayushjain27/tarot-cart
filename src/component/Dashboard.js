@@ -204,25 +204,25 @@ const TarotWorkshopScreen = () => {
   const features = [
     {
       icon: Calendar,
-      title: 'Date',
+      title: "Date",
       text: "06th Sept (Saturday)",
       color: "text-violet-600",
     },
     {
       icon: Clock, // Assuming you have a Clock icon for time
-      title: 'Time',
+      title: "Time",
       text: "11 AM",
       color: "text-amber-600",
     },
     {
       icon: Monitor, // For the platform
-      title: 'Platform',
+      title: "Platform",
       text: "Zoom",
       color: "text-blue-600",
     },
     {
       icon: MessageCircle, // For language
-      title: 'Language',
+      title: "Language",
       text: "English & Hindi",
       color: "text-emerald-600",
     },
@@ -318,7 +318,7 @@ const TarotWorkshopScreen = () => {
           title: "How to Access Your Psychic Abilities & Trust Your Intuition",
           icon: <Lightbulb className="w-6 h-6 text-purple-600" />,
           topics: [
-            "Developing clairvoyance with tarot",
+            "Developing clairvoyance with Tarot",
             "Trusting your first impressions",
             "Removing self-doubt blocks",
           ],
@@ -341,7 +341,7 @@ const TarotWorkshopScreen = () => {
           topics: [
             "Identifying shadow aspects",
             "Healing spreads for trauma",
-            "Journaling with tarot",
+            "Journaling with Tarot",
           ],
         },
         {
@@ -364,8 +364,8 @@ const TarotWorkshopScreen = () => {
           title: "Tarot & Crystal Healing (Powerful Combinations)",
           icon: <Shield className="w-6 h-6 text-violet-600" />,
           topics: [
-            "Crystal-tarot pairings",
-            "Energy grids with cards",
+            "Crystal-Tarot pairings",
+            "Energy grids with Cards",
             "Amplifying readings",
           ],
         },
@@ -444,9 +444,9 @@ const TarotWorkshopScreen = () => {
       title: "Master Tarot Card Meanings",
       icon: <Sparkles className="w-6 h-6 text-amber-600" />,
       items: [
-        "I'll teach you how you can remember every tarot card meaning just by looking at the tarot card using my 'personal stories framework'",
+        "I'll teach you how you can remember every Tarot Card meaning just by looking at the Tarot Card using my 'personal stories framework'",
         "No memorization / No book needed ",
-        "you'll just see the card and will be able to explain its meaning beautifully",
+        "you'll just see the Card and will be able to explain its meaning beautifully",
       ],
       bgColor: "bg-amber-50",
       borderColor: "border-amber-200",
@@ -459,7 +459,7 @@ const TarotWorkshopScreen = () => {
         "Social media strategies: Instagram, Facebook, YouTube growth",
         "High-ticket sales: How to sell 1:1 readings, courses & coaching",
         "Secrets to charging premium rates & handling tricky clients",
-        "I’ll show you how you can conduct life-transforming tarot coaching sessions for clients (not doing stressful predictions) and charge Rs 10k to 50k per client (even if you’re just a beginner tarot reader and have no coaching experience)",
+        "I’ll show you how you can conduct life-transforming Tarot coaching sessions for clients (not doing stressful predictions) and charge Rs 10k to 50k per client (even if you’re just a beginner Tarot reader and have no coaching experience)",
       ],
       bgColor: "bg-blue-50",
       borderColor: "border-blue-200",
@@ -471,7 +471,7 @@ const TarotWorkshopScreen = () => {
         "Live practice with real clients from Day 1",
         "Understanding energy protection & avoiding spiritual burnout",
         // "Paid internship for top students & direct mentorship",
-        "I’ll also show you our unique tarot client acquisition method that’s helping our students book 30-50 paid tarot appointments every month consistently.",
+        "I’ll also show you our unique Tarot client acquisition method that’s helping our students book 30-50 paid Tarot appointments every month consistently.",
       ],
       bgColor: "bg-emerald-50",
       borderColor: "border-emerald-200",
@@ -481,7 +481,7 @@ const TarotWorkshopScreen = () => {
   const newFeatures = [
     {
       name: "Curriculum Depth",
-      others: "Basic card meanings",
+      others: "Basic Card meanings",
       yours: "Deep psychological & spiritual insights",
       icon: <Star className="w-5 h-5 text-amber-500" />,
     },
@@ -520,9 +520,9 @@ const TarotWorkshopScreen = () => {
   // FAQ data
   const faqs = [
     {
-      question: "What will I learn in this tarot card reading masterclass?",
+      question: "What will I learn in this Tarot Card reading masterclass?",
       answer:
-        "You'll master card interpretations, develop intuitive reading skills, and learn professional techniques.",
+        "You'll master Card interpretations, develop intuitive reading skills, and learn professional techniques.",
     },
     {
       question: "What makes the 2-Hours live Class special?",
@@ -530,12 +530,12 @@ const TarotWorkshopScreen = () => {
         "Our Trinity Framework simplifies complex concepts and focuses on practical, results-driven learning.",
     },
     {
-      question: "Do I need any prior experience with tarot cards?",
+      question: "Do I need any prior experience with Tarot Cards?",
       answer:
         "No, this course is designed for both beginners and those looking to professionalize their skills.",
     },
     {
-      question: "Do I need to purchase a tarot deck to take this course?",
+      question: "Do I need to purchase a Tarot deck to take this demo session?",
       answer:
         "No deck is required to attend this webinar. Virtual deck will be given. Later we will guide for the deck",
     },
@@ -575,19 +575,19 @@ const TarotWorkshopScreen = () => {
     {
       image: Image10,
       title: "Daily Guidance Formula",
-      description: "Better decision-making and aligned actions through tarot.",
+      description: "Better decision-making and aligned actions through Tarot.",
       value: "Worth Rs. 999/-",
     },
     {
       image: Image13,
       title: "Daily Guidance Formula",
-      description: "Better decision-making and aligned actions through tarot.",
+      description: "Better decision-making and aligned actions through Tarot.",
       value: "Worth Rs. 999/-",
     },
     {
       image: Image14,
       title: "Daily Guidance Formula",
-      description: "Better decision-making and aligned actions through tarot.",
+      description: "Better decision-making and aligned actions through Tarot.",
       value: "Worth Rs. 999/-",
     },
   ];
@@ -816,10 +816,10 @@ const TarotWorkshopScreen = () => {
                       <feature.icon
                         className={`w-6 h-6 ${feature.color} mb-3`}
                       />
-                      <p className="text-md font-bold text-red-900">
+                      <p className="text-lg font-bold text-red-900">
                         {feature.title}
                       </p>
-                      <p className="text-sm font-medium text-gray-900">
+                      <p className="text-lg font-bold text-gray-900">
                         {feature.text}
                       </p>
                     </div>
@@ -833,7 +833,7 @@ const TarotWorkshopScreen = () => {
                     </h3>
                     <p className="text-white/90 mb-6">
                       Join thousands who've transformed their lives through
-                      tarot
+                      Tarot
                     </p>
 
                     <div className="space-y-4 max-w-md mx-auto">
@@ -945,12 +945,12 @@ const TarotWorkshopScreen = () => {
                 <div className="max-w-5xl mx-auto">
                   <div className="text-center mb-4">
                     <h2 className="text-3xl sm:text-4xl font-bold text-purple-900 mb-4">
-                      What Makes This Course{" "}
-                      <span className="text-purple-600">Unique?</span>
+                      What Makes This Live Tarot Session a Special Experience?
+                      {/* <span className="text-purple-600">Unique?</span> */}
                     </h2>
                     <p className="text-lg text-purple-700 max-w-3xl mx-auto">
-                      Discover the transformative elements that set our program
-                      apart from conventional Tarot courses
+                      Step into and discover a Tarot Program designed to
+                      transform, inspire, and go beyond the ordinary.
                     </p>
                   </div>
 
@@ -1029,7 +1029,7 @@ const TarotWorkshopScreen = () => {
                       </span> */}
                     </h2>
                     <p className="text-lg text-purple-700 max-w-3xl mx-auto">
-                      Master every aspect of professional tarot reading from
+                      Master every aspect of professional Tarot reading from
                       foundational knowledge to building a thriving spiritual
                       business
                     </p>
@@ -1343,7 +1343,7 @@ const TarotWorkshopScreen = () => {
                           something bigger. I chose my true calling — and turned
                           it into a movement. From a{" "}
                           <strong>single Instagram page</strong>, I delivered
-                          over <strong>50,000+</strong> life-changing tarot
+                          over <strong>50,000+</strong> life-changing Tarot
                           readings in just a few months — with{" "}
                           <strong>zero ad spend</strong>. Today, I run two of
                           the most <strong>trusted spiritual brands</strong>: ✨{" "}
@@ -2191,7 +2191,7 @@ const TarotWorkshopScreen = () => {
                   Ready to Start Your Tarot Journey?
                 </h3>
                 <p className="text-white/90 mb-6">
-                  Join thousands who've transformed their lives through tarot
+                  Join thousands who've transformed their lives through Tarot
                 </p>
 
                 <div className="space-y-4 max-w-md mx-auto">

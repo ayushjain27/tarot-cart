@@ -281,7 +281,7 @@ const PaymentForm = ({ onClose, onSuccess }) => {
 
           <div className="bg-purple-50 rounded-lg p-4">
             <div className="flex justify-between items-center">
-              <span className="text-gray-600">Course Fee:</span>
+              <span className="text-gray-600">Masterclass Fee:</span>
               <span className="text-2xl font-bold text-purple-600">₹55</span>
             </div>
           </div>
