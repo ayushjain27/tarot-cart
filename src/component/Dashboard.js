@@ -51,7 +51,7 @@ import Image17 from "./image/WhatsApp Image 2025-07-06 at 13.49.30.jpeg";
 import Image18 from "./image/WhatsApp Image 2025-07-06 at 13.49.39.jpeg";
 import Image19 from "./image/WhatsApp Image 2025-07-06 at 13.49.50.jpeg";
 import Image20 from "./image/WhatsApp Image 2025-07-06 at 20.23.32.jpeg";
-import Image21 from "./image/landscape.jpeg";
+import Image21 from "./image/logo.png";
 import Video1 from "./video/video.mp4";
 import Video2 from "./video/video1.mp4";
 import Video3 from "./video/video2.mp4";
@@ -767,7 +767,7 @@ const TarotWorkshopScreen = () => {
                     <img
                       src={Image21}
                       alt="Ekta Aggarwal - Tarot Mentor"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain"
                       loading="lazy"
                     />
                     {/* Optional overlay for better text readability if you want to add text on image */}
@@ -775,7 +775,7 @@ const TarotWorkshopScreen = () => {
                   </div>
 
                   {/* Content card below the image */}
-                  <div className="bg-white rounded-2xl p-6 -mt-8 mx-4 relative z-10 shadow-lg border border-gray-100">
+                  <div className="bg-white rounded-2xl p-6 mx-4 relative z-10 shadow-lg border border-gray-100">
                     <div className="text-center">
                       <h3 className="text-2xl font-bold text-gray-900 mb-2">
                         Ekta Aggarwal
@@ -842,7 +842,7 @@ const TarotWorkshopScreen = () => {
                         className="w-full bg-white text-violet-700 hover:bg-gray-100 py-4 rounded-2xl font-bold text-lg flex items-center justify-center gap-2 transition-all duration-300 shadow-lg hover:shadow-xl animate-shake hover:animate-none"
                       >
                         <Play className="w-5 h-5" />
-                        Enroll Now
+                        Enroll Now @ Rs 55
                       </button>
 
                       <div className="text-white/80 text-sm flex items-center justify-center gap-2 animate-pulse">
@@ -983,7 +983,7 @@ const TarotWorkshopScreen = () => {
                       className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all hover:from-purple-700 hover:to-indigo-700 animate-shake"
                     >
                       <CheckCircle className="w-5 h-5 mr-2" />
-                      Enroll Now to Access These Benefits
+                      Enroll Now to Access These Benefits @ Rs 55
                     </button>
 
                     <style jsx>{`
@@ -1067,7 +1067,7 @@ const TarotWorkshopScreen = () => {
                       className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all animate-shake animate-pulse"
                     >
                       <Gem className="mr-2 h-5 w-5" />
-                      Enroll Now to Start Your Journey
+                      Enroll Now to Start Your Journey @ Rs 55
                     </button>
 
                     <style jsx>{`
@@ -1317,7 +1317,7 @@ const TarotWorkshopScreen = () => {
                     <div className="w-full lg:w-1/3 flex justify-center">
                       <div className="w-64 h-64 sm:w-72 sm:h-72 rounded-lg overflow-hidden shadow-lg border-4 border-white bg-white">
                         <img
-                          src={Image9}
+                          src={Image21}
                           alt="Ekta Aggarwal - Tarot Mentor"
                           className="w-full h-full object-cover"
                         />
@@ -1388,7 +1388,7 @@ const TarotWorkshopScreen = () => {
                             className="flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all hover:from-purple-700 hover:to-indigo-700 animate-shake animate-pulse hover:animate-none"
                           >
                             <Zap className="w-5 h-5 mr-2" />
-                            Join Ekta Aggarwal's Program
+                            Join Ekta Aggarwal's Program @ Rs 55
                           </button>
 
                           <style jsx>{`
@@ -2032,7 +2032,7 @@ const TarotWorkshopScreen = () => {
                           d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
                         ></path>
                       </svg>
-                      Join Our Next Workshop
+                      Join Our Next Workshop @ Rs 55
                     </button>
 
                     <style jsx>{`
@@ -2200,7 +2200,7 @@ const TarotWorkshopScreen = () => {
                     className="w-full bg-white text-violet-700 hover:bg-gray-100 py-4 rounded-2xl font-bold text-lg flex items-center justify-center gap-2 transition-all duration-300 shadow-lg hover:shadow-xl animate-shake hover:animate-none"
                   >
                     <Play className="w-5 h-5" />
-                    Enroll Now
+                    Enroll Now @ Rs 55
                   </button>
 
                   <div className="text-white/80 text-sm flex items-center justify-center gap-2 animate-pulse">
@@ -2257,7 +2257,7 @@ const TarotWorkshopScreen = () => {
 
                       <div className="flex flex-col sm:flex-row gap-4 mt-6">
                         <a
-                          href="https://wa.me/9650743476"
+                          href="https://wa.me/9910386064"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="flex items-center justify-center px-6 py-3 bg-emerald-600 hover:bg-emerald-700 rounded-lg transition-colors duration-300 animate-pulse hover:animate-none"
@@ -2295,7 +2295,7 @@ const TarotWorkshopScreen = () => {
                               href="tel:+919910386064"
                               className="text-purple-100 hover:text-white transition-colors duration-300 text-lg font-semibold"
                             >
-                              +91 96507 43476
+                              +91 9910386064
                             </a>
                           </div>
                         </div>
@@ -2317,7 +2317,7 @@ const TarotWorkshopScreen = () => {
                         <div className="pt-4 mt-4 border-t border-purple-800">
                           <p className="text-purple-200 text-sm">
                             DM us on WhatsApp or Instagram to enroll now and
-                            begin your transformation!
+                            begin your transformation! @ Rs 55
                           </p>
                         </div>
                       </div>
