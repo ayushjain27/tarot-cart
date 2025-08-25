@@ -816,10 +816,10 @@ const TarotWorkshopScreen = () => {
                       <feature.icon
                         className={`w-6 h-6 ${feature.color} mb-3`}
                       />
-                      <p className="text-lg font-bold text-red-900">
+                      <p className="text-2xl font-bold text-red-900">
                         {feature.title}
                       </p>
-                      <p className="text-lg font-bold text-gray-900">
+                      <p className="text-2xl font-bold text-gray-900">
                         {feature.text}
                       </p>
                     </div>
@@ -950,7 +950,7 @@ const TarotWorkshopScreen = () => {
                     </h2>
                     <p className="text-lg text-purple-700 max-w-3xl mx-auto">
                       Step into and discover a Tarot Program designed to
-                      transform, inspire, and go beyond the ordinary.
+                      transform, inspire.
                     </p>
                   </div>
 
