@@ -780,11 +780,13 @@ const TarotWorkshopScreen = () => {
                       <h3 className="text-2xl font-bold text-gray-900 mb-2">
                         Ekta Aggarwal
                       </h3>
-                      <p className="text-base text-gray-600 mb-4">
-                        Founder of Divine Light Tarot Academy (Multi-City
-                        Fashion Brand)
+                      <p className="text-base text-gray-600">
+                      India’s Youngest Spiritual CEO
                       </p>
-                      <div className="flex flex-wrap justify-center gap-3">
+                      <p className="text-base text-gray-600 mb-4">
+                      Founder – DivineLiightt & Divine Crystals
+                      </p>
+                      {/* <div className="flex flex-wrap justify-center gap-3">
                         <span className="inline-flex items-center bg-blue-100 text-blue-800 text-sm px-3 py-2 rounded-full font-medium">
                           <BookOpen className="w-4 h-4 mr-2" />
                           IIM Ahmedabad Alumnus
@@ -801,7 +803,7 @@ const TarotWorkshopScreen = () => {
                           <Trophy className="w-4 h-4 mr-2" />
                           Retail Excellence Awardee
                         </span>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>
@@ -2382,15 +2384,15 @@ const TarotWorkshopScreen = () => {
             <div className="max-w-7xl mx-auto px-4 py-3 sm:px-6 lg:px-8">
               <div className="flex flex-col sm:flex-row items-center justify-between">
                 <div className="flex items-center mb-3 sm:mb-0">
-                  <div className="flex items-center mr-6">
+                  {/* <div className="flex items-center mr-6">
                     <span className="text-2xl font-bold mr-2">Rs 55</span>
                     <span className="text-lg line-through opacity-70">
                       ₹2999
                     </span>
-                  </div>
+                  </div> */}
                   <div className="flex items-center text-sm">
                     <Clock className="w-4 h-4 mr-1 text-yellow-300" />
-                    <span>The Live Masterclass: 06th Sept 2025</span>
+                    <span className="text-lg font-bold">06th Sept 2025 - 11:00 AM</span>
                   </div>
                 </div>
 
@@ -2399,7 +2401,7 @@ const TarotWorkshopScreen = () => {
                     onClick={() => setShowPaymentForm(true)}
                     className="flex items-center justify-center px-5 py-2 bg-gradient-to-r from-amber-400 to-amber-500 text-black font-bold rounded-md shadow-lg hover:shadow-xl transition-all hover:from-amber-300 hover:to-amber-400 animate-shake animate-pulse hover:animate-none"
                   >
-                    <span className="mr-2">Register Now</span>
+                    <span className="mr-2">Register Now @ Rs 55</span>
                     <ArrowRight className="w-4 h-4" />
                   </button>
 
