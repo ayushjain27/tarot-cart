@@ -532,7 +532,7 @@ const TarotWorkshopScreen = () => {
     {
       question: "Do I need any prior experience with Tarot Cards?",
       answer:
-        "No, this course is designed for both beginners and those looking to professionalize their skills.",
+        "No, this masterclass is designed for both beginners and those looking to professionalize their skills.",
     },
     {
       question: "Do I need to purchase a Tarot deck to take this demo session?",
