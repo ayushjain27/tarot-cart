@@ -840,7 +840,8 @@ const TarotWorkshopScreen = () => {
 
                     <div className="space-y-4 max-w-md mx-auto">
                       <button
-                        onClick={() => setShowPaymentForm(true)}
+                         onClick={() => window.open('https://divineliightt.creatorlabs.in/add-to-cart', '_blank')}
+                        // onClick={() => setShowPaymentForm(true)}
                         className="w-full bg-white text-violet-700 hover:bg-gray-100 py-4 rounded-2xl font-bold text-lg flex items-center justify-center gap-2 transition-all duration-300 shadow-lg hover:shadow-xl animate-shake hover:animate-none"
                       >
                         <Play className="w-5 h-5" />
@@ -981,7 +982,8 @@ const TarotWorkshopScreen = () => {
 
                   <div className="mt-4 text-center">
                     <button
-                      onClick={() => setShowPaymentForm(true)}
+                     onClick={() => window.open('https://divineliightt.creatorlabs.in/add-to-cart', '_blank')}
+                      // onClick={() => setShowPaymentForm(true)}
                       className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all hover:from-purple-700 hover:to-indigo-700 animate-shake"
                     >
                       <CheckCircle className="w-5 h-5 mr-2" />
@@ -1065,7 +1067,8 @@ const TarotWorkshopScreen = () => {
 
                   <div className="mt-4 text-center">
                     <button
-                      onClick={() => setShowPaymentForm(true)}
+                     onClick={() => window.open('https://divineliightt.creatorlabs.in/add-to-cart', '_blank')}
+                      // onClick={() => setShowPaymentForm(true)}
                       className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all animate-shake animate-pulse"
                     >
                       <Gem className="mr-2 h-5 w-5" />
@@ -1386,7 +1389,8 @@ const TarotWorkshopScreen = () => {
 
                         <div className="flex justify-center">
                           <button
-                            onClick={() => setShowPaymentForm(true)}
+                           onClick={() => window.open('https://divineliightt.creatorlabs.in/add-to-cart', '_blank')}
+                            // onClick={() => setShowPaymentForm(true)}
                             className="flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all hover:from-purple-700 hover:to-indigo-700 animate-shake animate-pulse hover:animate-none"
                           >
                             <Zap className="w-5 h-5 mr-2" />
@@ -2018,7 +2022,8 @@ const TarotWorkshopScreen = () => {
                   {/* CTA Button */}
                   <div className="mt-12 text-center">
                     <button
-                      onClick={() => setShowPaymentForm(true)}
+                     onClick={() => window.open('https://divineliightt.creatorlabs.in/add-to-cart', '_blank')}
+                      // onClick={() => setShowPaymentForm(true)}
                       className="inline-flex items-center px-8 py-4 border border-transparent text-lg font-bold rounded-xl shadow-lg text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 transition-all transform hover:-translate-y-1 hover:shadow-xl animate-shake animate-pulse hover:animate-none"
                     >
                       <svg
@@ -2198,7 +2203,8 @@ const TarotWorkshopScreen = () => {
 
                 <div className="space-y-4 max-w-md mx-auto">
                   <button
-                    onClick={() => setShowPaymentForm(true)}
+                   onClick={() => window.open('https://divineliightt.creatorlabs.in/add-to-cart', '_blank')}
+                    // onClick={() => setShowPaymentForm(true)}
                     className="w-full bg-white text-violet-700 hover:bg-gray-100 py-4 rounded-2xl font-bold text-lg flex items-center justify-center gap-2 transition-all duration-300 shadow-lg hover:shadow-xl animate-shake hover:animate-none"
                   >
                     <Play className="w-5 h-5" />
@@ -2398,7 +2404,8 @@ const TarotWorkshopScreen = () => {
 
                 <div className="flex items-center gap-3">
                   <button
-                    onClick={() => setShowPaymentForm(true)}
+                   onClick={() => window.open('https://divineliightt.creatorlabs.in/add-to-cart', '_blank')}
+                    // onClick={() => setShowPaymentForm(true)}
                     className="flex items-center justify-center px-5 py-2 bg-gradient-to-r from-amber-400 to-amber-500 text-black font-bold rounded-md shadow-lg hover:shadow-xl transition-all hover:from-amber-300 hover:to-amber-400 animate-shake animate-pulse hover:animate-none"
                   >
                     <span className="mr-2">Register Now @ Rs 55</span>
@@ -2438,7 +2445,7 @@ const TarotWorkshopScreen = () => {
           </div>
         </div>
       </div>
-      {showPaymentForm && (
+      {/* {showPaymentForm && (
         <PaymentForm
           onClose={() => setShowPaymentForm(false)}
           onSuccess={() => {
@@ -2446,7 +2453,7 @@ const TarotWorkshopScreen = () => {
             navigate("/thankyou");
           }}
         />
-      )}
+      )} */}
     </>
   );
 };
